@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Choice do
-  it "should belong to an existing question" do
-    
-
-  end
 
 end
 

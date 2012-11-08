@@ -14,6 +14,14 @@ describe "Quizzes" do
 
     it "submits all answers" do
     end
+
+  context 'GET /quizzes/new' do
+    it "renders the quiz form" do
+      visit new_quiz_path
+
+      page.should have_selector("form#new_quiz[action='/quizzes']")
+    end
+
   end
 
 end
