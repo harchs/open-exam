@@ -35,7 +35,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1/edit
   def edit
     @quiz = Quiz.find(params[:id])
-    @quiz.questions.build
+    @quiz.questions.build if @quiz.questions.empty?
   end
 
   # POST /quizzes

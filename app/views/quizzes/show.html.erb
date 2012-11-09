@@ -1,5 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-Name: <%= @quiz.name %>
+<h1> <%= @quiz.name %> </h1>
+
+<ol class="questions">
+  <% @quiz.questions.each do |question| %>
+  <li>
+    <%= question.name %>
+    <ol class="choices">
+      <% question.choices.each do |choice| %>
+      <li><%= choice.name %></li>
+      <% end %>
+    </ol>
+  </li>
+  <% end %>
+</ol>
+
+
+
+
+
 <%= link_to 'Edit', edit_quiz_path(@quiz) %> |
 <%= link_to 'Back', quizzes_path %>
