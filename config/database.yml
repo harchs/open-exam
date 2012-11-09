@@ -17,11 +17,11 @@ development:
   encoding: unicode
   database: open_exam_development
   pool: 5
-  username: stephenchen
-  password:
+  username: nikhilthomas
+  password: 
   host: localhost
   port: 5432
-  
+
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
@@ -45,10 +45,8 @@ test:
   encoding: unicode
   database: open_exam_test
   pool: 5
-  username: stephenchen
+  username: open_exam
   password:
-  host: localhost
-  port: 5432
 
 production:
   adapter: postgresql
