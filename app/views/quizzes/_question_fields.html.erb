@@ -1,0 +1,9 @@
+<fieldset>
+  <%= f.label :name, "Question" %> <br />
+  <%= f.text_area :name %>
+
+   <%= f.fields_for :choices do |builder| %>
+    <%= render 'choice_fields', f: builder %>
+  <%end %>
+
+</fieldset>  

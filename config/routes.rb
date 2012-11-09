@@ -1,4 +1,9 @@
 OpenExam::Application.routes.draw do
+
+  resources :quizzes
+  get 'take-quiz/:id' => 'quizzes#take', :as => :take_quiz
+  post 'record-quiz' => 'quizzes#record', :as => :record_quiz
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +53,7 @@ OpenExam::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'quizzes#index'
 
   # See how all your routes lay out with "rake routes"
 
