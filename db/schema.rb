@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20121108224412) do
     t.integer  "creator_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.boolean  "is_published"
     t.text     "description"
+    t.boolean  "is_published"
   end
 
   create_table "user_quizzes", :force => true do |t|

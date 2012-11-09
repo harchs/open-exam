@@ -17,13 +17,8 @@ development:
   encoding: unicode
   database: open_exam_development
   pool: 5
-<<<<<<< HEAD
   username: aleeder
   password:
-=======
-  username: nikhilthomas
-  password: 
->>>>>>> 05fa0b6696fbe191ce3a5dfa6a2bc2e62ac2591a
   host: localhost
   port: 5432
 
@@ -50,12 +45,10 @@ test:
   encoding: unicode
   database: open_exam_test
   pool: 5
-<<<<<<< HEAD
   username: aleeder
-=======
-  username: open_exam
->>>>>>> 05fa0b6696fbe191ce3a5dfa6a2bc2e62ac2591a
   password:
+  host: localhost
+  port: 5432 
 
 production:
   adapter: postgresql
