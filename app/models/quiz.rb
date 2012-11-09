@@ -7,6 +7,6 @@ class Quiz < ActiveRecord::Base
   has_many :users, :through => :user_quizzes
   has_many :answers
 
-  validates :name, :presence => :true, :length => { :in => 4..40}, :uniqueness => :true
-  validates :description, :presence => true
+  #validates :name, :presence => :true, :length => { :in => 4..40}, :uniqueness => :true
+  #validates :description, :presence => true
 end

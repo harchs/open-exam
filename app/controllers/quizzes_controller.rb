@@ -60,6 +60,7 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
 
     respond_to do |format|
+      #raise params.inspect
       if @quiz.update_attributes(params[:quiz])
         format.html { redirect_to @quiz, notice: 'Quiz was successfully updated.' }
         format.json { head :no_content }

@@ -5,17 +5,22 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-quiz1 = Quiz.create(:name => "First Quiz",:description => "this is the first quiz", :is_published => true)
-question1 = Question.create(:name => "What color is the sky?", :quiz_id => quiz1.id)
-choice1 = Choice.create(:name => "Blue", :question_id => question1.id)
-choice2 = Choice.create(:name => "Black", :question_id => question1.id)
-choice3 = Choice.create(:name => "Red", :question_id => question1.id)
-question2 = Question.create(:name => "What is your name?", :quiz_id => quiz1.id)
-choice4 = Choice.create(:name => "Rex", :question_id => question2.id)
-choice5 = Choice.create(:name => "Stephen", :question_id => question2.id)
-choice6 = Choice.create(:name => "Nikhil", :question_id => question2.id)
-question3 = Question.create(:name => "What is your age?", :quiz_id => quiz1.id)
-choice7 = Choice.create(:name => "18", :question_id => question3.id)
-choice8 = Choice.create(:name => "50", :question_id => question3.id)
-choice9 = Choice.create(:name => "25", :question_id => question3.id)
-quiz2 = Quiz.create(:name => "Second Quiz",:description => "this is the second quiz", :is_published => false)
+quiz1 = Quiz.create!(:name => "First Quiz",:description => "this is the first quiz", :is_published => true)
+question1 = quiz1.questions.create! :name => "What color is the sky?"
+choice1 = question1.choices.create! :name => "Blue"
+choice2 = question1.choices.create! :name => "Black"
+choice3 = question1.choices.create! :name => "Red"
+
+question2 = quiz1.questions.create! :name => "What is your name?"
+choice4 = question2.choices.create! :name => "Rex"
+choice5 = question2.choices.create! :name => "Stephen"
+choice6 = question2.choices.create! :name => "Nikhil"
+
+question3 = quiz1.questions.create! :name => "What is your age?"
+choice7 = question3.choices.create! :name => "18"
+choice8 = question3.choices.create! :name => "50"
+choice9 = question3.choices.create! :name => "25"
+
+quiz2 = Quiz.create!(:name => "Second Quiz", :description => "this is the second quiz", :is_published => false)
+question4 = quiz2.questions.create! :name => "What is your problem?"
+choice10 = question4.choices.create! :name => "Array problem"
