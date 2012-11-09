@@ -1,20 +1,16 @@
 require 'spec_helper'
 
 describe "Quizzes" do
-<<<<<<< HEAD
-=======
   describe "GET /quizzes/1" do
     let(:quiz){Quiz.create(:name => "First Quiz")}
 
     it "can view a quiz" do 
       visit quiz_path(quiz)
->>>>>>> quiz-tdd
 
   context 'GET /quizzes/new' do
     it "renders the quiz form" do
       visit new_quiz_path
 
-<<<<<<< HEAD
       page.should have_selector("form#new_quiz[action='/quizzes']")
     end
 
@@ -23,7 +19,9 @@ describe "Quizzes" do
 
       page.should have_selector('input#quiz_name')
       page.should have_selector('input#quiz_description')
-=======
+
+    end
+
     pending "renders all questions for a quiz" do
     end
     
@@ -55,11 +53,11 @@ describe "Quizzes" do
     it "can submit a completed quiz" do
       visit take_quiz_path(quiz)
 
+      page.should have_content(quiz.id)
       page.choose("Blue")
       click_button("submit")
 
       page.should have_content("Thank You")
-      quiz.answers.count.should > 0
     end
 
     it "cannot submit an incomplete quiz" do
@@ -67,24 +65,8 @@ describe "Quizzes" do
       click_button("submit")
 
       page.should have_content("missing")
->>>>>>> quiz-tdd
     end
 
   end
-
-    # describe "GET /quizzes/1" do
-  #   let(:quiz){Quiz.new(:name => "First Quiz")}
-  #   it "renders all the questions" do 
-  #     visit quiz_path(quiz)
-
-  #     page.should have_content("First Quiz")
-  #   end
-
-  #   it "renders all the choices for questions" do
-  #   end
-
-  #   it "submits all answers" do
-  #   end
-  # end
 
 end

@@ -2,21 +2,19 @@
 
 Name: <%= @quiz.name %>
 
-<%= form_for @quiz, :action => record_quiz_path do |f| %>
-  
+<form action="/record-quiz" method="post">
+  <%= @quiz.id %>
   <% @quiz.questions.each do |question| %>
-  <%= question.name %>:<br />
+    <%= question.name %>:<br />
 
     <% question.choices.each do |choice| %>
       <%= radio_button_tag(choice.name, choice.name) %>
       <%= label_tag(choice.name, choice.name) %>
     <% end %>
-
   <br />
   <% end %>
-
-  <%= f.submit "Create" %>
-<% end %>
+  <input type="submit" value="submit" />  
+</form>
 
 <%= link_to 'Edit', edit_quiz_path(@quiz) %> |
 <%= link_to 'Back', quizzes_path %>

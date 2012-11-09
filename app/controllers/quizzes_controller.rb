@@ -98,10 +98,7 @@ class QuizzesController < ApplicationController
   def record
 
     respond_to do |format|
-      if @quiz.save
-        format.html
-      else
-      end
+      format.html
     end
 
   end
