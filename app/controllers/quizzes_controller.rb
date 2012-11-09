@@ -81,4 +81,28 @@ class QuizzesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def take
+    @quiz = Quiz.find(params[:id])
+
+    if @quiz.is_published
+      respond_to do |format|
+        format.html # take.html.erb
+        format.json { render json: @quiz }
+      end
+    else
+      redirect_to quizzes_path
+    end
+  end
+
+  def record
+
+    respond_to do |format|
+      if @quiz.save
+        format.html
+      else
+      end
+    end
+
+  end
 end

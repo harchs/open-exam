@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20121108223500) do
+=======
+ActiveRecord::Schema.define(:version => 20121108224412) do
+>>>>>>> quiz-tdd
 
   create_table "answers", :force => true do |t|
     t.string   "name"
@@ -47,9 +51,15 @@ ActiveRecord::Schema.define(:version => 20121108223500) do
   create_table "quizzes", :force => true do |t|
     t.string   "name"
     t.integer  "creator_id"
+<<<<<<< HEAD
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.text     "description"
+=======
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.boolean  "is_published"
+>>>>>>> quiz-tdd
   end
 
   create_table "user_quizzes", :force => true do |t|

@@ -6,12 +6,17 @@
     <th></th>
     <th>Description</th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @quizzes.each do |quiz| %>
   <tr>
+<<<<<<< HEAD
     <td><%= quiz.name %><td>
     <td><%= quiz.description %><td>
+=======
+    <td><%= quiz.name %></td>
+>>>>>>> quiz-tdd
     <td><%= link_to 'Show', quiz %></td>
     <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
     <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
