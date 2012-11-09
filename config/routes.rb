@@ -1,6 +1,11 @@
 OpenExam::Application.routes.draw do
 
   resources :quizzes
+
+  resources :questions do
+    resources :answers, :controller => 'questions/answers'
+  end
+
   # get 'take-quiz/:id' => 'quizzes#take', :as => :take_quiz
   # post 'record-quiz' => 'quizzes#record', :as => :record_quiz
 

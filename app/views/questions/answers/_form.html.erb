@@ -1,0 +1,26 @@
+<%= @question.name %>: 
+<br />
+<%= form_for(@question_answer, :url => question_answers_path(@question)) do |f| %>
+  <% if @question_answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question_answer.errors.count, "error") %> prohibited this question_answer from being saved:</h2>
+
+      <ul>
+      <% @question_answer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :question_id %>
+  <%= f.hidden_field :quiz_id %>
+  <ul>
+  <% @question.choices.each do |choice| %>
+    <li>
+      <input type="radio" name="answer[choice_id]" value="<%= choice.id %>" /><%= choice.name %>
+    </li>
+  <% end %>
+  </ul>
+  <%= f.submit "Submit" %>
+<% end %>
