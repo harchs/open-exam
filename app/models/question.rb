@@ -8,5 +8,7 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :choices
 
   
-  
+  # def is_last_question?
+    
+  # end  
 end
