@@ -82,24 +82,5 @@ class QuizzesController < ApplicationController
     end
   end
 
-  def take
-    @quiz = Quiz.find(params[:id])
 
-    if @quiz.is_published
-      respond_to do |format|
-        format.html # take.html.erb
-        format.json { render json: @quiz }
-      end
-    else
-      redirect_to quizzes_path
-    end
-  end
-
-  def record
-
-    respond_to do |format|
-      format.html
-    end
-
-  end
 end
