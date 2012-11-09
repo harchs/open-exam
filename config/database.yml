@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: open_exam_development
   pool: 5
-  username: nikhilthomas
+  username: stephenchen
   password:
   host: localhost
   port: 5432
@@ -45,7 +45,7 @@ test:
   encoding: unicode
   database: open_exam_test
   pool: 5
-  username: nikhilthomas
+  username: stephenchen
   password:
   host: localhost
   port: 5432

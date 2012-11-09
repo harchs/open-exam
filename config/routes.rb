@@ -1,13 +1,9 @@
 OpenExam::Application.routes.draw do
 
   resources :quizzes
-<<<<<<< HEAD
-=======
-  
   get 'take-quiz/:id' => 'quizzes#take', :as => :take_quiz
   post 'record-quiz' => 'quizzes#record', :as => :record_quiz
 
->>>>>>> quiz-tdd
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
