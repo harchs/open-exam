@@ -35,6 +35,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1/edit
   def edit
     @quiz = Quiz.find(params[:id])
+    @quiz.questions.build
   end
 
   # POST /quizzes

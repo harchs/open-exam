@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Choice do
+  it "should know if it is correct" do
+    choice = Choice.new(:is_correct => 1)
+    choice.is_correct.should == true
+    
+  end  
 
 end
 
