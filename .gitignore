@@ -15,6 +15,4 @@
 /tmp
 
 # Ignore database configuration (for local development)
-/config/database.yml
-config/database.yml
 # one of these have to work
