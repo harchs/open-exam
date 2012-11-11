@@ -2,6 +2,8 @@ OpenExam::Application.routes.draw do
 
   resources :quizzes
 
+  resources :users
+
   resources :questions do
     resources :answers, :controller => 'questions/answers'
   end

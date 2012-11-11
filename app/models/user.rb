@@ -3,4 +3,9 @@ class User < ActiveRecord::Base
 
   belongs_to :organization
   has_many :quizzes
+
+  validates :name, :presence => :true
+  validates :email, :presence => :true
+
+  
 end
