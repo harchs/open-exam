@@ -1,3 +1,5 @@
+<%= @question.position %> / <%= @question.quiz.questions.length %> </br />
+
 <%= @question.name %>: 
 <br />
 <%= form_for(@question_answer, :url => question_answers_path(@question)) do |f| %>
@@ -22,5 +24,19 @@
     </li>
   <% end %>
   </ul>
-  <%= f.submit "Submit" %>
+  <% if @question.quiz.next_question(@question) %>
+    <%= f.submit "Next" %>
+  <% else %>
+    <%= f.submit "Submit" %>
+  <% end %>
 <% end %>
+
+<ul>
+  <% @question.quiz.questions.each do |question| %>
+    <% if question.position < @question.position %>
+      <li>
+      <%= link_to question.position, edit_question_answer_path(question, question.answers.first) %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
