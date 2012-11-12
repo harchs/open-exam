@@ -16,7 +16,7 @@
     <td><%= quiz.description %><td>
     <td><%= link_to 'Show', quiz %></td>
     <% if quiz.questions.length > 0 %>
-    <td><%= link_to 'Take', question_answers_path(quiz.questions.first) %></td>
+    <td><%= link_to 'Take', new_question_answer_path(quiz.questions.first) %></td>
     <% else %>
     <td>No questions for this quiz.</td>
     <% end %>
