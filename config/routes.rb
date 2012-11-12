@@ -6,12 +6,6 @@ OpenExam::Application.routes.draw do
     resources :answers, :controller => 'questions/answers'
   end
 
-  # get 'take-quiz/:id' => 'quizzes#take', :as => :take_quiz
-  # post 'record-quiz' => 'quizzes#record', :as => :record_quiz
-
-  get 'quizzes/:id/take' => 'takequizzes#new', :as => :take_quiz
-  put 'quizzes/:id/take' => 'takequizzes#create', :as => :record_quiz
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

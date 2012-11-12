@@ -37,6 +37,7 @@ class Questions::AnswersController < ApplicationController
 
   # GET /questions/:question_id/answers/1/edit
   def edit
+    @question = Question.find(params[:question_id])
     @question_answer = Question::Answer.find(params[:id])
   end
 
@@ -45,7 +46,7 @@ class Questions::AnswersController < ApplicationController
   def create
     @question_answer = Question::Answer.new(params[:answer])
     respond_to do |format|
-      if @question_answer.save
+      if @question_answer.save && @question_answer.quiz.next_question(@question_answer.question)
         format.html { redirect_to new_question_answer_path(@question_answer.question_id + 1), notice: 'Answer was successfully created.' }
         format.json { render json: @question_answer, status: :created, location: @question_answer }
       else

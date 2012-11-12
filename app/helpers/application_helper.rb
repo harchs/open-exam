@@ -7,4 +7,8 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  def take_quiz_path(quiz)
+    new_question_answer_path(quiz.questions.order(:position).first.id)
+  end
 end

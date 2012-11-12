@@ -9,4 +9,8 @@ class Quiz < ActiveRecord::Base
 
   #validates :name, :presence => :true, :length => { :in => 4..40}, :uniqueness => :true
   #validates :description, :presence => true
+
+  def next_question(question) 
+    self.questions.length == question.position ? nil : self.questions.find_by_position(question.position + 1)
+  end
 end

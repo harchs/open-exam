@@ -8,6 +8,7 @@ gem 'rails', '3.2.8'
 gem 'pg'
 gem 'guard-rspec'
 gem 'terminal-notifier-guard'
+gem 'acts_as_list'
 
 # Gems used only for assets and not required
 # in production environments by default.
