@@ -1,5 +1,7 @@
 class TakequizzesController < ApplicationController
 
+  before_filter :authorize, only: [:create, :index, :new]
+
 # takequiz#index (avail quizzes to take)
 #quizzes/5/take => takequiz#new
 # click submit quiz => create
