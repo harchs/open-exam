@@ -169,6 +169,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   bcrypt-ruby (~> 3.0.0)
+  acts_as_list
   capybara
   coffee-rails (~> 3.2.1)
   debugger
