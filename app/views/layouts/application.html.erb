@@ -23,6 +23,19 @@
           </a>
           <%= link_to 'Open Exam', root_path, :class => 'brand' %>
           <div class="nav-collapse collapse">
+            <p class="nav-bar-text pull-right">
+              <% if current_user %>
+                Logged in as <%= current_user.name %>
+                <%= link_to "Log Out", logout_path %>
+              <% else %>  
+                <%= link_to "Sign Up", signup_path %> or
+                <%= link_to "Log In", login_path %>
+              <% end %>
+
+              <% flash.each do |name, msg| %>
+                <%= content_tag :div, msg, id: "flash_#{name}" %>
+              <% end %>
+            </p>
             <ul class="nav">
             </ul>
           </div><!--/.nav-collapse -->
@@ -30,16 +43,7 @@
       </div>
     </div>
 
-  <% if current_user %>
-    Logged in as <%= current_user.name %>
-    <%= link_to "Log Out", logout_path %>
-  <% else %>  
-    <%= link_to "Sign Up", signup_path %> or
-    <%= link_to "Log In", login_path %>
-  <% end %>
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, id: "flash_#{name}" %>
-  <% end %>
+
   <div class="container">
     <%= yield %>
   </div>
