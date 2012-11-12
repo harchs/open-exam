@@ -5,19 +5,47 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
 </head>
 <body>
-  <% if current_user %>
-    Logged in as <%= current_user.name %>
-    <%= link_to "Log Out", logout_path %>
-  <% else %>  
-    <%= link_to "Sign Up", signup_path %> or
-    <%= link_to "Log In", login_path %>
-  <% end %>
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, id: "flash_#{name}" %>
-  <% end %>
-<%= yield %>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <%= link_to 'Open Exam', root_path, :class => 'brand' %>
+          <div class="nav-collapse collapse">
+            <p class="nav-bar-text pull-right">
+              <% if current_user %>
+                Logged in as <%= current_user.name %>
+                <%= link_to "Log Out", logout_path %>
+              <% else %>  
+                <%= link_to "Sign Up", signup_path %> or
+                <%= link_to "Log In", login_path %>
+              <% end %>
 
+              <% flash.each do |name, msg| %>
+                <%= content_tag :div, msg, id: "flash_#{name}" %>
+              <% end %>
+            </p>
+            <ul class="nav">
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+
+  <div class="container">
+    <%= yield %>
+  </div>
 </body>
 </html>

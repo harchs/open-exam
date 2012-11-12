@@ -24,6 +24,7 @@
     </li>
   <% end %>
   </ul>
+
   <% if @question.quiz.next_question(@question) %>
     <%= f.submit "Next" %>
   <% else %>

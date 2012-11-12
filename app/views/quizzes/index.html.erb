@@ -15,7 +15,12 @@
     <td><%= quiz.name %><td>
     <td><%= quiz.description %><td>
     <td><%= link_to 'Show', quiz %></td>
-    <td><%= link_to 'Take', take_quiz_path(quiz) %></td>
+    <% if quiz.questions.length > 0 %>
+    <td><%= link_to 'Take', new_question_answer_path(quiz.questions.first) %></td>
+    <% else %>
+    <td>No questions for this quiz.</td>
+    <% end %>
+
     <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
     <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
