@@ -16,8 +16,18 @@
 </ol>
 
 <%= link_to "Add a Question", new_question_path(:quiz_id => @quiz.id) %>
+ <!-- redirect to index, while publishing to true  -->
+<%= form_for(@quiz) do |f| %>
+  <%= f.hidden_field :is_published, :value => "true" %>
+  <%= f.submit "Publish Quiz" %>
+<% end %>
 
+<%= form_for(@quiz) do |f| %>
+  <%= f.hidden_field :is_published, :value => "false" %>
+  <%= f.submit "Deactivate Quiz" %> 
+<% end %>
 
+ 
 
 
 <%= link_to 'Edit', edit_quiz_path(@quiz) %> |

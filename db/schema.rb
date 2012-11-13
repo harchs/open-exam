@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112161659) do
+ActiveRecord::Schema.define(:version => 20121113215436) do
 
   create_table "answers", :force => true do |t|
     t.string   "name"
@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(:version => 20121112161659) do
   create_table "quizzes", :force => true do |t|
     t.string   "name"
     t.integer  "creator_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.text     "description"
-    t.boolean  "is_published"
+    t.boolean  "is_published", :default => false
   end
 
   create_table "user_quizzes", :force => true do |t|
