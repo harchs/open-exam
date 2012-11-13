@@ -24,3 +24,9 @@ choice9 = question3.choices.create! :name => "25"
 quiz2 = Quiz.create!(:name => "Second Quiz", :description => "this is the second quiz", :is_published => false)
 question4 = quiz2.questions.create! :name => "What is your problem?"
 choice10 = question4.choices.create! :name => "Array problem"
+
+user1 = User.create!(:name => "Avi Flombaum", :email => "avi.flombaum@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Admin")
+user2 = User.create!(:name => "Akiva Leeder", :email => "akiva.leeder@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Student")
+user3 = User.create!(:name => "Nikhil Thomas", :email => "nikhil.thomas@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Student")
+user4 = User.create!(:name => "Stephen Chen", :email => "stephen.chen@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Student")
+user5 = User.create!(:name => "Rex Feng", :email => "rex.feng@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Student")
