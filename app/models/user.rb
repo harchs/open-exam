@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   validates :name, :presence => :true
   validates :email, :presence => :true
 
+  def is_admin?
+    self.role == "Admin" ? true : false 
+  end  
+
 end

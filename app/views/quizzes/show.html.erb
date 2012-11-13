@@ -2,17 +2,21 @@
 
 <h1> <%= @quiz.name %> </h1>
 
+<% user =  User.find_by_id(session[:user_id]).is_admin?%>
+
 <ol class="questions">
   <% @quiz.questions.each do |question| %>
   <li>
     <%= question.name %>
-    <%= form_for question, :remote => true do |q| %>
-      <%= q.hidden_field :selected, :value => "true" %>
-      <%= q.submit "Select" %>
-    <% end %>
-    <%= form_for question, :remote => true do |q| %>
-      <%= q.hidden_field :selected, :value => "false" %>
-      <%= q.submit "Deselect" %>
+    <%if user%>  
+      <%= form_for question, :remote => true do |q| %>
+        <%= q.hidden_field :selected, :value => "true" %>
+        <%= q.submit "Select" %>
+      <% end %>
+      <%= form_for question, :remote => true do |q| %>
+        <%= q.hidden_field :selected, :value => "false" %>
+        <%= q.submit "Deselect" %>
+      <% end %>
     <% end %>
     <ol class="choices">
       <% question.choices.each do |choice| %>
@@ -25,16 +29,17 @@
 
 <%= link_to "Add a Question", new_question_path(:quiz_id => @quiz.id) %>
  <!-- redirect to index, while publishing to true  -->
-<%= form_for(@quiz) do |f| %>
-  <%= f.hidden_field :is_published, :value => "true" %>
-  <%= f.submit "Publish Quiz" %>
-<% end %>
+<% if user %>  
+  <%= form_for(@quiz) do |f| %>
+    <%= f.hidden_field :is_published, :value => "true" %>
+    <%= f.submit "Publish Quiz" %>
+  <% end %>
 
-<%= form_for(@quiz) do |f| %>
-  <%= f.hidden_field :is_published, :value => "false" %>
-  <%= f.submit "Deactivate Quiz" %> 
+  <%= form_for(@quiz) do |f| %>
+    <%= f.hidden_field :is_published, :value => "false" %>
+    <%= f.submit "Deactivate Quiz" %> 
+  <% end %>
 <% end %>
-
  
 
 
