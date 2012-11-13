@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  attr_accessible :name, :quiz_id, :choices_attributes, :choices, :position
+  attr_accessible :name, :quiz_id, :choices_attributes, :choices, :position, :selected
 
   belongs_to :quiz
   has_many :choices
@@ -9,6 +9,12 @@ class Question < ActiveRecord::Base
 
   # This is because we want to eventually allow for checkbox answers
   accepts_nested_attributes_for :choices
+
+  after_initialize :init
+
+  def init
+    self.selected ||= false
+  end
 
   
   def is_last_question?

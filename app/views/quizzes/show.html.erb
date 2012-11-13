@@ -6,6 +6,14 @@
   <% @quiz.questions.each do |question| %>
   <li>
     <%= question.name %>
+    <%= form_for question, :remote => true do |q| %>
+      <%= q.hidden_field :selected, :value => "true" %>
+      <%= q.submit "Select" %>
+    <% end %>
+    <%= form_for question, :remote => true do |q| %>
+      <%= q.hidden_field :selected, :value => "false" %>
+      <%= q.submit "Deselect" %>
+    <% end %>
     <ol class="choices">
       <% question.choices.each do |choice| %>
       <li><%= choice.name %></li>
