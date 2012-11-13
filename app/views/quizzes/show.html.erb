@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%#= notice %></p>
 
 <h1> <%= @quiz.name %> </h1>
 
@@ -15,6 +15,7 @@
   <% end %>
 </ol>
 
+<%= link_to "Add a Question", new_question_path(:quiz_id => @quiz.id) %>
 
 
 
