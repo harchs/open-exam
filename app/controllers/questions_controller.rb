@@ -24,11 +24,17 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   # GET /questions/new.json
   def new
-    @question = Question.new
+    quiz_id = params[:quiz_id] 
+    @quiz = Quiz.find_by_id(quiz_id)
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @question }
+      if quiz_id
+        @question = Question.new(:quiz_id => quiz_id)
+        format.html # new.html.erb
+        format.json { render json: @question }
+      else
+        format.html { redirect_to new_quiz_path, notice: 'You must create a quiz before a question' }
+      end
     end
   end
 
@@ -41,10 +47,15 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(params[:question])
+    correct_index = params[:is_correct].to_i
+    @question.choices.each_with_index do |choice, index| 
+      choice.question_id = @question.id
+      correct_index == index ? choice.is_correct = true : choice.is_correct = false
+    end
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.html { redirect_to quiz_path(@question.quiz_id), notice: 'Question was successfully created.' }
         format.json { render json: @question, status: :created, location: @question }
       else
         format.html { render action: "new" }
