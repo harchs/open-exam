@@ -48,8 +48,9 @@ class Questions::AnswersController < ApplicationController
   def create
     @question_answer = Question::Answer.new(params[:answer])
     respond_to do |format|
-      if @question_answer.save && @question_answer.quiz.next_question(@question_answer.question)
-        format.html { redirect_to new_question_answer_path(@question_answer.question_id + 1), notice: 'Answer was successfully created.' }
+      next_question = @question_answer.quiz.next_question(@question_answer.question)
+      if @question_answer.save && next_question
+        format.html { redirect_to new_question_answer_path(next_question.id), notice: 'Answer was successfully created.' }
         format.json { render json: @question_answer, status: :created, location: @question_answer }
       else
         # redirect to quizzes when done with current quiz for now
