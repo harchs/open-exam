@@ -1,4 +1,6 @@
 class Questions::AnswersController < ApplicationController
+  before_filter :authorize, only: [:edit, :update, :new, :destroy]
+
   # GET /questions/:question_id/answers
   # GET /questions/:question_id/answers.json
   def index
@@ -27,7 +29,7 @@ class Questions::AnswersController < ApplicationController
   # GET /questions/:question_id/answers/new.json
   def new
     @question = Question.find(params[:question_id])
-    @question_answer = Question::Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id)
+    @question_answer = Question::Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id, :user_id => current_user.id)
 
     respond_to do |format|
       format.html # new.html.erb
