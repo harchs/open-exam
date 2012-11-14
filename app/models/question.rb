@@ -6,13 +6,13 @@ class Question < ActiveRecord::Base
   has_many :answers
 
   acts_as_list :scope => :quiz
-
   # This is because we want to eventually allow for checkbox answers
   accepts_nested_attributes_for :choices
+  after_initialize :set_default_values
 
-  after_initialize :init
+  validates :name, :presence => true
 
-  def init
+  def set_default_values
     self.selected ||= false
   end
 
