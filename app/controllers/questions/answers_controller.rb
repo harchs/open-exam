@@ -51,12 +51,12 @@ class Questions::AnswersController < ApplicationController
     respond_to do |format|
       next_question = @question_answer.quiz.next_question(@question_answer.question)
       if @question_answer.save && next_question
-        format.html { redirect_to new_question_answer_path(next_question.id), notice: 'Answer was successfully created.' }
+        format.html { redirect_to new_question_answer_path(next_question.id), notice: 'Your answer has been saved.' }
         format.json { render json: @question_answer, status: :created, location: @question_answer }
       else
         UserQuiz.create(:quiz_id => @question_answer.quiz_id, :user_id => @question_answer.user_id)
         # redirect to quizzes when done with current quiz for now
-        format.html { redirect_to quizzes_path, notice: 'Answer was successfully created.' }
+        format.html { redirect_to quizzes_path, notice: 'Your completed quiz has been recorded.' }
         format.json { render json: @question_answer.errors, status: :unprocessable_entity }
       end
     end
