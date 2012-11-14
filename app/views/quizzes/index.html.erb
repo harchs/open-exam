@@ -79,6 +79,7 @@
     <th></th>
   </tr>   
     <% @quizzes.each do |quiz| %>
+      <% if current_user.has_taken?(quiz) %>
       <tr>
         <td><%= quiz.name %><td>
         <td><%= quiz.description %><td>
@@ -92,6 +93,7 @@
         <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
         <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end %>
     <% end %>
 </table>
     </div>
