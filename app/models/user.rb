@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :organization_id, :password, :password_confirmation, :role
   has_secure_password
   belongs_to :organization
-  has_many :quizzes
+  has_many :user_quizzes
+  has_many :quizzes, :through => :user_quizzes
   has_many :answers
 
   validates :name, :presence => :true
@@ -15,5 +16,13 @@ class User < ActiveRecord::Base
   def has_taken?(quiz)
     self.answers.any?{ |answer| answer.quiz_id == quiz.id }
   end  
+
+
+  def quizzes_to_add=(quiz_ids)
+    quiz_ids.each do |quiz_id|
+      self.user_quizzes.create(:quiz_id => quiz_id)
+    end
+  end
+
 
 end
