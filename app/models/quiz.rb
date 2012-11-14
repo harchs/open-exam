@@ -5,12 +5,14 @@ class Quiz < ActiveRecord::Base
   has_many :user_quizzes
   has_many :users, :through => :user_quizzes
   has_many :answers
-  after_initialize :init
+  after_initialize :set_default_value
 
   #validates :name, :presence => :true, :length => { :in => 4..40}, :uniqueness => :true
   #validates :description, :presence => true
+  validates :name, :presence => :true
+  validates :description, :presence => true
 
-  def init
+  def set_default_value
     self.is_published ||= false
   end
 
