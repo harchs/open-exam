@@ -53,7 +53,7 @@
           <tr>
             <td><%= quiz.name %><td>
             <td><%= quiz.description %><td>
-            <td><%= link_to 'Show', quiz %></td>
+            <td><%= link_to 'Show', quiz_path(quiz) %></td>
 
 
             <% if current_user.is_admin? %>

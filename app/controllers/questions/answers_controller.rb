@@ -1,5 +1,6 @@
 class Questions::AnswersController < ApplicationController
   before_filter :authorize, only: [:edit, :update, :new, :destroy]
+  before_filter :has_not_taken, only: [:new, :create]
 
   # GET /questions/:question_id/answers
   # GET /questions/:question_id/answers.json
@@ -87,4 +88,12 @@ class Questions::AnswersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def has_not_taken
+      if current_user.answers.any? {|q| q.question_id == params[:question_id].to_i }
+        redirect_to root_path, alert: "You already answered this one"
+      end
+   end 
+
 end
