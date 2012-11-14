@@ -1,4 +1,8 @@
-<p id="notice"><%#= notice %></p>
+<% if @quiz.is_published %>
+  <p class="alert">This quiz has been published.</p>
+<% else %>
+  <p class="alert">This quiz has not been published yet.</p>
+<% end %>
 
 <h1> <%= @quiz.name %> </h1>
 

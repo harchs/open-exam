@@ -1,8 +1,10 @@
 <fieldset>
   <%= f.label :name, "Choice" %>
   <%= f.text_field :name %>
+  <label>Correct Answer?</label>
   <input type="radio" name="is_correct" />
   <%= f.hidden_field :_destroy %>
+  <br />
   <%= link_to "remove", '#', class: "remove_fields" %>
 </fieldset>
 
