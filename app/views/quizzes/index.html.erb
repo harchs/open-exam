@@ -1,7 +1,17 @@
 <h1>Listing quizzes</h1>
 
 <%= @current_user.try(:name) %>
-<table>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">Take a quiz!</a></li>
+        <li><a href="#tab2" data-toggle="tab">Add a question!</a></li>
+        <li><a href="#tab3" data-toggle="tab">My quizzes</a></li>
+    </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <p>All of these quizzes are available for you to take.</p>
+      <table>
   <tr>
     <th>Name</th>
     <th></th>
@@ -9,24 +19,84 @@
     <th></th>
     <th></th>
     <th></th>
-  </tr>
-
-<% @quizzes.each do |quiz| %>
-  <tr>
-    <td><%= quiz.name %><td>
-    <td><%= quiz.description %><td>
-    <td><%= link_to 'Show', quiz %></td>
-    <% if quiz.questions.length > 0 %>
-    <td><%= link_to 'Take', new_question_answer_path(quiz.questions.first) %></td>
-    <% else %>
-    <td>No questions for this quiz.</td>
+  </tr>   
+    <% @quizzes.each do |quiz| %>
+        <% if quiz.questions.length > 0 && quiz.is_published %>
+          <tr>
+            <td><%= quiz.name %><td>
+            <td><%= quiz.description %><td>
+            <td><%= link_to 'Take', new_question_answer_path(quiz.questions.first) %></td>
+            <% if current_user.is_admin? %>
+                <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
+                <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
     <% end %>
-
-    <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
-    <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
 </table>
+
+    </div>
+    <div class="tab-pane" id="tab2">
+      <p>These quizzes are unpublished for you to add questions.</p>
+       <table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>   
+    <% @quizzes.each do |quiz| %>
+        <% unless quiz.is_published %>
+          <tr>
+            <td><%= quiz.name %><td>
+            <td><%= quiz.description %><td>
+            <td><%= link_to 'Show', quiz %></td>
+            <% if current_user.is_admin? %>
+                <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
+                <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+    <% end %>
+</table>
+
+
+    </div>
+    <div class="tab-pane" id="tab3">
+      <p>Here's a summary of your progress.</p>
+      <table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>   
+    <% @quizzes.each do |quiz| %>
+      <tr>
+        <td><%= quiz.name %><td>
+        <td><%= quiz.description %><td>
+        <td><%= link_to 'Show', quiz %></td>
+        <% if quiz.questions.length > 0 %>
+        <td><%= link_to 'Take', new_question_answer_path(quiz.questions.first) %></td>
+        <% else %>
+        <td>No questions for this quiz.</td>
+        <% end %>
+
+        <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
+        <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+</table>
+    </div>
+  </div>
+</div>    
+
+</div>
+
 
 <br />
 

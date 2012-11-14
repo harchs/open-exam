@@ -1,10 +1,11 @@
 class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
-  before_filter :authorize, only: [:edit, :update, :new, :destroy]
+  before_filter :authorize, only: [:edit, :update, :new, :destroy, :index]
 
   def index
     @quizzes = Quiz.all
+
 
     respond_to do |format|
       format.html # index.html.erb
