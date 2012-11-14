@@ -19,11 +19,9 @@ class Question < ActiveRecord::Base
   
   def is_last_question?
     self.quiz.questions.count == self.sort_order
-<<<<<<< HEAD
+
   end  
 
-=======
-  end 
 
   validate :validate_unique_choices
 
@@ -31,5 +29,5 @@ class Question < ActiveRecord::Base
     validate_uniqueness_of_in_memory(choices, [:name, :question_id], 'Duplicate Choice.')
   end
  
->>>>>>> validates uniqueness of WITH nested attributesgit add .
+
 end
