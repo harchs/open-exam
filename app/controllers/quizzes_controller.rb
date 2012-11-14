@@ -65,7 +65,7 @@ class QuizzesController < ApplicationController
     respond_to do |format|
       #raise params.inspect
       if @quiz.update_attributes(params[:quiz])
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully updated.' }
+        format.html { redirect_to @quiz }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
