@@ -4,7 +4,7 @@ class Choice < ActiveRecord::Base
   belongs_to :question
   has_many :answers
 
-
+  validates :name, :presence => true
   #validates :is_correct, :inclusion => {:in => [true, false]}
 
 end
