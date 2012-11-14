@@ -18,4 +18,9 @@ class Quiz < ActiveRecord::Base
   def next_question(question) 
     self.questions.length == question.position ? nil : self.questions.find_by_position(question.position + 1)
   end
+
+  def taken_by?(user)
+    self.answers.any?{ |answer| answer.user_id == user.id }
+  end  
+
 end

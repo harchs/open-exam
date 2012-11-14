@@ -2,13 +2,11 @@
 
 <h1> <%= @quiz.name %> </h1>
 
-<% user =  User.find_by_id(session[:user_id]).is_admin?%>
-
 <ol class="questions">
   <% @quiz.questions.each do |question| %>
   <li>
     <%= question.name %>
-    <%if user%>  
+    <%if current_user.is_admin?%>  
       <%= form_for question, :remote => true do |q| %>
         <%= q.hidden_field :selected, :value => "true" %>
         <%= q.submit "Select" %>
@@ -29,7 +27,7 @@
 
 <%= link_to "Add a Question", new_question_path(:quiz_id => @quiz.id) %>
  <!-- redirect to index, while publishing to true  -->
-<% if user %>  
+<% if current_user.is_admin? %>  
   <%= form_for(@quiz) do |f| %>
     <%= f.hidden_field :is_published, :value => "true" %>
     <%= f.submit "Publish Quiz" %>
