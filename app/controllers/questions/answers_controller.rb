@@ -94,6 +94,6 @@ class Questions::AnswersController < ApplicationController
       if current_user.answers.any? {|q| q.question_id == params[:question_id].to_i }
         redirect_to root_path, alert: "You already answered this one"
       end
-   end 
+    end 
 
 end
