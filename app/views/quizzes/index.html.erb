@@ -83,15 +83,6 @@
       <tr>
         <td><%= quiz.name %><td>
         <td><%= quiz.description %><td>
-        <td><%= link_to 'Show', quiz %></td>
-        <% if quiz.questions.length > 0 %>
-        <td><%= link_to 'Take', new_question_answer_path(quiz.questions.first) %></td>
-        <% else %>
-        <td>No questions for this quiz.</td>
-        <% end %>
-
-        <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
-        <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% end %>
     <% end %>
@@ -104,5 +95,6 @@
 
 
 <br />
-
-<%= link_to 'New Quiz', new_quiz_path %>
+<% if current_user.is_admin? %>
+  <%= link_to 'New Quiz', new_quiz_path, :class => "btn btn-primary" %>
+<% end %>
