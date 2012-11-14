@@ -3,13 +3,3 @@
 
 en:
   hello: "Hello world"
-  activerecord:
-    attributes:
-      question:
-        choices: 
-    errors:
-      models:
-        question:
-          attributes:
-            choice:
-              blank: "You need two choices"

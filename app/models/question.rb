@@ -11,20 +11,14 @@ class Question < ActiveRecord::Base
   after_initialize :set_default_values
 
   validates :name, :presence => true
-  validate :validate_question_has_choices
+  validates :choices, :length => { :minimum => 2, :message => "You must add at least 2 choices."}
 
   def set_default_values
     self.selected ||= false
   end
-
   
   def is_last_question?
     self.quiz.questions.count == self.sort_order
   end  
 
-  def validate_question_has_choices
-    unless choices && choices.count >= 2
-      self.errors[:base] << "You must add at least 2 choices."
-    end
-  end
 end
