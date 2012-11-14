@@ -1,7 +1,12 @@
+<% unless notice.nil? %>
+    <p class="alert"><%= notice %></p>
+<% end %>
+
 <%= @question.position %> / <%= @question.quiz.questions.length %> </br />
 
 <%= @question.name %>: 
 <br />
+
 <%= form_for(@question_answer, :url => question_answers_path(@question)) do |f| %>
   <% if @question_answer.errors.any? %>
     <div id="error_explanation">
