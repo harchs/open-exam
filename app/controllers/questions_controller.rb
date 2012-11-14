@@ -30,6 +30,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       if quiz_id
         @question = Question.new(:quiz_id => quiz_id)
+        2.times { @question.choices.build }
         format.html # new.html.erb
         format.json { render json: @question }
       else
