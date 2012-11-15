@@ -87,7 +87,9 @@
       <tr>
         <td><%= quiz.name %></td>
         <td><%= quiz.description %></td>
-        <td><%= link_to "Result", score_path(quiz.id) %></td>
+        <% answers = current_user.answers_for_quiz(quiz.id) if quiz %>
+        <% num_correct = (answers.map(&:choice_id) & quiz.correct_choices.map(&:id)).count %>
+        <td><%= link_to "You answered " + num_correct.to_s + " questions correctly.", score_path(quiz.id) %></td>
       </tr>
       <% end %>
     <% end %>
