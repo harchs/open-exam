@@ -1,4 +1,4 @@
-<h1>Sign Up</h1>
+<h1>Sign Up</h1> <br />
 
 <%#= render 'form' %>
 
@@ -15,7 +15,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div><br />
   <div class="field">
@@ -24,15 +24,14 @@
   </div><br />
   <div class="field">
     <%= f.label :password %>
-    <%= f.password_field :password %><br />
-  </div>
+    <%= f.password_field :password %>
+  </div><br />
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class="actions"><%= f.submit "Sign Up" %></div>
+  <div class="controls">   
+   <input name="commit" class = "btn" type="submit" value="Sign up">
+  </div>
+
 <% end %>
-
-
-
-
