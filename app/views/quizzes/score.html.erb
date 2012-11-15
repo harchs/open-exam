@@ -1,0 +1,21 @@
+<% num_correct = (@answers.map(&:choice_id) & @quiz.correct_choices.map(&:id)).count %>
+<h2><%= @quiz.name %></h2>
+<%= num_correct %> / <%= @quiz.questions.count %><br />
+<% @quiz.questions.each do |question| %>
+  <%= question.name %>
+  <br />
+  <% question.choices.each do |choice| %>
+    <% if choice.is_correct && @answers.detect{|answer| answer.choice_id == choice.id} %>
+      <span class="label-success"><%= choice.name %></span>
+    <% elsif choice.is_correct %>
+      <span class="label-success"><%= choice.name %></span>
+    <% else %>
+      <% if @answers.detect{|answer| answer.choice_id == choice.id} %>
+        <span class="label-important"><%= choice.name %></span>
+      <% else %>
+        <span><%= choice.name %></span>
+      <% end %>
+    <% end %>
+    <br />
+  <% end %>
+<% end %>

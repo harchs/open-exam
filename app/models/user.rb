@@ -24,5 +24,7 @@ class User < ActiveRecord::Base
     end
   end
 
-
+  def answers_for_quiz(quiz_id)
+    self.answers.select {|answer| answer.quiz_id == quiz_id}
+  end
 end

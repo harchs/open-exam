@@ -86,5 +86,17 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def score
+    @quiz = Quiz.find(params[:id])
+    @answers = current_user.answers_for_quiz(@quiz.id) if @quiz
+
+    respond_to do |format|
+      if @quiz && UserQuiz.find_by_user_id_and_quiz_id(current_user.id, @quiz.id)
+        format.html
+      else
+        format.html { redirect_to quizzes_path, notice => "You haven't taken this quiz yet." }
+      end
+    end
+  end
 
 end

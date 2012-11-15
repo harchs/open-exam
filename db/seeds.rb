@@ -8,21 +8,21 @@
 quiz1 = Quiz.create!(:name => "First Quiz",:description => "this is the first quiz", :is_published => true)
 question1 = quiz1.questions.build :name => "What color is the sky?"
 choice1 = question1.choices.build :name => "Blue"
-choice2 = question1.choices.build :name => "Black"
+choice2 = question1.choices.build :name => "Black", :is_correct => true
 choice3 = question1.choices.build :name => "Red"
 question1.save
 
 
 question2 = quiz1.questions.build :name => "What is your name?"
 choice4 = question2.choices.build :name => "Rex"
-choice5 = question2.choices.build :name => "Stephen"
+choice5 = question2.choices.build :name => "Stephen", :is_correct => true
 choice6 = question2.choices.build :name => "Nikhil"
 question2.save
 
 question3 = quiz1.questions.build :name => "What is your age?"
 choice7 = question3.choices.build :name => "18"
 choice8 = question3.choices.build :name => "50"
-choice9 = question3.choices.build :name => "25"
+choice9 = question3.choices.build :name => "25", :is_correct => true
 question3.save
 
 quiz2 = Quiz.create!(:name => "Second Quiz", :description => "this is the second quiz", :is_published => false)

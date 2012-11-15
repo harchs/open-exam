@@ -6,6 +6,8 @@ OpenExam::Application.routes.draw do
   
   get "sessions/new"
 
+  get 'quizzes/:id/score' => 'quizzes#score'
+
   resources :quizzes
 
   resources :users

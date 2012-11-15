@@ -25,4 +25,7 @@ class Quiz < ActiveRecord::Base
     self.answers.any?{ |answer| answer.user_id == user.id }
   end  
 
+  def correct_choices
+    self.questions.map(&:choices).flatten!.select(&:is_correct)
+  end
 end
