@@ -23,22 +23,30 @@
           </a>
           <%= link_to 'Open Exam', root_path, :class => 'brand' %>
           <div class="nav-collapse collapse">
-            <p class="nav-bar-text pull-right">
-              <% if current_user && current_user.is_admin? %>
+            <ul class="nav pull-right">
+            <% if current_user && current_user.is_admin? %>
+              <li>
                 <%= link_to "Admin", admin_path %>
-              <% end %>
-              <% if current_user %>
-                Logged in as <%= link_to current_user.name, current_user %>
+              </li>
+            <% end %>
+            <% if current_user %>
+              <li>
+                <%= link_to current_user.name, current_user %>
+              </li>
+              <li>
                 <%= link_to "Log Out", logout_path %>
-              <% else %>  
-                <%= link_to "Sign Up", signup_path %> or
+              </li>              
+            <% else %>
+              <li>
+                <%= link_to "Sign Up", signup_path %>
+              </li>
+              <li>
                 <%= link_to "Log In", login_path %>
-              <% end %>
+              </li>
+            <% end %>
+            </ul>
 
-
-            </p>
             <ul class="nav">
-
               <% if controller?("quizzes") && action?("index") %>
                 <li class="active">
               <% else %>
