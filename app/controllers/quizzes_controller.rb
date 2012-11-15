@@ -1,7 +1,7 @@
 class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
-  before_filter :authorize, only: [:edit, :update, :new, :destroy, :index]
+  before_filter :authorize, only: [:edit, :update, :new, :destroy, :index, :collaborate, :history]
 
   def index
     @quizzes = Quiz.all
