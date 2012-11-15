@@ -4,6 +4,8 @@ set_choice_value = ->
   $('input:radio[name=is_correct]:visible').each (index, value) ->
     $(this).val(index)
 
+
+
 jQuery ->
   $('form').on 'click', '.remove_fields', (event) ->
     $(this).prev('input[type=hidden]').val('1')
@@ -17,3 +19,4 @@ jQuery ->
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
     set_choice_value()
+
