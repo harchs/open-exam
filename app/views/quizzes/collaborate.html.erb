@@ -1,0 +1,27 @@
+ <p>These quizzes are unpublished for you to add questions.</p>
+       <table>
+  <tr>
+
+    <th>Name</th>
+    <th></th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>   
+    <% @quizzes.each do |quiz| %>
+        <% unless quiz.is_published %>
+          <tr>
+            <td><%= quiz.name %><td>
+            <td><%= quiz.description %><td>
+            <td><%= link_to 'Edit', quiz_path(quiz) %></td>
+
+
+            <% if current_user.is_admin? %>
+                <td><%= link_to 'Rename Quiz', edit_quiz_path(quiz) %></td>
+                <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+    <% end %>
+</table>

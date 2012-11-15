@@ -6,15 +6,7 @@
 
 <%#= @current_user.try(:name) %>
 
-<div class="tabbable">
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" data-toggle="tab">Take a quiz!</a></li>
-        <li><a href="#tab2" data-toggle="tab">Add a question!</a></li>
-        <li><a href="#tab3" data-toggle="tab">My quizzes</a></li>
-    </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-      <p>All of these quizzes are available for you to take.</p>
+     <p>All of these quizzes are available for you to take.</p>
       <table>
   <tr>
     <th>Name</th>
@@ -38,65 +30,6 @@
         <% end %>
     <% end %>
 </table>
-
-    </div>
-    <div class="tab-pane" id="tab2">
-      <p>These quizzes are unpublished for you to add questions.</p>
-       <table>
-  <tr>
-
-    <th>Name</th>
-    <th></th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>   
-    <% @quizzes.each do |quiz| %>
-        <% unless quiz.is_published %>
-          <tr>
-            <td><%= quiz.name %><td>
-            <td><%= quiz.description %><td>
-            <td><%= link_to 'Edit', quiz_path(quiz) %></td>
-
-
-            <% if current_user.is_admin? %>
-                <td><%= link_to 'Rename Quiz', edit_quiz_path(quiz) %></td>
-                <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-          </tr>
-        <% end %>
-    <% end %>
-</table>
-
-
-    </div>
-    <div class="tab-pane" id="tab3">
-      <p>Here's a summary of your progress.</p>
-      <table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>   
-    <% @quizzes.each do |quiz| %>
-      <% if current_user.has_taken?(quiz) %>
-      <tr>
-        <td><%= quiz.name %></td>
-        <td><%= quiz.description %></td>
-        <% answers = current_user.answers_for_quiz(quiz.id) if quiz %>
-        <% num_correct = (answers.map(&:choice_id) & quiz.correct_choices.map(&:id)).count %>
-        <td><%= link_to "You answered " + num_correct.to_s + " questions correctly.", score_path(quiz.id) %></td>
-      </tr>
-      <% end %>
-    <% end %>
-</table>
-    </div>
-  </div>
-</div>    
 
 <% if current_user.is_admin? %>
   <p>

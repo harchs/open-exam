@@ -13,4 +13,14 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, alert: "You must be signed in for this" if current_user.nil?
   end
 
+  helper_method :controller?, :action?
+
+  def controller?(controller)
+    controller == params[:controller]
+  end
+
+  def action?(action)
+    action == params[:action]
+  end
+
 end

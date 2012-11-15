@@ -38,6 +38,28 @@
 
             </p>
             <ul class="nav">
+
+              <% if controller?("quizzes") && action?("index") %>
+                <li class="active">
+              <% else %>
+                <li>
+              <% end %>
+                <%= link_to "Take Quiz", quizzes_path %></li>
+
+              <% if controller?("quizzes") && action?("collaborate") %>
+                <li class="active">
+              <% else %>
+                <li>
+              <% end %>
+                <%= link_to "Collaborate", quiz_collaborate_path %></li>
+
+              <% if controller?("quizzes") && action?("history") %>
+                <li class="active">
+              <% else %>
+                <li>
+              <% end %>
+                <%= link_to "Quiz History", quiz_history_path %></li>
+
             </ul>
           </div><!--/.nav-collapse -->
         </div>
