@@ -8,9 +8,13 @@
     <th>Quiz Name</th>
   </tr>
 <% @user.user_quizzes.each do |user_quiz| %>
-  <td><%= user_quiz.id %></td>
-  <td><%= user_quiz.quiz.name %></td>
+  <tr>
+    <td><%= user_quiz.id %></td>
+    <td><%= user_quiz.quiz.name %></td>
+  </tr>
 <% end %>
+
+
 </table>
 <%= link_to 'Edit Profile', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
