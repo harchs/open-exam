@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $(".actions > :submit[name='commit']").click( function (e) {
+  $(".actions#question_submission > :submit[name='commit']").click( function (e) {
 
      var selected = 0;
 
