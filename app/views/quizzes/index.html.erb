@@ -1,39 +1,67 @@
-<% unless notice.nil? %>
-    <p class="alert"><%= notice %></p>
-<% end %>
-
-<h1>Listing quizzes</h1>
-
-<%#= @current_user.try(:name) %>
-
-     <p>All of these quizzes are available for you to take.</p>
-      <table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>   
-    <% @quizzes.each do |quiz| %>
-        <% if quiz.questions.length > 0 && quiz.is_published && !quiz.taken_by?(current_user)%>
-          <tr>
-            <td><%= quiz.name %><td>
-            <td><%= quiz.description %><td>
-            <td><%= link_to 'Take', new_question_answer_path(quiz.questions.first) %></td>
-            <% if current_user.is_admin? %>
-                <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
-                <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-          </tr>
-        <% end %>
+<div class="row">
+  <% unless notice.nil? %>
+      <p class="alert"><%= notice %></p>
+  <% end %>
+  <div class="span9">
+    <% if current_user.is_admin? %>
+    <p>
+      <%= link_to 'New Quiz', new_quiz_path, :class => "btn btn-primary" %>
+    </p>
     <% end %>
-</table>
+    <br />
+  </div>
 
-<% if current_user.is_admin? %>
-  <p>
-    <%= link_to 'New Quiz', new_quiz_path, :class => "btn btn-primary" %>
-  </p>
-<% end %>
+  <div class="span4">
+    <div class="quiz-content">
+      <div class="quiz-header">
+        <h3>Take a Quiz</h3>
+      </div>
+      <div class="quiz-list">
+        <ul>
+        <% @quizzes.each do |quiz| %>
+          <% if quiz.questions.length > 0 && quiz.is_published && !quiz.taken_by?(current_user)%>
+            <li>
+              <a href="<%= new_question_answer_path(quiz.questions.first) %>">
+                <span class="title"><%= truncate(quiz.name, :length => 30) %></span>
+              </a>
+              <span class="links">
+                <% if current_user.is_admin? %>
+                  <%= link_to 'Edit', edit_quiz_path(quiz), :class => "edit-icon"  %>
+                  <%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' }, :class => "trash-icon" %>
+                <% end %>
+              </span>
+            </li>
+          <% end %>
+        <% end %>        
+        </ul>
+      </div>
+    </div>
+  </div>
 
+  <div class="span4 offset1">
+    <div class="quiz-content">
+      <div class="quiz-header">
+        <h3>Add a Question</h3>
+      </div>
+      <div class="quiz-list">
+        <ul>
+        <% @quizzes.each do |quiz| %>
+          <% unless quiz.is_published %>
+            <li>
+              <a href="<%= quiz_path(quiz) %>">
+                <span class="title"><%= truncate(quiz.name, :length => 30) %></span>
+              </a>
+              <span class="links">
+                <% if current_user.is_admin? %>
+                  <%= link_to 'Edit', edit_quiz_path(quiz), :class => "edit-icon" %>
+                  <%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' }, :class => "trash-icon" %>
+                <% end %>
+              </span>
+            </li>
+          <% end %>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
