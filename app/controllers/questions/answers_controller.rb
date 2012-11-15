@@ -56,7 +56,7 @@ class Questions::AnswersController < ApplicationController
       else
         UserQuiz.create(:quiz_id => @question_answer.quiz_id, :user_id => @question_answer.user_id)
         # redirect to quizzes when done with current quiz for now
-        format.html { redirect_to quizzes_path, notice: 'Your completed quiz has been recorded.' }
+        format.html { redirect_to score_path(@question_answer.quiz_id), notice: 'Your completed quiz has been recorded.' }
         format.json { render json: @question_answer.errors, status: :unprocessable_entity }
       end
     end
