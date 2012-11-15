@@ -25,19 +25,19 @@
 
       <%#= f.check_box :_destroy %>
       <%#= f.label :_destroy, "Remove Question" %>
-      <div style="width: 200px; float: right; padding-right: 40%; padding-top: 2%">
+      <div style="width: 200px; float: right; padding-right: 40%; padding-top: 1%">
         <%= f.fields_for :choices do |builder| %>
           <%= render 'choice_fields', f: builder %>
         <% end %>
-        <%= link_to_add_fields "Add Choice", f, :choices %>
+        
+        <%= link_to_add_fields "Add Choice", f, :choices%>
+        
       </div>
 
-    
-
-
+  
   </div>
 
-  
+  <div style="clear:both;"></div>
 
 
 <% end %>
