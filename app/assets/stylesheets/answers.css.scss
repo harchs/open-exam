@@ -1,0 +1,19 @@
+#new_answer .radio {
+  padding-bottom: 8px;
+  padding-top: 8px;
+  border-bottom: 1px dotted #DDD;
+  margin:0;
+}
+
+#new_answer .radio:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+#new_answer .control-group {
+  padding: 5px;
+  border: 1px dotted #DDD;
+}
+
+.italic {
+  font-style: italic;
+}

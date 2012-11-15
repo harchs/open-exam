@@ -1,57 +1,65 @@
-<% unless notice.nil? %>
-    <p class="alert"><%= notice %></p>
-<% end %>
-
-<%= @question.position %> / <%= @question.quiz.questions.length %> </br />
-
-<%= @question.name %>: 
-<br />
-
-<%= form_for(@question_answer, :url => question_answers_path(@question)) do |f| %>
-  <% if @question_answer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@question_answer.errors.count, "error") %> prohibited this question_answer from being saved:</h2>
-
-      <ul>
-      <% @question_answer.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= f.hidden_field :question_id %>
-  <%= f.hidden_field :quiz_id %>
-  <%= f.hidden_field :user_id %>
-  
-  <% fraction_of_quiz_complete = (@question.position.to_f / @question.quiz.questions.length.to_f) %>
-  <% width_of_progress_bar  = ((fraction_of_quiz_complete.to_f - (1/@question.quiz.questions.length.to_f))* 100).to_s + "%" %>
-
-
-  <div class="progress">
-    <div class="bar" style= "width:<%= width_of_progress_bar %>" ></div>
-  </div>
-  <ul>
-  <% @question.choices.each do |choice| %>
-    <li>
-      <input type="radio" name="answer[choice_id]" value="<%= choice.id %>" /><%= choice.name %>
-    </li>
-  <% end %>
-  </ul>
-
-  <% if @question.quiz.next_question(@question) %>
-    <%= f.submit "Next" %>
-  <% else %>
-    <%= f.submit "Submit" %>
-  <% end %>
-<% end %>
-
-<ul>
-  <% @question.quiz.questions.each do |question| %>
-    <% if question.position < @question.position %>
-      <li>
-      <%= link_to question.position, edit_question_answer_path(question, question.answers.first) %>
-      </li>
+<div class="row">
+  <div class="span6">
+    <h3>Quiz: <%= @question.quiz.name %></h3>
+    <% unless notice.nil? %>
+        <p class="alert"><%= notice %></p>
     <% end %>
-  <% end %>
-</ul>
+
+    <% fraction_of_quiz_complete = @question.position.to_f / @question.quiz.questions.length.to_f %>
+    <% width_of_progress_bar  = (fraction_of_quiz_complete.to_f * 100).to_s + "%" %>
+
+    <div class="progress">
+      <div class="bar" style= "width:<%= width_of_progress_bar %>" ></div>
+    </div>
+
+    <div id="question">
+      <h4 class="italic"><%= @question.position %>. <%= @question.name %></h4>
+    </div> 
+
+    <%= form_for(@question_answer, :url => question_answers_path(@question), :html => { :class => "form-horizontal"}) do |f| %>
+      <div class="control-group">
+        <% if @question_answer.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@question_answer.errors.count, "error") %> prohibited this question_answer from being saved:</h2>
+
+            <ul>
+            <% @question_answer.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= f.hidden_field :question_id %>
+        <%= f.hidden_field :quiz_id %>
+        <%= f.hidden_field :user_id %>
+        
+        <% @question.choices.each do |choice| %>
+          <label class="radio">
+            <input type="radio" name="answer[choice_id]" value="<%= choice.id %>" />
+            <%= choice.name %>
+          </label>
+        <% end %>
+      </div>
+      <% if @question.quiz.next_question(@question) %>
+        <%= f.submit "Next" %>
+      <% else %>
+        <%= f.submit "Submit" %>
+      <% end %>
+    <% end %>
+
+  </div>
+  <div class="span3">
+  </div>
+</div>
+<div class="row">
+<!--   <ul>
+    <%# @question.quiz.questions.each do |question| %>
+      <%# if question.position < @question.position %>
+        <li>
+        <%#= link_to question.position, edit_question_answer_path(question, question.answers.first) %>
+        </li>
+      <%# end %>
+    <%# end %>
+  </ul> -->
+</div>
