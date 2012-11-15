@@ -3,6 +3,9 @@
 Name: <%= @quiz.name %>
 
 <form action="/record-quiz" method="post">
+  <div class="progress">
+    <div class="bar" style="width: 60%;"></div>
+  </div>
   <%= @quiz.id %>
   <% @quiz.questions.each do |question| %>
     <%= question.name %>:<br />
