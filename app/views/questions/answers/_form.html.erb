@@ -25,7 +25,7 @@
   <%= f.hidden_field :user_id %>
   
   <% fraction_of_quiz_complete = (@question.position.to_f / @question.quiz.questions.length.to_f) %>
-  <% width_of_progress_bar  = (fraction_of_quiz_complete.to_f * 100).to_s + "%" %>
+  <% width_of_progress_bar  = ((fraction_of_quiz_complete.to_f - (1/@question.quiz.questions.length.to_f))* 100).to_s + "%" %>
 
 
   <div class="progress">
