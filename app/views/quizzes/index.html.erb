@@ -85,8 +85,9 @@
     <% @quizzes.each do |quiz| %>
       <% if current_user.has_taken?(quiz) %>
       <tr>
-        <td><%= quiz.name %><td>
-        <td><%= quiz.description %><td>
+        <td><%= quiz.name %></td>
+        <td><%= quiz.description %></td>
+        <td><%= link_to "Result", score_path(quiz.id) %></td>
       </tr>
       <% end %>
     <% end %>

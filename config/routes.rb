@@ -7,7 +7,7 @@ OpenExam::Application.routes.draw do
   
   get "sessions/new"
 
-  get 'quizzes/:id/score' => 'quizzes#score'
+  get 'quizzes/:id/score' => 'quizzes#score', as: 'score'
 
   resources :quizzes
 
