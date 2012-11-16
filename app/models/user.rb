@@ -27,4 +27,6 @@ class User < ActiveRecord::Base
   def answers_for_quiz(quiz_id)
     self.answers.select {|answer| answer.quiz_id == quiz_id}
   end
+
+  # tested answers_for_quiz in rails console and it works. 
 end
