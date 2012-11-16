@@ -11,23 +11,16 @@
   <li>
     <%= question.name %>
     <%if current_user.is_admin?%>  
-      
-
-          <%= form_for question, :remote => true do |q| %>
-            <%= q.hidden_field :selected, :value => "true" %>
-            <%= q.submit "Select Question" %>
-            
-
-          <% end %>
-      
-          <%= form_for question, :remote => true do |q| %>
-           <%= q.hidden_field :selected, :value => "false" %>
-           <%= q.submit "Deselect Question" %>
-            
-           <% end %>
-
-      
-
+      <%= form_for question, :remote => true do |q| %>
+        <%= q.hidden_field :selected, :value => "true" %>
+        <%= q.submit "Select Question", :class => "select-question", :id => "test" %>
+      <% end %>
+  
+      <%= form_for question, :remote => true do |q| %>
+       <%= q.hidden_field :selected, :value => "false" %>
+       <%= q.submit "Deselect Question", :class => "deselect-question" %>
+        
+       <% end %>
     <% end %>
 
     <ol class="choices">
@@ -44,23 +37,21 @@
  <!-- redirect to index, while publishing to true  -->
 <% if current_user.is_admin? %>  
   <% if !@quiz.is_published? %>
-
-      <%= form_for(@quiz) do |f| %></br>
-        <%= f.hidden_field :is_published, :value => "true" %>
-          <%#= f.submit "Publish Quiz" %>
-        <div class="actions">
-          <button class="btn btn-warning" name="commit" type="submit" value="Publish Quiz" >Publish Quiz</button>
-        </div>
+    <%= form_for(@quiz) do |f| %></br>
+      <%= f.hidden_field :is_published, :value => "true" %>
+        <%#= f.submit "Publish Quiz" %>
+      <div class="actions">
+        <button class="btn btn-warning" name="commit" type="submit" value="Publish Quiz" >Publish Quiz</button>
+      </div>
       <% end %>
   <% else %>
-
-      <%= form_for(@quiz) do |f| %></br>
-       <%= f.hidden_field :is_published, :value => "false" %>
-       <%#= f.submit "Deactivate Quiz" %> 
-       <div class="actions">
-        <button class="btn btn-warning" name="commit" type="submit" value="Deactivate Quiz" >Unpublish Quiz</button>
-       </div>
-      <% end %>
+    <%= form_for(@quiz) do |f| %></br>
+     <%= f.hidden_field :is_published, :value => "false" %>
+     <%#= f.submit "Deactivate Quiz" %> 
+     <div class="actions">
+      <button class="btn btn-warning" name="commit" type="submit" value="Deactivate Quiz" >Unpublish Quiz</button>
+     </div>
+    <% end %>
   <%end%>   
 <% end %>
  
@@ -68,3 +59,17 @@
 
 <%= link_to 'Edit', edit_quiz_path(@quiz) %> |
 <%= link_to 'Back', quizzes_path %>
+
+<script text="type/javascript">
+  $(function() {
+    $('.select-question').click(function(){
+      $(this).parent().siblings('form').children('.deselect-question').show();
+      $(this).hide();
+    });
+
+    $('.deselect-question').click(function(){
+      $(this).parent().siblings('form').children('.select-question').show();
+      $(this).hide();
+    });
+  });
+</script>
