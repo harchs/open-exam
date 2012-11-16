@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authorize_admin_or_self, only: [:edit, :update, :create, :destroy]
+  before_filter :authorize_admin_or_self, only: [:edit, :update, :destroy]
   
   def index
     @users = User.all
