@@ -28,4 +28,8 @@ class Quiz < ActiveRecord::Base
   def correct_choices
     self.questions.map(&:choices).flatten!.select(&:is_correct)
   end
+
+  def approved_questions
+    self.questions.select{|question| question.selected}
+  end
 end

@@ -17,16 +17,11 @@ class User < ActiveRecord::Base
     self.answers.any?{ |answer| answer.quiz_id == quiz.id }
   end  
 
-
-  def quizzes_to_add=(quiz_ids)
-    quiz_ids.each do |quiz_id|
-      self.user_quizzes.create(:quiz_id => quiz_id)
-    end
-  end
-
   def answers_for_quiz(quiz_id)
     self.answers.select {|answer| answer.quiz_id == quiz_id}
   end
 
-  # tested answers_for_quiz in rails console and it works. 
+  def quizzes_taken
+    self.quizzes.select {|quiz| self.has_taken?(quiz)}
+  end
 end
