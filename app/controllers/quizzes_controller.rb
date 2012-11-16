@@ -80,7 +80,7 @@ class QuizzesController < ApplicationController
   # DELETE /quizzes/1
   # DELETE /quizzes/1.json
   def destroy
-    @quiz = Quiz.find(params[:id])
+    @quiz = Quiz.find_by_id(params[:id])
     @quiz.destroy
 
     respond_to do |format|
