@@ -90,11 +90,11 @@ class QuizzesController < ApplicationController
   end
 
   def score
-    @quiz = Quiz.find(params[:id])
+    @quiz = Quiz.find_by_id(params[:id])
     @answers = current_user.answers_for_quiz(@quiz.id) if @quiz
 
     respond_to do |format|
-      if @quiz && @answers #UserQuiz.find_by_user_id_and_quiz_id(current_user.id, @quiz.id) #the second clause is breaking
+      if @quiz &&   UserQuiz.find_by_user_id_and_quiz_id(current_user.id, @quiz.id) #the second clause is breaking
                             # still need to add the UserQuiz query
         format.html
       else
