@@ -84,9 +84,10 @@
     <footer>
       <p>
         2012 Flatiron School
-        &middot; <a href="#">About</a>
-        &middot; <a href="#">Privacy</a>
-        &middot; <a href="#">Contact</a>
+        <%= link_to_unless_current "About", about_path %>
+        <%= link_to_unless_current "Privacy", privacy_path %>
+        <a href="http://www.flatironschool.com">Contact</a>
+
       </p>
     </footer>
   </div>
