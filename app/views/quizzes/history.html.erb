@@ -1,14 +1,29 @@
-<p>Here's a summary of your progress.</p>
+<h1>Quizzes you have taken:</h1>
 
-<table>
-  <tr>
-    <th>Quiz</th>
-    <th>Score</th>
-  </tr>   
-    <% @user_quizzes.each do |user_quiz| %>
-      <tr>
-        <td><%= user_quiz.quiz.name %></td>
-        <td><%= link_to "#{user_quiz.num_correct} / #{user_quiz.total_questions}", score_path(user_quiz.quiz.id) %></td>
-      </tr>
+<!-- name description taken_date view_results -->
+
+<% unless @quizzes.nil? %>
+    <% @quizzes.each do |quiz|  %>
+      <% if current_user.has_taken?(quiz) %>
+
+      <div class="quiz_listing">
+
+        <h3><%= quiz.name %></h3>
+
+        <div class="quiz_info">
+          <p class="quiz_description"><%= quiz.description %></p>
+          Taken <%= time_ago_in_words(quiz.answers.find_by_quiz_id(quiz).created_at) %> ago.
+          <%= link_to "View result", score_path(quiz.id) %>
+        </div>
+
+      </div>
+
+      <% end %>
     <% end %>
-</table>
+
+<% else %>
+
+  You have not taken any quizzes. Visit the <%= link_to "Take Quiz page", quizzes_path %> to take one.
+
+<% end %>
+    

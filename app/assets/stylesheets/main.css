@@ -27,3 +27,11 @@ footer {
    width: 200px; 
    padding-bottom:16px;
 }
+
+.quiz_listing, .quiz_info {
+  margin-left: 40px;
+}
+
+.quiz_description {
+  font-style: italic;
+}
