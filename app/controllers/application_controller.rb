@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_admin_or_self
-    redirect_to root_path unless current_user && (current_user.is_admin? || params[:id] == current_user.id) 
+    redirect_to root_path unless current_user && (current_user.is_admin? || params[:id].to_i == current_user.id) 
   end
 
   helper_method :controller?, :action?
