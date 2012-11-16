@@ -14,3 +14,16 @@ footer {
   margin-top: 40px;
   padding-top: 20px;
 }
+
+
+.new_question_for_quiz #new_choice_fields {
+  width: 200px; 
+  float: right; 
+  padding-top: 1%;
+}
+
+.new_question_for_quiz .new_choice {
+   float: right; 
+   width: 200px; 
+   padding-bottom:16px;
+}

@@ -1,8 +1,8 @@
-<fieldset class="choice" style="position: relative; float: right; width: 200px; padding-bottom:16px">
+<fieldset class="new_choice">
   <%= f.label :name, "Choice" %>
   <%= f.text_field :name %>
   <label>Correct Answer? <input type="radio" name="is_correct"/></label>
   <%= f.hidden_field :_destroy %>
-  <%= link_to "remove choice", '#', class: "remove_fields btn btn-mini btn-danger" %>
+  <%= link_to "Remove Choice", '#', class: "remove_fields btn btn-mini btn-danger" %>
 </fieldset>
 

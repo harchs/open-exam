@@ -12,30 +12,29 @@
     </div>
   <% end %>
 
-  <div class="question_div">
-    <fieldset style="float: left">
+<div class="new_question_for_quiz">
+
       <%= f.hidden_field :quiz_id %>
-      <%= f.label :name, "Question" %> <br />
+      <%= f.label :name, "Question" %>
       <%= f.text_area :name %>
 
-      <div class="actions">
-          <button class="btn btn-large btn-primary" name="commit" type="submit" id ="submit_question" value="submit">Submit</button>
-      </div>
-    </fieldset>  
 
       <%#= f.check_box :_destroy %>
       <%#= f.label :_destroy, "Remove Question" %>
-      <div style="width: 200px; float: right; padding-right: 40%; padding-top: 1%">
+      <div id="new_choice_fields">
         <%= f.fields_for :choices do |builder| %>
           <%= render 'choice_fields', f: builder %>
         <% end %>
         
-        <%= link_to_add_fields "Add Choice", f, :choices%>
+        <%= link_to_add_fields "Add Another Choice", f, :choices%>
         
       </div>
 
-  
-  </div>
+            <div class="actions">
+          <button class="btn btn-large btn-primary" name="commit" type="submit" id ="submit_question" value="submit">Submit</button>
+      </div>
+
+</div>
 
   <div style="clear:both;"></div>
 
