@@ -21,6 +21,10 @@ class Question < ActiveRecord::Base
     self.quiz.approved_questions.count == self.sort_order
   end  
 
+  def is_selected?
+    self.selected 
+  end  
+
   validate :validate_unique_choices
 
   def validate_unique_choices
