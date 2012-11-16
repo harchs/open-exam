@@ -17,8 +17,11 @@ class Quiz < ActiveRecord::Base
   end
 
 
-  def next_question(question) 
-    self.questions.length == question.position ? nil : self.questions.find_by_position(question.position + 1)
+  def next_question(question)
+    question_set = self.approved_questions
+    current_index = question_set.index(question)
+
+    question_set[current_index + 1]
   end
 
   def taken_by?(user)
@@ -26,10 +29,10 @@ class Quiz < ActiveRecord::Base
   end  
 
   def correct_choices
-    self.questions.map(&:choices).flatten!.select(&:is_correct)
+    self.approved_questions.map(&:choices).flatten!.select(&:is_correct)
   end
 
   def approved_questions
-    self.questions.select{|question| question.selected}
+    self.questions.order(:position).select{|question| question.selected}
   end
 end

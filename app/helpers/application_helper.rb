@@ -9,6 +9,6 @@ module ApplicationHelper
   end
 
   def take_quiz_path(quiz)
-    new_question_answer_path(quiz.questions.order(:position).first.id)
+    new_question_answer_path(quiz.approved_questions.order(:position).first.id)
   end
 end

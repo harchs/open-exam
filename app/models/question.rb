@@ -18,7 +18,7 @@ class Question < ActiveRecord::Base
   end
   
   def is_last_question?
-    self.quiz.questions.count == self.sort_order
+    self.quiz.approved_questions.count == self.sort_order
   end  
 
   validate :validate_unique_choices
