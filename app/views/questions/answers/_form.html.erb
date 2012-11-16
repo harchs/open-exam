@@ -5,8 +5,8 @@
         <p class="alert"><%= notice %></p>
     <% end %>
 
-    <% fraction_of_quiz_complete = @question.position.to_f / @question.quiz.questions.length.to_f %>
-    <% width_of_progress_bar  = (fraction_of_quiz_complete.to_f * 100).to_s + "%" %>
+    <% fraction_of_quiz_complete = (@question.position.to_f - 1.to_f) / @question.quiz.questions.length.to_f %>
+    <% width_of_progress_bar  = (fraction_of_quiz_complete.to_f* 100).to_s + "%" %>
 
     <div class="progress">
       <div class="bar" style= "width:<%= width_of_progress_bar %>" ></div>
