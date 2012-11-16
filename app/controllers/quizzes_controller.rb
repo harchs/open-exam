@@ -15,7 +15,6 @@ class QuizzesController < ApplicationController
   end
 
   alias collaborate index 
-  alias history index
 
   # GET /quizzes/1
   # GET /quizzes/1.json
@@ -92,11 +91,10 @@ class QuizzesController < ApplicationController
 
   def score
     @quiz = Quiz.find_by_id(params[:id])
-    @answers = current_user.answers_for_quiz(@quiz.id) if @quiz
-
     respond_to do |format|
-      if @quiz &&   UserQuiz.find_by_user_id_and_quiz_id(current_user.id, @quiz.id) #the second clause is breaking
-                            # still need to add the UserQuiz query
+      if @quiz &&   UserQuiz.find_by_user_id_and_quiz_id(current_user.id, @quiz.id) 
+        @answers = current_user.answers_for_quiz(@quiz.id)
+        @num_correct = QuizGrader.num_correct(current_user.answers_for_quiz(@quiz.id), @quiz)
         format.html
       else
         format.html { redirect_to quizzes_path, :notice => "You haven't taken this quiz yet." }
@@ -104,4 +102,10 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def history
+    @user_quizzes = current_user.user_quizzes
+    respond_to do |format|
+      format.html
+    end
+  end
 end

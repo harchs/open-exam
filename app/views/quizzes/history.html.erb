@@ -1,20 +1,14 @@
 <p>Here's a summary of your progress.</p>
-      <table>
+
+<table>
   <tr>
-    <th>Name</th>
-    <th></th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Quiz</th>
+    <th>Score</th>
   </tr>   
-    <% @quizzes.each do |quiz| %>
-      <% if current_user.has_taken?(quiz) %>
+    <% @user_quizzes.each do |user_quiz| %>
       <tr>
-        <td><%= quiz.name %></td>
-        <td><%= quiz.description %></td>
-        <td><%= link_to "Result", score_path(quiz.id) %></td>
+        <td><%= user_quiz.quiz.name %></td>
+        <td><%= link_to "#{user_quiz.num_correct} / #{user_quiz.total_questions}", score_path(user_quiz.quiz.id) %></td>
       </tr>
-      <% end %>
     <% end %>
 </table>

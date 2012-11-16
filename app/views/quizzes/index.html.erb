@@ -19,9 +19,9 @@
       <div class="quiz-list">
         <ul>
         <% @quizzes.each do |quiz| %>
-          <% if quiz.questions.length > 0 && quiz.is_published && !quiz.taken_by?(current_user)%>
+          <% if quiz.approved_questions.length > 0 && quiz.is_published && !quiz.taken_by?(current_user)%>
             <li>
-              <a href="<%= new_question_answer_path(quiz.questions.first) %>">
+              <a href="<%= new_question_answer_path(quiz.approved_questions.first) %>">
                 <span class="title"><%= truncate(quiz.name, :length => 30) %></span>
               </a>
               <span class="links">
