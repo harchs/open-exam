@@ -95,6 +95,7 @@ class QuizzesController < ApplicationController
 
     respond_to do |format|
       if @quiz && @answers #UserQuiz.find_by_user_id_and_quiz_id(current_user.id, @quiz.id) #the second clause is breaking
+                            # still need to add the UserQuiz query
         format.html
       else
         format.html { redirect_to quizzes_path, :notice => "You haven't taken this quiz yet." }
