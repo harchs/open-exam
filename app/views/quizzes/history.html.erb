@@ -1,13 +1,12 @@
 <h1>Quizzes you have taken:</h1>
 
-<!-- name description taken_date view_results -->
+<%if @quizzes.count > 0 %>
 
-<% unless @quizzes.nil? %>
     <% @quizzes.each do |quiz|  %>
       <% if current_user.has_taken?(quiz) %>
 
       <div class="quiz_listing">
-
+        
         <h3><%= quiz.name %></h3>
 
         <div class="quiz_info">
@@ -26,4 +25,3 @@
   You have not taken any quizzes. Visit the <%= link_to "Take Quiz page", quizzes_path %> to take one.
 
 <% end %>
-    

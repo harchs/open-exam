@@ -15,6 +15,7 @@ class QuizzesController < ApplicationController
   end
 
   alias collaborate index 
+  alias history index
 
   # GET /quizzes/1
   # GET /quizzes/1.json
@@ -102,10 +103,5 @@ class QuizzesController < ApplicationController
     end
   end
 
-  def history
-    @user_quizzes = current_user.user_quizzes
-    respond_to do |format|
-      format.html
-    end
-  end
+  
 end
