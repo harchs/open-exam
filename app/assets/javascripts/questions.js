@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  $('input#submit_question').click(function(e){
+  $('#submit_question').click(function(e){
+    console.log('here');
     if ($('form#new_question input:radio:checked').length <= 0) {
       if ($('#error_explanation').length > 0)
       {
