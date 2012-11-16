@@ -31,4 +31,7 @@ class Question < ActiveRecord::Base
     validate_uniqueness_of_in_memory(choices, [:name, :question_id], 'Duplicate Choice.')
   end
  
+  def absolute_position
+    self.quiz.approved_questions.index(self) + 1
+  end
 end
