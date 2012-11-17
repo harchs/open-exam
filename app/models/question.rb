@@ -1,7 +1,8 @@
 class Question < ActiveRecord::Base
-  attr_accessible :name, :quiz_id, :choices_attributes, :choices, :position, :selected
+  attr_accessible :name, :quiz_id, :choices_attributes, :choices, :position, :selected, :user_id
 
   belongs_to :quiz
+  belongs_to :user
   has_many :choices
   has_many :answers
 
@@ -10,6 +11,7 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :choices
   after_initialize :set_default_values
 
+  alias :author :user
   validates :name, :presence => true
   validates :choices, :length => { :minimum => 2, :message => " must have at least two options"}
 

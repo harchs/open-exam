@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if quiz_id
-        @question = Question.new(:quiz_id => quiz_id)
+        @question = Question.new(:quiz_id => quiz_id, :user_id => current_user.id)
         2.times { @question.choices.build }
         format.html # new.html.erb
         format.json { render json: @question }

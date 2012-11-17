@@ -9,7 +9,7 @@
 <ol class="questions">
   <% @quiz.questions.each do |question| %>
   <li>
-    <%= question.name %>
+    (<%= question.author.name %>) <%= question.name %>
     <%if current_user.is_admin?%>  
       <%= form_for question, :remote => true do |q| %>
         <%= q.hidden_field :selected, :value => "true" %>
