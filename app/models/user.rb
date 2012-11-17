@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :user_quizzes
   has_many :quizzes, :through => :user_quizzes
   has_many :answers
+  has_many :questions
 
   validates :name, :presence => :true
   validates :email, :presence => :true

@@ -8,8 +8,8 @@
 
 <ol class="questions">
   <% @quiz.questions.each do |question| %>
-  <li>
-    <%= question.name %>
+  <li class="selected-<%= question.selected %>">
+    (<%= question.author.name %>) <%= question.name %>
     <%if current_user.is_admin?%>  
       <%= form_for question, :remote => true do |q| %>
         <%= q.hidden_field :selected, :value => "true" %>
@@ -60,8 +60,14 @@
 <%= link_to 'Edit', edit_quiz_path(@quiz) %> |
 <%= link_to 'Back', quizzes_path %>
 
+  <script type="text/javascript">
+    $('.selected-true .select-question').hide();
+    $('.selected-false .deselect-question').hide();
+  </script>
+
 <script text="type/javascript">
   $(function() {
+
     $('.select-question').click(function(){
       $(this).parent().siblings('form').children('.deselect-question').show();
       $(this).hide();
