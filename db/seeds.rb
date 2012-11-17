@@ -53,7 +53,7 @@ user15 = User.create!(:name => "Aaron Streiter", :email => "aaron.streiter@flati
 user16 = User.create!(:name => "Nikhil Thomas", :email => "nikhil.thomas@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Student")
 
 user17 = User.create!(:name => "James Vanneman", :email => "james.vanneman@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Student")
-user18 = User.create!(:name => "Ericka Ward", :email => "erick.ward@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Student")
+user18 = User.create!(:name => "Ericka Ward", :email => "ericka.ward@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Student")
 user19 = User.create!(:name => "Brad Wheel", :email => "brad.wheel@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Student")
 user20 = User.create!(:name => "Jenya Zueva", :email => "jenya.zueva@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Student")
 
