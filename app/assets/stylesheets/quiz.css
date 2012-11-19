@@ -15,3 +15,19 @@
 .admin-question .edit-question {
   float:right;
 }
+
+.questions li {
+  padding: 10px;
+}
+
+.question .author {
+  font-style: italic;
+  color: red;
+}
+
+.choices li {
+  padding: 5px;
+}
+
+.admin-quiz form {
+}
