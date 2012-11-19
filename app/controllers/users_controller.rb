@@ -85,6 +85,7 @@ class UsersController < ApplicationController
   def admin
     @user = User.find_by_id(params[:id])
     @users = User.all
+    @quizzes = Quiz.all
     
     if current_user.is_admin?
       respond_to do |format|
