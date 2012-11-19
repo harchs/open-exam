@@ -3,24 +3,25 @@
 }
 
 .quiz-content {
-  min-height: 400px;
+/*  min-height: 400px;
   height: auto !important;
   height: 400px;
   border: 1px solid #DDD;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  -moz-border-radius: 10px;
-  background: image-url('/assets/blu_stripes.png')
+  -moz-border-radius: 10px;*/
+  /*background: image-url('/assets/blu_stripes.png')*/
 }
 
 .quiz-header {
-  text-align: center;
-/*  border: 1px solid #DDD;
+/*  text-align: center;
+*//*  border: 1px solid #DDD;
   border-bottom: none;*/
 }
 .quiz-header h3 {
   margin-bottom: 0;
   border-bottom: 1px solid #DDD;
+  padding-bottom: 20px;
 }
 .quiz-list ul {
   list-style-type: none;
@@ -28,7 +29,7 @@
 }
 
 .quiz-list li {
-  padding: 8px;
+  padding: 10px;
   line-height: 20px;
   border-bottom: 1px solid #DDD;
   background-color: white;
@@ -52,11 +53,14 @@
 
 .quiz-list .title {
   font-style: bold;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .quiz-list .description {
-
+  padding-left: 10px;
+  font-style: italic;
+  font-size: 18px;
+  color: black;
 }
 
 .quiz-list .links {
@@ -92,4 +96,47 @@
   background-size: 24px 24px;
   width: 24px;
   height: 24px;
+}
+
+.approve-icon {
+      margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+  float:left;
+  text-indent: -99999px;
+  display: block;
+  background-image: image-url('/assets/approve.png');
+  background-size: 24px 24px;
+  width: 24px !important;
+  height: 24px;
+}
+.approve-icon:hover {
+  -moz-box-shadow:    1px 1px 1px 1px #ccc;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  box-shadow:         1px 1px 1px 1px #ccc;  
+}
+.reject-icon {
+      margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+  float:left;
+  text-indent: -99999px;
+  display: block;
+  background-image: image-url('/assets/reject.png');
+  background-size: 24px 24px;
+  width: 24px !important;
+  height: 24px;
+}
+.reject-icon:hover {
+  -moz-box-shadow:    1px 1px 1px 1px #ccc;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  box-shadow:         1px 1px 1px 1px #ccc;  
 }

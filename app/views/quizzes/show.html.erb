@@ -1,3 +1,4 @@
+
 <% if @quiz.is_published %>
   <p class="alert">This quiz has been published.</p>
 <% else %>
@@ -9,24 +10,27 @@
 <ol class="questions">
   <% @quiz.questions.each do |question| %>
   <li class="selected-<%= question.selected %>">
-    (<%= question.author.name %>) <%= question.name %>
-    <% if current_user.is_admin? || current_user.id == question.user_id %>
-      <%= link_to "Edit Question", edit_question_path(question) %>
-    <% end %>
-    <%if current_user.is_admin?%>  
-      <%= form_for question, :remote => true do |q| %>
-        <%= q.hidden_field :selected, :value => "true" %>
-        <%= q.submit "Select Question", :class => "select-question", :id => "test" %>
+    <span class="question">
+      (<%= question.author.name %>) <%= question.name %>
+    </span>
+    <span class="admin-question">
+      <%if current_user.is_admin?%>  
+        <%= form_for question, :remote => true do |q| %>
+          <%= q.hidden_field :selected, :value => "true" %>
+          <%= q.submit "Select Question", :class => "select-question approve-icon", :id => "test" %>
+        <% end %>
+    
+        <%= form_for question, :remote => true do |q| %>
+         <%= q.hidden_field :selected, :value => "false" %>
+         <%= q.submit "Deselect Question", :class => "deselect-question reject-icon" %>
+          
+         <% end %>
       <% end %>
-  
-      <%= form_for question, :remote => true do |q| %>
-       <%= q.hidden_field :selected, :value => "false" %>
-       <%= q.submit "Deselect Question", :class => "deselect-question" %>
-        
-       <% end %>
-    <% end %>
-
-    <ol class="choices">
+      <% if current_user.is_admin? || current_user.id == question.user_id %>
+        <%= link_to "Edit Question", edit_question_path(question), :class => "edit-question edit-icon" %>
+      <% end %>
+    </span>
+    <ol class="choices" type="a">
       <% question.choices.each do |choice| %>
       <li><%= choice.name %></li>
       <% end %>
