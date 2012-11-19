@@ -1,0 +1,34 @@
+<h1>Quizzes they have taken:</h1>
+
+
+<% @user = User.find_by_id(user.id) %>
+<%if @quizzes.count > 0 %>
+
+    <% @quizzes.each do |quiz|  %>
+      <% if current_user.has_taken?(quiz) %>
+      <% @num_correct = QuizGrader.num_correct(current_user.answers_for_quiz(quiz.id), quiz)%>
+      <div class="quiz_listing">
+        <% if @num_correct.to_f/quiz.approved_questions.count >= quiz.passing_grade.to_f/100 %>
+          <% image_source = "/assets/smile_1.png" %>
+        <% else %>
+          <% image_source = "/assets/smile_5.png" %>
+        <% end %>
+        
+        <h3><%= quiz.name %> <img src=<%= image_source %> ></h3>
+
+        <div class="quiz_info">
+          <p class="quiz_description"><%= quiz.description %></p>
+          Taken <%= time_ago_in_words(quiz.answers.find_by_quiz_id(quiz).created_at) %> ago.
+          <%= link_to "View result", score_path(quiz.id) %>
+        </div>
+
+      </div>
+
+      <% end %>
+    <% end %>
+
+<% else %>
+
+  You have not taken any quizzes. Visit the <%= link_to "Take Quiz page", quizzes_path %> to take one.
+
+<% end %>
