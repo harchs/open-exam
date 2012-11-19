@@ -20,7 +20,7 @@
           <div class="quiz_info">
             <p class="quiz_description"><%= quiz.description %></p>
             Taken <%= time_ago_in_words(quiz.answers.find_by_quiz_id(quiz).created_at) %> ago.
-            <%= link_to "View result", score_path(quiz.id) %>
+            <%= link_to "View result", score_path(:id => quiz.id, :user_id => @user.id) %>
           </div>
 
         </div>

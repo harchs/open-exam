@@ -61,7 +61,7 @@ class Questions::AnswersController < ApplicationController
           :num_correct => QuizGrader.num_correct(@question_answer.user.answers_for_quiz(@question_answer.quiz_id), @question_answer.quiz)
         )
         # redirect to quizzes when done with current quiz for now
-        format.html { redirect_to score_path(@question_answer.quiz_id), notice: 'Your completed quiz has been recorded.' }
+        format.html { redirect_to score_path(:id => @question_answer.quiz_id , :user_id => current_user.id), notice: 'Your completed quiz has been recorded.' }
         format.json { render json: @question_answer.errors, status: :unprocessable_entity }
       end
     end

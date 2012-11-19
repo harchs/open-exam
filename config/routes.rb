@@ -1,7 +1,7 @@
 OpenExam::Application.routes.draw do
 
   get "about", to: 'info#about'
-  get "privacy", to: 'info#privacy'
+  get "privacy", to: 'info#privacy', as: 'privacy'
 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
@@ -12,7 +12,7 @@ OpenExam::Application.routes.draw do
 
   get "sessions/new"
 
-  get 'quizzes/:id/score' => 'quizzes#score', as: 'score'
+  get 'quizzes/:id/score/:user_id' => 'quizzes#score', as: 'score'
 
   get 'quizzes/collaborate' => 'quizzes#collaborate', as: 'quiz_collaborate'
 
