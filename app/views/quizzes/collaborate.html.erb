@@ -1,7 +1,7 @@
-<div class="span4">
+<div class="span9">
     <div class="quiz-content">
       <div class="quiz-header">
-        <h3>Add a Question</h3>
+        <h2>Add a Question</h2>
       </div>
       <div class="quiz-list">
         <ul>
@@ -9,7 +9,8 @@
           <% unless quiz.is_published %>
             <li>
               <a href="<%= quiz_path(quiz) %>">
-                <span class="title"><%= truncate(quiz.name, :length => 30) %></span>
+                <span class="title">[<%= truncate(quiz.name, :length => 30) %>]</span>
+                <span class="description">- <%= pluralize(quiz.approved_questions.length, 'question') %> - <%= truncate(quiz.description, :length => 30) %>-</span>
               </a>
               <span class="links">
                 <% if current_user.is_admin? %>

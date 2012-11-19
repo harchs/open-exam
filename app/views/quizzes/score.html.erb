@@ -2,24 +2,28 @@
 <div id ="score" >
 <%= @num_correct %> / <%= @quiz.approved_questions.count %><br />
 </div>
-<% @quiz.approved_questions.each do |question| %>
-  <h4><%= question.name %></h4>
-  <br />
-  <% question.choices.each do |choice| %>
-    <% if choice.is_correct && @answers.detect{|answer| answer.choice_id == choice.id} %>
-      <span class="label-success"><%= choice.name %></span>
-    <% elsif choice.is_correct %>
-      <span class="label-success"><%= choice.name %></span>
-    <% else %>
-      <% if @answers.detect{|answer| answer.choice_id == choice.id} %>
-        <span class="label-important"><%= choice.name %></span>
+<ol>
+  <% @quiz.approved_questions.each do |question| %>
+    <li>
+    <h4><%= question.name %></h4>
+    <ol type="a">
+    <% question.choices.each do |choice| %>
+      <li>
+      <% if choice.is_correct && @answers.detect{|answer| answer.choice_id == choice.id} %>
+        <span class="label-success"><%= choice.name %></span>
+      <% elsif choice.is_correct %>
+        <span class="label-success"><%= choice.name %></span>
       <% else %>
-        <span><%= choice.name %></span>
+        <% if @answers.detect{|answer| answer.choice_id == choice.id} %>
+          <span class="label-important"><%= choice.name %></span>
+        <% else %>
+          <span><%= choice.name %></span>
+        <% end %>
       <% end %>
+      </li>
     <% end %>
-    <br />
+    </ol>
+    </li>
   <% end %>
-    <br />
-<% end %>
-
+</ol>
 <%= link_to "Back to Quizzes", quizzes_path %>

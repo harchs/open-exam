@@ -6,6 +6,28 @@
   color: green;
   font-weight: bold;
   font-size: 300%;
-  
+}
 
+.admin-question form {
+  float: right;
+}
+
+.admin-question .edit-question {
+  float:right;
+}
+
+.questions li {
+  padding: 10px;
+}
+
+.question .author {
+  font-style: italic;
+  color: red;
+}
+
+.choices li {
+  padding: 5px;
+}
+
+.admin-quiz form {
 }
