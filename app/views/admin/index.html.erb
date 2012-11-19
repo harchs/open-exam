@@ -44,14 +44,19 @@
         <tr>
           <th>Name</th>
           <th>Description</th>
-          <th></th>
+          <th>Students taken   </th>
+          <th> % correct </th>
         </tr>
 
       <% @quizzes.each do |quiz| %>
         <tr>
-          <td><%= quiz.name %><td>
-          <td><%= quiz.description %><td>
+          <td><%= quiz.name %></td>
+          <td><%= quiz.description %></td>
+          <td><%= quiz.user_quizzes.count %> <%="/"%> <%= User.all.count %></td>
+          <td><%= QuizGrader.percent_correct(quiz)%></td>
+          #eventually must change to have stats filter by organization
           <td><%= link_to "View Stats", quiz_stats_path(quiz.id) %></td>
+          
         </tr>
       <% end %>
       </table>

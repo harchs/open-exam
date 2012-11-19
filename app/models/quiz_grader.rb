@@ -12,6 +12,15 @@ class QuizGrader
     end
   end  
 
+  def self.percent_correct(quiz)
+    score = average_quiz_score(quiz).to_f
+    if (quiz.user_quizzes.count > 0)
+      (score / quiz.user_quizzes.count) * 100
+    else
+      0
+    end
+  end  
+
   def self.highest_quiz_score(quiz)
     quiz = quiz.user_quizzes.max_by(&:num_correct)
     quiz.num_correct if quiz
