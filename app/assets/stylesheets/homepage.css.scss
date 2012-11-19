@@ -3,21 +3,18 @@
 }
 
 #welcome-hero {
-  background: url(class_chairs.jpg) no-repeat;
+  // background: url(class_chairs.jpg) no-repeat;
   // http://www.flickr.com/photos/34017702@N00/74907741/
   padding: 20px;
 }
 
 #welcome-text {
-  color: #eee;
+  color: #555;
   float: left;
   width: 50%;
   font-size: 200%;
-  line-height: 120%;
-}
-
-#welcome-hero h1 {
-  color: #eee;
+  line-height: 160%;
+  padding-top: 40px;
 }
 
 #login-box {
