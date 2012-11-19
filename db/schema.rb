@@ -13,15 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20121119155118) do
 
-  create_table "admins", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.integer  "organization_id"
-    t.string   "role"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
   create_table "answers", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
