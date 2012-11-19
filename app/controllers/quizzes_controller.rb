@@ -15,7 +15,6 @@ class QuizzesController < ApplicationController
   end
 
   alias collaborate index 
-  alias history index
 
   # GET /quizzes/1
   # GET /quizzes/1.json

@@ -15,11 +15,11 @@ OpenExam::Application.routes.draw do
   get 'quizzes/:id/score' => 'quizzes#score', as: 'score'
 
   get 'quizzes/collaborate' => 'quizzes#collaborate', as: 'quiz_collaborate'
-  get 'quizzes/history' => 'quizzes#history', as: 'quiz_history'
 
   resources :quizzes
 
   resources :users
+
   resources :sessions
 
   resources :questions do
