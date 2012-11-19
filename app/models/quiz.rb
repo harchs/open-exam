@@ -12,6 +12,8 @@ class Quiz < ActiveRecord::Base
   validates :name, :presence => :true
   validates :description, :presence => true
 
+  before_update :check_has_questions
+
   def set_default_value
     self.is_published ||= false
   end
@@ -34,5 +36,9 @@ class Quiz < ActiveRecord::Base
 
   def approved_questions
     self.questions.order(:position).select{|question| question.selected}
+  end
+
+  def check_has_questions
+    self.questions.find_all_by_selected(true).count > 0
   end
 end

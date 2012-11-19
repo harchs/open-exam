@@ -5,6 +5,10 @@
   <p class="alert">This quiz has not been published yet.</p>
 <% end %>
 
+<% if flash[:notice] %>
+  <div id="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <h1> <%= @quiz.name %> </h1>
 
 <ol class="questions">
