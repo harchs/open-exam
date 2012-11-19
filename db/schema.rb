@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20121119155118) do
     t.datetime "updated_at",                       :null => false
     t.text     "description"
     t.boolean  "is_published",  :default => false
-    t.integer  "passing_grade", :default => 65
+    t.integer  "passing_grade"
   end
 
   create_table "user_quizzes", :force => true do |t|
