@@ -42,6 +42,8 @@ class QuestionsController < ApplicationController
   # GET /questions/1/edit
   def edit
     @question = Question.find(params[:id])
+
+    redirect_to quiz_path(@question.quiz_id) unless current_user.is_admin? || @question.user_id == current_user.id
   end
 
   # POST /questions
@@ -72,7 +74,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.update_attributes(params[:question])
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+        format.html { redirect_to quiz_path(@question.quiz_id), notice: 'Question was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

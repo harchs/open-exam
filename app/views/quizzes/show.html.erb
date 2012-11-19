@@ -10,6 +10,9 @@
   <% @quiz.questions.each do |question| %>
   <li class="selected-<%= question.selected %>">
     (<%= question.author.name %>) <%= question.name %>
+    <% if current_user.is_admin? || current_user.id == question.user_id %>
+      <%= link_to "Edit Question", edit_question_path(question) %>
+    <% end %>
     <%if current_user.is_admin?%>  
       <%= form_for question, :remote => true do |q| %>
         <%= q.hidden_field :selected, :value => "true" %>
