@@ -1,14 +1,26 @@
-<h1>Log In</h1>
+
+<div id="welcome-hero" class="clearfix">
+<h1>Student created exams reinforce learning.</h1>
+
+<p id="welcome-text">
+  Open Exam allows students to create questions for other students to answer. 
+  Instructors let students create the best questions to show up on the exams. 
+  Students learn more when they reflect on the material and create questions to reinforce their understanding.
+</p>
 
 
-<%= form_tag sessions_path, :class => 'form_sign_in' do %>
-  <div class="field">
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email, params[:email] %>
+  <div id="login-box">
+  <%= form_tag sessions_path, :class => 'form_sign_in' do %>
+    <div class="field">
+      <%= label_tag :email %><br />
+      <%= text_field_tag :email, params[:email] %>
+    </div>
+    <div class="field">
+      <%= label_tag :password %><br />
+      <%= password_field_tag :password %>
+    </div>
+    <div class="actions"><%= submit_tag "Log In", :class => 'btn btn-large btn-primary' %></div>
+  <% end %>
   </div>
-  <div class="field">
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions"><%= submit_tag "Log In", :class => 'btn btn-large btn-primary' %></div>
-<% end %>
+
+</div>
