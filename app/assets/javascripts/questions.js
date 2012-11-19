@@ -5,7 +5,7 @@ $(document).ready(function() {
       {
         $('#error_explanation ul').append('<li>Please select a correct answer.</li>');
       } else {
-        $('form#new_question').prepend('<div class="alert">Please select a correct answer.</div>');
+        $('form#new_question, form.edit_question').prepend('<div class="alert">Please select a correct answer.</div>');
       }
       return false;
     }
