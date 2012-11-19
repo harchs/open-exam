@@ -13,9 +13,9 @@ class QuizGrader
   end  
 
   def self.percent_correct(quiz)
-    score = average_quiz_score(quiz).to_f
+    raw_score = average_quiz_score(quiz).to_f
     if (quiz.user_quizzes.count > 0)
-      (score / quiz.user_quizzes.count) * 100
+      ((raw_score / quiz.questions.count).round(2)) * 100
     else
       0
     end
