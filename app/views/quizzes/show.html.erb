@@ -69,13 +69,10 @@
  
 <%= link_to 'Back to Quizzes', quizzes_path %>
 
-  <script type="text/javascript">
-    $('.selected-true .select-question').hide();
-    $('.selected-false .deselect-question').hide();
-  </script>
-
 <script text="type/javascript">
   $(function() {
+    $('.selected-true .select-question').hide();
+    $('.selected-false .deselect-question').hide();
 
     $('.select-question').click(function(){
       $(this).parent().siblings('form').children('.deselect-question').show();
@@ -85,6 +82,16 @@
     $('.deselect-question').click(function(){
       $(this).parent().siblings('form').children('.select-question').show();
       $(this).hide();
+    });
+
+    $('.edit-icon').tooltip({
+      title: "Edit question"
+    });
+    $('.approve-icon').tooltip({
+      title: "Approve this question"
+    });
+    $('.reject-icon').tooltip({
+      title: "Reject this question"
     });
   });
 </script>
