@@ -2,13 +2,13 @@
 
   <div class="stats_highlights">
     Average Score: 
-    <%= QuizGrader.average_quiz_score(@quiz) %>
+    <%= (QuizGrader.average_quiz_score(@quiz).to_f.round(2)/@quiz.questions.count * 100).round(2) %>%
     <br />
     Highest Score:
-    <%= QuizGrader.highest_quiz_score(@quiz) %>
+    <%= (QuizGrader.highest_quiz_score(@quiz).to_f/@quiz.questions.count * 100).round(2) %>%
     <br />
     Lowest Score:
-    <%= QuizGrader.lowest_quiz_score(@quiz) %>
+    <%= (QuizGrader.lowest_quiz_score(@quiz).to_f/@quiz.questions.count * 100).round(2) %>%
     <br />
   </div>
 <br />
