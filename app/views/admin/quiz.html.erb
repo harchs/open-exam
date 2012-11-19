@@ -12,7 +12,7 @@ Lowest Score:
 Question Breakdown:
 <br />
 <% QuizGrader.question_score_counts(@quiz).each do |question, value| %>
-<%= link_to "Question ##{question.position}:", question_path(question.id) %> <%= question.name %>
+  Question #<%= question.position %>: <%= question.name %>
   <br />
   <%= value %> out of <%= pluralize(QuizGrader.num_answers_for_question(question.id), 'student') %> answered this question correctly.
   <br />
