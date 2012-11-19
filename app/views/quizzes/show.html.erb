@@ -12,7 +12,7 @@
 <h1> <%= @quiz.name %> </h1>
 
 <ol class="questions">
-  <% @quiz.questions.each do |question| %>
+  <% @quiz.questions.order('created_at ASC').each do |question| %>
   <li class="selected-<%= question.selected %>">
     <span class="question">
       <span class="author">(<%= question.author.name %>)</span> <%= question.name %>
@@ -76,11 +76,15 @@
 
     $('.select-question').click(function(){
       $(this).parent().siblings('form').children('.deselect-question').show();
+      $(this).parents().eq(2).removeClass("selected-false");
+      $(this).parents().eq(2).addClass("selected-true");
       $(this).hide();
     });
 
     $('.deselect-question').click(function(){
       $(this).parent().siblings('form').children('.select-question').show();
+      $(this).parents().eq(2).removeClass("selected-true");
+      $(this).parents().eq(2).addClass("selected-false");
       $(this).hide();
     });
 
