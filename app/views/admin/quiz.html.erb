@@ -1,19 +1,21 @@
 <h2><%= @quiz.name %></h2>
-Average Score: 
-<%= QuizGrader.average_quiz_score(@quiz) %>
+
+  <div class="stats_highlights">
+    Average Score: 
+    <%= QuizGrader.average_quiz_score(@quiz) %>
+    <br />
+    Highest Score:
+    <%= QuizGrader.highest_quiz_score(@quiz) %>
+    <br />
+    Lowest Score:
+    <%= QuizGrader.lowest_quiz_score(@quiz) %>
+    <br />
+  </div>
 <br />
-Highest Score:
-<%= QuizGrader.highest_quiz_score(@quiz) %>
-<br />
-Lowest Score:
-<%= QuizGrader.lowest_quiz_score(@quiz) %>
-<br />
-<br />
-Question Breakdown:
-<br />
+<h3>Question Breakdown:</h3>
 <% QuizGrader.question_score_counts(@quiz).each do |question, value| %>
-  Question #<%= question.position %>: <%= question.name %>
-  <br />
+  <h4>Question #<%= question.position %>: <%= question.name %></h4>
+  
   <%= value %> out of <%= pluralize(QuizGrader.num_answers_for_question(question.id), 'student') %> answered this question correctly.
   <br />
   <% question.choices.each do |choice| %>
