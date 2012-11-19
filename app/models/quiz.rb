@@ -1,5 +1,5 @@
 class Quiz < ActiveRecord::Base
-  attr_accessible :creator_id, :name, :description, :is_published
+  attr_accessible :creator_id, :name, :description, :is_published, :passing_grade
 
   has_many :questions
   has_many :user_quizzes
@@ -11,6 +11,7 @@ class Quiz < ActiveRecord::Base
   #validates :description, :presence => true
   validates :name, :presence => :true
   validates :description, :presence => true
+  validates :passing_grade, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
 
   before_update :check_has_questions
 
@@ -41,4 +42,5 @@ class Quiz < ActiveRecord::Base
   def check_has_questions
     self.questions.find_all_by_selected(true).count > 0
   end
+
 end

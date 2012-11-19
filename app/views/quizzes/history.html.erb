@@ -6,7 +6,7 @@
       <% if current_user.has_taken?(quiz) %>
       <% @num_correct = QuizGrader.num_correct(current_user.answers_for_quiz(quiz.id), quiz)%>
       <div class="quiz_listing">
-        <% if @num_correct.to_f/quiz.approved_questions.count >= 0.6 %>
+        <% if @num_correct.to_f/quiz.approved_questions.count >= quiz.passing_grade.to_f/100 %>
           <% image_source = "/assets/smile_1.png" %>
         <% else %>
           <% image_source = "/assets/smile_5.png" %>
