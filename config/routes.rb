@@ -6,8 +6,10 @@ OpenExam::Application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-  get 'admin', to: 'users#admin', as: 'admin'
-  
+
+  get 'admin', to: 'admin#index', as: 'admin'
+  get 'admin/quiz/:quiz_id' => 'admin#quiz', as: 'quiz_stats'
+
   get "sessions/new"
 
   get 'quizzes/:id/score' => 'quizzes#score', as: 'score'

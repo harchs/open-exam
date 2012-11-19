@@ -44,10 +44,7 @@
     <table>
       <tr>
         <th>Name</th>
-        <th></th>
         <th>Description</th>
-        <th></th>
-        <th></th>
         <th></th>
       </tr>
 
@@ -55,6 +52,7 @@
       <tr>
         <td><%= quiz.name %><td>
         <td><%= quiz.description %><td>
+        <td><%= link_to "View Stats", quiz_stats_path(quiz.id) %></td>
       </tr>
     <% end %>
     </table>
