@@ -17,7 +17,11 @@ Question Breakdown:
   <%= value %> out of <%= pluralize(QuizGrader.num_answers_for_question(question.id), 'student') %> answered this question correctly.
   <br />
   <% question.choices.each do |choice| %>
-    <%= choice.name %> (<%= QuizGrader.num_answers_for_choice(choice.id) %>)<br />
+    <% if choice.is_correct == true%>
+      <div class="correct_answer"> <%= choice.name %> (<%= QuizGrader.num_answers_for_choice(choice.id) %>)<br /> </div>
+    <% else %>
+      <%= choice.name %> (<%= QuizGrader.num_answers_for_choice(choice.id) %>)<br />
+    <% end %>
   <% end %>
   <br />
 <% end %>
