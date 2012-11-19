@@ -1,0 +1,23 @@
+<h2><%= @quiz.name %></h2>
+Average Score: 
+<%= QuizGrader.average_quiz_score(@quiz) %>
+<br />
+Highest Score:
+<%= QuizGrader.highest_quiz_score(@quiz) %>
+<br />
+Lowest Score:
+<%= QuizGrader.lowest_quiz_score(@quiz) %>
+<br />
+<br />
+Question Breakdown:
+<br />
+<% QuizGrader.question_score_counts(@quiz).each do |question, value| %>
+<%= link_to "Question ##{question.position}:", question_path(question.id) %> <%= question.name %>
+  <br />
+  <%= value %> out of <%= pluralize(QuizGrader.num_answers_for_question(question.id), 'student') %> answered this question correctly.
+  <br />
+  <% question.choices.each do |choice| %>
+    <%= choice.name %> (<%= QuizGrader.num_answers_for_choice(choice.id) %>)<br />
+  <% end %>
+  <br />
+<% end %>

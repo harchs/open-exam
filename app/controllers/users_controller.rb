@@ -81,19 +81,4 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def admin
-    @user = User.find_by_id(params[:id])
-    @users = User.all
-    @quizzes = Quiz.all
-    
-    if current_user.is_admin?
-      respond_to do |format|
-        format.html
-        format.json { head :no_content }
-      end
-    else
-      redirect_to root_url, notice: "Only administrators may access that page"
-    end
-  end
 end
