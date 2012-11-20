@@ -43,4 +43,8 @@ class Quiz < ActiveRecord::Base
     self.questions.find_all_by_selected(true).count > 0
   end
 
+  def users_have_taken
+    self.users
+  end
+
 end
