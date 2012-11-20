@@ -51,7 +51,7 @@ class QuizzesController < ApplicationController
 
     respond_to do |format|
       if @quiz.save
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully created.' }
+        format.html { redirect_to @quiz, :flash => { :success => "Quiz was successfully created." } }
         format.json { render json: @quiz, status: :created, location: @quiz }
       else
         format.html { render action: "new" }
@@ -71,7 +71,7 @@ class QuizzesController < ApplicationController
         format.html { redirect_to @quiz }
         format.json { head :no_content }
       elsif params["action"] == "update"
-        format.html { redirect_to @quiz, notice: "Quiz must have at least one selected question." }
+        format.html { redirect_to @quiz, alert: "Quiz must have at least one selected question." }
       else
         format.html { render action: "edit" }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
@@ -103,7 +103,7 @@ class QuizzesController < ApplicationController
           @num_correct = QuizGrader.num_correct(@user.answers_for_quiz(@quiz.id), @quiz)
           format.html
         elsif current_user.id != @user.id
-          format.html { redirect_to privacy_path, :notice => "Stop trying to hack this shit" }
+          format.html { redirect_to privacy_path, :alert => "Stop trying to hack this shit" }
         else  
           format.html { redirect_to quizzes_path, :notice => "You haven't taken this quiz yet." }
         end

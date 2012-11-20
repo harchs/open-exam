@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
         format.html # new.html.erb
         format.json { render json: @question }
       else
-        format.html { redirect_to new_quiz_path, notice: 'You must create a quiz before a question' }
+        format.html { redirect_to new_quiz_path, alert: 'You must create a quiz before a question.' }
       end
     end
   end
@@ -58,7 +58,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to quiz_path(@question.quiz_id), notice: 'Question was successfully created.' }
+        format.html { redirect_to quiz_path(@question.quiz_id), :flash => { :success => "Question was successfully created." } }
         format.json { render json: @question, status: :created, location: @question }
       else
         format.html { render action: "new" }
@@ -74,7 +74,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.update_attributes(params[:question])
-        format.html { redirect_to quiz_path(@question.quiz_id), notice: 'Question was successfully updated.' }
+        format.html { redirect_to quiz_path(@question.quiz_id), :flash => { :success => "Quiz was successfully updated." } }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
