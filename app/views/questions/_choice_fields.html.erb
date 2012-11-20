@@ -3,6 +3,16 @@
   <%= f.text_field :name %>
   <label>Correct Answer? <input type="radio" name="is_correct"/></label>
   <%= f.hidden_field :_destroy %>
+  <%= f.hidden_field :is_correct, :class => "choice_status" %>
   <%= link_to "Remove Choice", '#', class: "remove_fields btn btn-mini btn-danger" %>
 </fieldset>
 
+<script type="text/javascript">
+  $(function(){
+    $.each($('.choice_status'), function(index, value) {
+      if ($(this).val() == "t") {
+        $(this).siblings('label').children('input').attr('checked', 'checked');
+      }
+    });
+  });
+</script>
