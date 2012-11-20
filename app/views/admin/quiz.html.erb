@@ -10,6 +10,11 @@
     Lowest Score:
     <%= (QuizGrader.lowest_quiz_score(@quiz).to_f/@quiz.questions.count * 100).round(2) %>%
     <br />
+    Hardest Question:
+    "<%= QuizGrader.hardest_question(@quiz) %>"
+    by:
+    <%= QuizGrader.hardest_question_author(@quiz) %>
+    <br />
   </div>
 <br />
 <h3>Question Breakdown:</h3>

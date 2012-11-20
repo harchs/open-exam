@@ -44,4 +44,15 @@ class QuizGrader
   def self.num_answers_for_question(question_id)
     Answer.where(:question_id => question_id).count
   end
+
+  def self.hardest_question_author(quiz)
+    hardest = question_score_counts(quiz).values.min
+    question_score_counts(quiz).key(hardest).author.name
+  end  
+
+  def self.hardest_question(quiz)
+    hardest = question_score_counts(quiz).values.min
+    question_score_counts(quiz).key(hardest).name
+  end 
+
 end
