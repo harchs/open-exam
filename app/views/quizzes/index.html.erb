@@ -2,11 +2,6 @@
       <div class="quiz-header">
         <h2>Take a Quiz</h2>
       </div>
-      <% if current_user.is_admin? %>
-      <p>
-        <%= link_to 'New Quiz', new_quiz_path, :class => "btn btn-primary" %>
-      </p>
-      <% end %>
       <div class="quiz-list">
         <ul>
         <% @quizzes.each do |quiz| %>

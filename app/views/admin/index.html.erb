@@ -10,6 +10,9 @@
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
       <h1><%= current_user.name %>'s students</h1>
+      <p>
+        <%= link_to 'Add a student', new_user_path, :class => "btn btn-primary" %>
+      </p>
 
       <table class="table">
         <tr>
@@ -32,13 +35,13 @@
       </table>
 
       <br />
-
-      <%= link_to 'New user', new_user_path %> </br>
     </div>
 
     <div class="tab-pane" id="tab2">
       <h1><%= current_user.name %>'s quizzes</h1>
-
+      <p>
+        <%= link_to 'New Quiz', new_quiz_path, :class => "btn btn-primary" %>
+      </p>
       <table class="table">
         <tr>
           <th>Name</th>
