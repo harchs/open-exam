@@ -1,9 +1,6 @@
 <div class="row">
   <div class="span6">
     <h3>Quiz: <%= @question.quiz.name %></h3>
-    <% unless notice.nil? %>
-        <p class="alert"><%= notice %></p>
-    <% end %>
 
     <% fraction_of_quiz_complete = (@question.absolute_position.pred.to_f) / @question.quiz.approved_questions.length.to_f %>
     <% width_of_progress_bar  = (fraction_of_quiz_complete.to_f* 100).to_s + "%" %>
