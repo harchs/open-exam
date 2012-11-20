@@ -17,6 +17,9 @@ end
 
 module OpenExam
   class Application < Rails::Application
+    config.action_mailer.delivery_method   = :postmark
+    config.action_mailer.postmark_settings = { :api_key => "01701faf-a985-4b39-91d5-cb467a90da77" }
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

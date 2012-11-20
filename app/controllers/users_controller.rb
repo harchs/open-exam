@@ -45,6 +45,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        OpenExamMailer.registration_confirmation(@user).deliver
         session[:user_id] = @user.id
         format.html { redirect_to root_url, notice: 'Thanks for joining OpenExam!' }
         format.json { render json: @user, status: :created, location: @user }
