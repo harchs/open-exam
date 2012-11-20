@@ -55,4 +55,13 @@ class QuizGrader
     question_score_counts(quiz).key(hardest).name
   end 
 
+  def self.most_correct_answers(quiz)
+    most = quiz.user_quizzes.max_by(&:num_correct)
+    User.find_by_id(most.user_id).name
+  end  
+
+  def self.correct_responses(quiz)
+    most = quiz.user_quizzes.max_by(&:num_correct)
+    most.num_correct
+  end  
 end

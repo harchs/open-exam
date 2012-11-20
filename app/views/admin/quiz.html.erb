@@ -12,8 +12,13 @@
     <br />
     Hardest Question:
     "<%= QuizGrader.hardest_question(@quiz) %>"
-    by:
+    authored by
     <%= QuizGrader.hardest_question_author(@quiz) %>
+    <br />
+    Best score:
+    <%= QuizGrader.most_correct_answers(@quiz) %>
+    answered 
+    <%= QuizGrader.correct_responses(@quiz) %>  out of  <%= @quiz.questions.count%> questions correctly.
     <br />
   </div>
 <br />
