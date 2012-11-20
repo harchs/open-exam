@@ -32,7 +32,7 @@ user20 = User.create!(:name => "Jenya Zueva", :email => "jenya.zueva@flatironsch
 
 
 
-quiz1 = Quiz.create!(:name => "School",:description => "Friday quiz", :is_published => true)
+quiz1 = Quiz.create!(:name => "School",:description => "Friday quiz", :is_published => true, :passing_grade => 50)
 question1 = quiz1.questions.build :name => "Who is the dean?", :user_id => user1.id, :selected => true
 choice1 = question1.choices.build :name => "Ari"
 choice2 = question1.choices.build :name => "Avi", :is_correct => true
@@ -51,7 +51,7 @@ choice8 = question3.choices.build :name => "Breakfast?"
 choice9 = question3.choices.build :name => "I'm eating popcorn right now.", :is_correct => true
 question3.save
 
-quiz2 = Quiz.create!(:name => "NYC Landmarks", :description => "Stuff to see around town", :is_published => false)
+quiz2 = Quiz.create!(:name => "NYC Landmarks", :description => "Stuff to see around town", :is_published => false, :passing_grade => 50)
 question4 = quiz2.questions.build :name => "Where is columbus circle?", :user_id => user4.id
 choice10 = question4.choices.build :name => "South St Seaport"
 choice11 = question4.choices.build :name => "UES"
