@@ -60,3 +60,26 @@
     <%# end %>
   </ul> -->
 </div>
+
+<script type="text/javascript">
+  var progress_width = $('.progress .bar').width();
+  var keyword = [78,73,84,72,85,66]; // to implement
+  var egg = "<div class=\"width_of_progress_bar_wrapper\"> \
+      <div class=\"width_of_progress_bar_piece\"> \
+        <img alt=\"Nyan-octocat\" src=\"/assets/nyan-octocat.gif\" class=\"pull-right\" /> \
+        <div class=\"clearfix\"></div> \
+      </div> \
+    </div>";
+
+  function swapBar() {
+    $('.progress').replaceWith(egg);
+    $('.width_of_progress_bar_piece').width(progress_width);
+  }
+
+  $(document).keyup(function(e) {
+    if (e.keyCode == 79) { 
+      swapBar();
+    }
+  });
+
+</script>
