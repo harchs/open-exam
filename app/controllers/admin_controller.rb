@@ -22,6 +22,6 @@ class AdminController < ApplicationController
   end
 
   def error
-    raise new ArgumentError, "testing exception emails"
+    raise ArgumentError, "testing exception emails"
   end
 end

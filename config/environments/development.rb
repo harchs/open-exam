@@ -35,8 +35,4 @@ OpenExam::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  # Enable exceptions notification
-  config.middleware.use ExceptionNotifier,
-    sender_address: 'noreply@openexam.org',
-    exception_recipients: 'stephenchen13@gmail.com'
 end
