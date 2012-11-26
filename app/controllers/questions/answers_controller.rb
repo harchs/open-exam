@@ -55,19 +55,17 @@ class Questions::AnswersController < ApplicationController
 
   # POST /questions/:question_id/answers
   def create
-    @question = Question.find(params[:question_id])
-    @question_answer = Question::Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id, :user_id => current_user.id)
-
+    @question_answer = Question::Answer.new(params[:answer])
     respond_to do |format|
       next_question = @question_answer.quiz.next_question(@question_answer.question)
-
       if @question_answer.save && next_question
         format.html { redirect_to new_question_answer_path(next_question.id), notice: 'Your answer has been saved.' }
         format.json { render json: @question_answer, status: :created, location: @question_answer }
       else
         # calculate correct answers here
-        user_quiz = UserQuiz.where(:user_id => current_user.id, :quiz_id => @question.quiz.id)
+        user_quiz = UserQuiz.where(:user_id => current_user.id, :quiz_id => @question_answer.quiz.id)
         UserQuiz.update( 
+          user_quiz,
           :total_questions => @question_answer.quiz.approved_questions.count,
           :num_correct => QuizGrader.num_correct(current_user.answers_for_quiz(@question_answer.quiz_id), @question_answer.quiz),
           :status => "Completed"
