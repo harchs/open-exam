@@ -59,6 +59,23 @@ class Quiz < ActiveRecord::Base
     end
   end
 
+  def in_progress
+    self.user_quizzes.select {|user_quiz| user_quiz.status == "In Progress"}
+  end  
+
+  def completed
+    self.user_quizzes.select {|user_quiz| user_quiz.status == "Completed"}
+  end 
+
+  def not_taken
+    yetto = self.user_quizzes.select {|user_quiz| user_quiz.status == "Completed" || "In Progress"}
+    yetto_ids = yetto.map { |x| x.user_id}
+    yetto_users = yetto_ids.map { |x| User.find(x)}   
+    
+    User.all - yetto_users
+
+  end  
+
   private 
 
     def unpublish!

@@ -47,22 +47,39 @@
         <tr>
           <th style="text-align:right;">Name</th>
         </tr>
-    <% @quiz.users.each do |user| %>
+        
+    <% @quiz.completed.each do |user_quiz| %>
+   
         <tr>
-          <td style="text-align:right;"><%= user.name %><td>
+          <td style="text-align:right;"><%= (User.find_by_id(user_quiz.user_id)).name %><td>
         </tr>    
     <% end %>      
 
-  </table>        
+  </table>
+<h4 style="text-align:center;">In Progress:</h4>
+  <table class="table" >
+        <tr>
+          <th style="text-align:right;">Name</th>
+        </tr>
+        
+    <% @quiz.in_progress.each do |user_quiz| %>
+   
+        <tr>
+          <td style="text-align:right;"><%= (User.find_by_id(user_quiz.user_id)).name %><td>
+        </tr>    
+    <% end %>      
+
+  </table> 
+
 
 <h4 style="text-align:center;">Not Taken:</h4>
   <table class="table" >
         <tr>
           <th style="text-align:right;">Name</th>
         </tr>
-    <% (User.all - @quiz.users).each do |user| %>
+    <% @quiz.not_taken.each do |user_quiz| %>
         <tr>
-          <td style="text-align:right;"><%= user.name %><td>
+          <td style="text-align:right;"><%= (user_quiz.name) %><td>
         </tr>    
     <% end %>     
   </table>  
