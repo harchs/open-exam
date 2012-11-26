@@ -9,7 +9,6 @@ OpenExam::Application.routes.draw do
 
   get 'admin', to: 'admin#index', as: 'admin'
   get 'admin/quiz/:quiz_id' => 'admin#quiz', as: 'quiz_stats'
-  get 'admin/error' => 'admin#error'
 
   get "sessions/new"
 
