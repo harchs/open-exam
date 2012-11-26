@@ -72,7 +72,10 @@ class QuizzesController < ApplicationController
   # PUT /quizzes/1.json
   def update
     @quiz = Quiz.find(params[:id])
-    @quiz.publish(params[:quiz][:is_published])
+    if @quiz.publish(params[:quiz][:is_published])
+    else
+      @quiz.errors.add :base, "Quiz must have one selected question to publish."
+    end
 
     respond_to do |format|
 
