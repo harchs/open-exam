@@ -70,5 +70,5 @@ OpenExam::Application.configure do
     sender_address: 'noreply@openexam.org',
     exception_recipients: ['stephen.chen@flatironschool.com', 'rex.feng@flatironschool.com', 'nikhil.thomas@flatironschool.com', 'akiva.leeder@flatironschool.com']
 
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp
 end
