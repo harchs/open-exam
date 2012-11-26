@@ -20,4 +20,8 @@ class AdminController < ApplicationController
       format.html
     end
   end
+
+  def error
+    raise new ArgumentError, "testing exception emails"
+  end
 end
