@@ -11,7 +11,7 @@ class Quiz < ActiveRecord::Base
   validates :passing_grade, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
 
   after_initialize :set_default_value
-  before_update :has_questions?
+  # before_update :has_questions?
 
   def set_default_value
     self.is_published ||= false
