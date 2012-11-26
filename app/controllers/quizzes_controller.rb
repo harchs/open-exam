@@ -5,8 +5,9 @@ class QuizzesController < ApplicationController
   before_filter :authorize_admin, only: [:edit, :new, :destroy, :update, :create]
 
   def index
-    @quizzes = Quiz.all
-
+    @ready_quizzes = Quiz.select(&:is_ready_to_take?)
+    @quizzes_to_take = @ready_quizzes.select{|quiz| !current_user.has_taken?(quiz) && !current_user.has_started?(quiz)}
+    @quizzes_to_resume = @ready_quizzes.select{|quiz| !current_user.has_taken?(quiz) && current_user.has_started?(quiz)}
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +15,14 @@ class QuizzesController < ApplicationController
     end
   end
 
-  alias collaborate index 
+  def collaborate
+    @quizzes = Quiz.where(:is_published => false)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @quizzes }
+    end
+  end
 
   # GET /quizzes/1
   # GET /quizzes/1.json

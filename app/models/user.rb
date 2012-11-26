@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end  
 
   def has_started?(quiz)
-    self.answers_for_quiz(quiz.id).count > 0
+    self.answers_for_quiz(quiz.id).count > 0 && !has_taken?(quiz)
   end
 
   def answers_for_quiz(quiz_id)
