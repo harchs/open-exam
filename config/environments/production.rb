@@ -68,7 +68,7 @@ OpenExam::Application.configure do
   # Enable exceptions notification
   config.middleware.use ExceptionNotifier,
     sender_address: 'noreply@openexam.org',
-    exception_recipients: ['stephen.chen@flatironschool.com', 'rex.feng@flatironschool.com', 'nikhil.thomas@flatironschool.com', 'akiva.leeder@flatironschool.com']
+    exception_recipients: 'stephenchen13@gmail.com'
 
   config.action_mailer.delivery_method   = :postmark
   config.action_mailer.postmark_settings = { :api_key => "01701faf-a985-4b39-91d5-cb467a90da77" }
