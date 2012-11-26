@@ -19,7 +19,7 @@ class QuizGrader
   end
 
   def self.lowest_quiz_score(quiz)
-    user_quiz = user_quiz.user_quizzes.min_by(&:num_correct)
+    user_quiz = quiz.user_quizzes.min_by(&:num_correct)
     user_quiz.num_correct if user_quiz
   end
 
