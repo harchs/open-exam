@@ -45,18 +45,16 @@
   <% if !@quiz.is_published? %>
     <%= form_for(@quiz) do |f| %></br>
       <%= f.hidden_field :is_published, :value => "true" %>
-        <%#= f.submit "Publish Quiz" %>
       <div class="actions">
         <button class="btn btn-warning" name="commit" type="submit" value="Publish Quiz" >Publish Quiz</button>
       </div>
       <% end %>
   <% else %>
     <%= form_for(@quiz) do |f| %></br>
-     <%= f.hidden_field :is_published, :value => "false" %>
-     <%#= f.submit "Deactivate Quiz" %> 
-     <div class="actions">
-      <button class="btn btn-warning" name="commit" type="submit" value="Deactivate Quiz" >Unpublish Quiz</button>
-     </div>
+      <%= f.hidden_field :is_published, :value => "false" %>
+      <div class="actions">
+        <button class="btn btn-warning" name="commit" type="submit" value="Deactivate Quiz" >Unpublish Quiz</button>
+      </div>
     <% end %>
   <%end%>   
 <% end %>

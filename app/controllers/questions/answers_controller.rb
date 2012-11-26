@@ -58,7 +58,7 @@ class Questions::AnswersController < ApplicationController
         UserQuiz.create(:quiz_id => @question_answer.quiz_id, 
           :user_id => @question_answer.user_id, 
           :total_questions => @question_answer.quiz.approved_questions.count,
-          :num_correct => QuizGrader.num_correct(@question_answer.user.answers_for_quiz(@question_answer.quiz_id), @question_answer.quiz)
+          :num_correct => QuizGrader.num_correct(current_user.answers_for_quiz(@question_answer.quiz_id), @question_answer.quiz)
         )
         # redirect to quizzes when done with current quiz for now
         format.html { redirect_to score_path(:id => @question_answer.quiz_id , :user_id => current_user.id), notice: 'Your completed quiz has been recorded.' }

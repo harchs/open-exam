@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates :email, :presence => :true
 
   def is_admin?
-    self.role == "Admin" ? true : false 
+    self.role.downcase == "admin" ? true : false 
   end  
 
   def has_taken?(quiz)
@@ -20,9 +20,5 @@ class User < ActiveRecord::Base
 
   def answers_for_quiz(quiz_id)
     self.answers.select {|answer| answer.quiz_id == quiz_id}
-  end
-
-  def quizzes_taken
-    self.quizzes.select {|quiz| self.has_taken?(quiz)}
   end
 end

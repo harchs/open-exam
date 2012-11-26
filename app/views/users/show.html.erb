@@ -38,10 +38,8 @@
   <h1>Quizzes <%= user.name %> has taken:</h1>
 
 
-  <%if user.quizzes_taken.count > 0 %>
-
+  <%if user.quizzes.count > 0 %>
       <% @quizzes.each do |quiz|  %>
-        <% if user.has_taken?(quiz) %>
         <% @num_correct = QuizGrader.num_correct(user.answers_for_quiz(quiz.id), quiz)%>
         <div class="quiz_listing">
           <% if @num_correct.to_f/quiz.approved_questions.count >= quiz.passing_grade.to_f/100 %>
@@ -59,8 +57,6 @@
           </div>
 
         </div>
-
-        <% end %>
       <% end %>
 
   <% else %>
