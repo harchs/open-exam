@@ -64,13 +64,13 @@ class QuizzesController < ApplicationController
   # PUT /quizzes/1.json
   def update
     @quiz = Quiz.find(params[:id])
+    @quiz.publish(params[:quiz][:is_published])
 
     respond_to do |format|
-      if @quiz.update_attributes(params[:quiz])
+
+      if @quiz.update_attributes(params[:quiz].except(:is_published))
         format.html { redirect_to @quiz }
         format.json { head :no_content }
-      # elsif params["action"] == "update"
-      #   format.html { redirect_to @quiz, alert: "Quiz must have at least one selected question." }
       else
         format.html { render action: "edit" }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }

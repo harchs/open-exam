@@ -11,7 +11,6 @@ class Quiz < ActiveRecord::Base
   validates :passing_grade, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
 
   after_initialize :set_default_value
-  # before_update :has_questions? 11/26 => not necessary per RF & AL
 
   def set_default_value
     self.is_published ||= false
@@ -51,9 +50,31 @@ class Quiz < ActiveRecord::Base
     self.approved_questions.detect{|question| !user.answers.collect(&:question_id).include?(question.id) }
   end
 
-  # ###  11/26 => not necessary per RF & AL
-  # def has_questions?
-  #   self.questions.find_all_by_selected(true).count > 0
-  # end
+  def publish(status)
+    case status
+    when "true", true
+      publish!
+    when "false", false
+      unpublish!
+    end
+  end
+
+  private 
+
+    def unpublish!
+      self.update_attributes(:is_published => false)
+    end
+
+    def publish!
+      self.update_attributes(:is_published => true) if is_publishable?
+    end
+
+    def is_publishable?
+      has_selected_questions?
+    end
+
+    def has_selected_questions?
+      self.approved_questions.count > 0
+    end
 
 end
