@@ -47,6 +47,10 @@ class Quiz < ActiveRecord::Base
     self.user_quizzes.find_by_user_id(user.id)
   end
 
+  def question_to_resume(user)
+    self.approved_questions.detect{|question| !user.answers.collect(&:question_id).include?(question.id) }
+  end
+
   # ###  11/26 => not necessary per RF & AL
   # def has_questions?
   #   self.questions.find_all_by_selected(true).count > 0

@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
     self.answers_for_quiz(quiz.id).count == quiz.approved_questions.count 
   end  
 
+  def has_started?(quiz)
+    self.answers_for_quiz(quiz.id).count > 0
+  end
 
   def answers_for_quiz(quiz_id)
     self.answers.select {|answer| answer.quiz_id == quiz_id}

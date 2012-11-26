@@ -32,7 +32,7 @@ class Questions::AnswersController < ApplicationController
     user_id = session[:user_id]
     quiz_id = Question.find(params[:question_id]).quiz_id
 
-    if UserQuiz.where(:user_id => user_id).where(:quiz_id => quiz_id).empty?
+    if UserQuiz.where(:user_id => user_id, :quiz_id => quiz_id).empty?
       UserQuiz.create(:user_id => user_id, 
                       :quiz_id => quiz_id,
                       :status => "In Progress" )
@@ -58,29 +58,23 @@ class Questions::AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @question_answer = Question::Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id, :user_id => current_user.id)
 
-    @question_answer_nested = Question::Answer.new(params[:answer])
-    next_question = @question_answer_nested.quiz.next_question(@question_answer_nested.question)
-    user_id = session[:user_id]
-    quiz_id = Question.find(params[:question_id]).quiz_id
-
     respond_to do |format|
-      if @question_answer_nested.save
-        if next_question
-          format.html { redirect_to new_question_answer_path(next_question.id), notice: 'Continue your quiz.' }
-        else
+      next_question = @question_answer.quiz.next_question(@question_answer.question)
 
-          user_scoring = UserQuiz.where(:user_id => user_id).where(:quiz_id => quiz_id)
-          UserQuiz.update( user_scoring,
-            :total_questions => @question_answer_nested.quiz.approved_questions.count,
-            :num_correct => QuizGrader.num_correct(current_user.answers_for_quiz(@question_answer_nested.quiz_id), @question_answer_nested.quiz),
-            :status => "Completed" 
-          )
-
-          format.html { redirect_to score_path(:id => @question_answer_nested.quiz_id , :user_id => current_user.id), notice: 'Your completed quiz has been recorded.' }
-
-        end
+      if @question_answer.save && next_question
+        format.html { redirect_to new_question_answer_path(next_question.id), notice: 'Your answer has been saved.' }
+        format.json { render json: @question_answer, status: :created, location: @question_answer }
       else
-        format.html { render action: "new" }
+        # calculate correct answers here
+        user_quiz = UserQuiz.where(:user_id => current_user.id, :quiz_id => @question.quiz.id)
+        UserQuiz.update( 
+          :total_questions => @question_answer.quiz.approved_questions.count,
+          :num_correct => QuizGrader.num_correct(current_user.answers_for_quiz(@question_answer.quiz_id), @question_answer.quiz),
+          :status => "Completed"
+        )
+        # redirect to quizzes when done with current quiz for now
+        format.html { redirect_to score_path(:id => @question_answer.quiz_id , :user_id => current_user.id), notice: 'Your completed quiz has been recorded.' }
+        format.json { render json: @question_answer.errors, status: :unprocessable_entity }
       end
     end
   end
