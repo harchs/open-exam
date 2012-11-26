@@ -11,7 +11,7 @@ class Quiz < ActiveRecord::Base
   validates :passing_grade, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
 
   after_initialize :set_default_value
-  # before_update :has_questions?
+  # before_update :has_questions? 11/26 => not necessary per RF & AL
 
   def set_default_value
     self.is_published ||= false
@@ -43,8 +43,9 @@ class Quiz < ActiveRecord::Base
     self.user_quizzes.find_by_user_id(user.id)
   end
 
-  def has_questions?
-    self.questions.find_all_by_selected(true).count > 0
-  end
+  # ###  11/26 => not necessary per RF & AL
+  # def has_questions?
+  #   self.questions.find_all_by_selected(true).count > 0
+  # end
 
 end
