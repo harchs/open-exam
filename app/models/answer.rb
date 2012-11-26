@@ -6,5 +6,10 @@ class Answer < ActiveRecord::Base
   belongs_to :question
   belongs_to :choice
 
+  validates :choice_id, :presence => true
+  validates :question_id, :presence => true
+  validates :quiz_id, :presence => true
+  validates :user_id, :presence => true
+
   validates_uniqueness_of :question_id, :scope => [:user_id, :quiz_id]
 end
