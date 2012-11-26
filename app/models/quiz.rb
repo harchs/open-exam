@@ -27,8 +27,12 @@ class Quiz < ActiveRecord::Base
     approved_questions[current_index + 1]
   end
 
+  # def taken_by?(user)
+  #   self.answers.any?{ |answer| answer.user_id == user.id }
+  # end  
+
   def taken_by?(user)
-    self.answers.any?{ |answer| answer.user_id == user.id }
+    true if user.has_taken?(self)
   end  
 
   def correct_choices

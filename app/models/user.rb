@@ -14,9 +14,14 @@ class User < ActiveRecord::Base
     self.role.downcase == "admin" ? true : false 
   end  
 
+  # def has_taken?(quiz)
+  #   self.answers.any?{ |answer| answer.quiz_id == quiz.id }
+  # end  
+ 
   def has_taken?(quiz)
-    self.answers.any?{ |answer| answer.quiz_id == quiz.id }
+    self.answers_for_quiz(quiz.id).count == quiz.approved_questions.count 
   end  
+
 
   def answers_for_quiz(quiz_id)
     self.answers.select {|answer| answer.quiz_id == quiz_id}

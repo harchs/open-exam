@@ -1,6 +1,6 @@
 class Questions::AnswersController < ApplicationController
   before_filter :authorize, only: [:edit, :update, :new, :destroy]
-  before_filter :has_not_taken, only: [:new, :create]
+  # before_filter :has_not_taken, only: [:new, :create]
 
   # GET /questions/:question_id/answers
   # GET /questions/:question_id/answers.json
@@ -29,6 +29,15 @@ class Questions::AnswersController < ApplicationController
   # GET /questions/:question_id/answers/new
   # GET /questions/:question_id/answers/new.json
   def new
+    user_id = session[:user_id]
+    quiz_id = Question.find(params[:question_id]).quiz_id
+
+    if UserQuiz.where(:user_id => user_id).where(:quiz_id => quiz_id).empty?
+      UserQuiz.create(:user_id => user_id, 
+                      :quiz_id => quiz_id,
+                      :status => "In Progress" )
+    end
+
     @question = Question.find(params[:question_id])
     @question_answer = Question::Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id, :user_id => current_user.id)
 
@@ -53,16 +62,23 @@ class Questions::AnswersController < ApplicationController
       if @question_answer.save && next_question
         format.html { redirect_to new_question_answer_path(next_question.id), notice: 'Your answer has been saved.' }
         format.json { render json: @question_answer, status: :created, location: @question_answer }
-      else
+      elsif @question_answer.save && !next_question # all questions have been answered
         # calculate correct answers here
-        UserQuiz.create(:quiz_id => @question_answer.quiz_id, 
-          :user_id => @question_answer.user_id, 
+          user_id = session[:user_id]
+          quiz_id = Question.find(params[:question_id]).quiz_id
+          user_scoring = UserQuiz.where(:user_id => user_id).where(:quiz_id => quiz_id)
+
+        UserQuiz.update(user_scoring,
           :total_questions => @question_answer.quiz.approved_questions.count,
-          :num_correct => QuizGrader.num_correct(current_user.answers_for_quiz(@question_answer.quiz_id), @question_answer.quiz)
-        )
-        # redirect to quizzes when done with current quiz for now
-        format.html { redirect_to score_path(:id => @question_answer.quiz_id , :user_id => current_user.id), notice: 'Your completed quiz has been recorded.' }
-        format.json { render json: @question_answer.errors, status: :unprocessable_entity }
+          :num_correct => QuizGrader.num_correct(current_user.answers_for_quiz(@question_answer.quiz_id), @question_answer.quiz),
+          :status => "Completed" )
+
+          # redirect to quizzes when done with current quiz for now
+            format.html { redirect_to score_path(:id => @question_answer.quiz_id , :user_id => current_user.id), notice: 'Your completed quiz has been recorded.' }
+            format.json { render json: @question_answer.errors, status: :unprocessable_entity }
+      else
+        # redirect to the earliest question NOT answered
+        format.html { redirect_to new_question_answer_path(next_question.id), notice: 'Continue your quiz.' }
       end
     end
   end
@@ -96,10 +112,10 @@ class Questions::AnswersController < ApplicationController
   end
 
   private
-    def has_not_taken
-      if current_user.answers.any? {|q| q.question_id == params[:question_id].to_i }
-        redirect_to root_path, alert: "You already answered this one"
-      end
-    end 
+    # def has_not_taken
+    #   if current_user.answers.any? {|q| q.question_id == params[:question_id].to_i }
+    #     redirect_to root_path, alert: "You already answered this one"
+    #   end
+    # end 
 
 end
