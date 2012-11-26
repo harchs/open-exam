@@ -14,7 +14,8 @@ class Question < ActiveRecord::Base
   alias :author :user
   validates :name, :presence => true
   validates :choices, :length => { :minimum => 2, :message => " must have at least two options"}
-
+  validate :validate_unique_choices
+  
   def set_default_values
     self.selected ||= false
   end
@@ -26,8 +27,6 @@ class Question < ActiveRecord::Base
   def is_selected?
     self.selected 
   end  
-
-  validate :validate_unique_choices
 
   def validate_unique_choices
     validate_uniqueness_of_in_memory(choices, [:name, :question_id], 'Duplicate Choice.')

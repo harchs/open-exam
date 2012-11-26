@@ -1,6 +1,6 @@
 <h2><%= @quiz.name %></h2>
 <div id ="score" >
-<%= @num_correct %> / <%= @quiz.approved_questions.count %><br />
+<%= @user_quiz.num_correct %> / <%= @user_quiz.total_questions %><br />
 </div>
 <ol>
   <% @quiz.approved_questions.each do |question| %>

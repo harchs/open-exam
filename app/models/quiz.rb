@@ -5,26 +5,26 @@ class Quiz < ActiveRecord::Base
   has_many :user_quizzes
   has_many :users, :through => :user_quizzes
   has_many :answers
-  after_initialize :set_default_value
 
-  #validates :name, :presence => :true, :length => { :in => 4..40}, :uniqueness => :true
-  #validates :description, :presence => true
   validates :name, :presence => :true
   validates :description, :presence => true
   validates :passing_grade, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
 
-  before_update :check_has_questions
+  after_initialize :set_default_value
+  before_update :has_questions?
 
   def set_default_value
     self.is_published ||= false
   end
 
+  def is_ready_to_take?
+    self.approved_questions.length > 0 && self.is_published
+  end
 
   def next_question(question)
-    question_set = self.approved_questions
-    current_index = question_set.index(question)
+    current_index = approved_questions.index(question)
 
-    question_set[current_index + 1]
+    approved_questions[current_index + 1]
   end
 
   def taken_by?(user)
@@ -39,12 +39,12 @@ class Quiz < ActiveRecord::Base
     self.questions.order(:position).select{|question| question.selected}
   end
 
-  def check_has_questions
-    self.questions.find_all_by_selected(true).count > 0
+  def user_quiz_for(user)
+    self.user_quizzes.find_by_user_id(user.id)
   end
 
-  def users_have_taken
-    self.users
+  def has_questions?
+    self.questions.find_all_by_selected(true).count > 0
   end
 
 end

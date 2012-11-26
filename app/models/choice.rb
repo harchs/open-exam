@@ -7,7 +7,6 @@ class Choice < ActiveRecord::Base
   after_initialize :set_default_value
 
   validates :name, :presence => true
-  #validates :is_correct, :inclusion => {:in => [true, false]}
 
   def set_default_value
     self.is_correct ||= false

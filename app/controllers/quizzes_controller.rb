@@ -93,21 +93,19 @@ class QuizzesController < ApplicationController
 
   def score
     @user = User.find_by_id(params[:user_id])
-    
-    @quiz = Quiz.find_by_id(params[:id])
-    
 
-      respond_to do |format|
-        if @quiz &&   UserQuiz.find_by_user_id_and_quiz_id(@user.id, @quiz.id) && (@user == current_user || current_user.is_admin?)
-          @answers = @user.answers_for_quiz(@quiz.id)
-          @num_correct = QuizGrader.num_correct(@user.answers_for_quiz(@quiz.id), @quiz)
-          format.html
-        elsif current_user.id != @user.id
-          format.html { redirect_to privacy_path, :alert => "Stop trying to hack this shit" }
-        else  
-          format.html { redirect_to quizzes_path, :notice => "You haven't taken this quiz yet." }
-        end
+    respond_to do |format|
+      if @user == current_user || current_user.is_admin?
+        @quiz = Quiz.find_by_id(params[:id])
+        @user_quiz = UserQuiz.find_by_user_id_and_quiz_id(@user.id, @quiz.id)
+        @answers = @user.answers_for_quiz(@quiz.id)
+        format.html
+      elsif current_user.id != @user.id
+        format.html { redirect_to privacy_path, :alert => "Stop trying to hack this shit" }
+      else  
+        format.html { redirect_to quizzes_path, :notice => "You haven't taken this quiz yet." }
       end
+    end
 
     
   end

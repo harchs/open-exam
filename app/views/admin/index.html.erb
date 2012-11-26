@@ -55,7 +55,7 @@
         <tr>
           <td><%= quiz.name %></td>
           <td><%= quiz.description %></td>
-          <td><%= quiz.user_quizzes.count %> <%="/"%> <%= User.all.count %></td>
+          <td><%= quiz.user_quizzes.count %> / <%= User.all.count %></td>
           <td><%= QuizGrader.percent_correct(quiz)%></td>
           <td><%= link_to "View Stats", quiz_stats_path(quiz.id) %></td>
           

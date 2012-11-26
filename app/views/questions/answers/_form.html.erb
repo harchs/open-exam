@@ -22,6 +22,7 @@
             <ul>
             <% @question_answer.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
+            
             <% end %>
             </ul>
           </div>
@@ -49,17 +50,6 @@
   <div class="span3">
   </div>
 </div>
-<div class="row">
-<!--   <ul>
-    <%# @question.quiz.questions.each do |question| %>
-      <%# if question.position < @question.position %>
-        <li>
-        <%#= link_to question.position, edit_question_answer_path(question, question.answers.first) %>
-        </li>
-      <%# end %>
-    <%# end %>
-  </ul> -->
-</div>
 
 <script type="text/javascript">
   var progress_width = $('.progress .bar').width();
@@ -83,3 +73,4 @@
   });
 
 </script>
+
