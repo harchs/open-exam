@@ -4,7 +4,8 @@ class QuizGrader
   end
 
   def self.average_quiz_score(quiz)
-    scores = quiz.user_quizzes.collect{|user_quiz| user_quiz.num_correct}
+    scores = quiz.user_quizzes.select {|user_quiz| user_quiz.num_correct.is_a? Integer}
+    scores = scores.collect{|user_quiz| user_quiz.num_correct}
     quiz.user_quizzes.count > 0 ? scores.sum / quiz.user_quizzes.count : 0
   end  
 
@@ -14,12 +15,14 @@ class QuizGrader
   end  
 
   def self.highest_quiz_score(quiz)
-    user_quiz = quiz.user_quizzes.max_by(&:num_correct)
+    user_quiz = quiz.user_quizzes.select {|user_quiz| user_quiz.num_correct.is_a? Integer}
+    user_quiz = user_quiz.max_by(&:num_correct)
     user_quiz.num_correct if user_quiz
   end
 
   def self.lowest_quiz_score(quiz)
-    user_quiz = quiz.user_quizzes.min_by(&:num_correct)
+    user_quiz = quiz.user_quizzes.select {|user_quiz| user_quiz.num_correct.is_a? Integer}
+    user_quiz = user_quiz.min_by(&:num_correct)
     user_quiz.num_correct if user_quiz
   end
 
@@ -48,12 +51,14 @@ class QuizGrader
   end 
 
   def self.most_correct_answers(quiz)
-    most = quiz.user_quizzes.max_by(&:num_correct)
+    most = quiz.user_quizzes.select {|user_quiz| user_quiz.num_correct.is_a? Integer}
+    most = most.max_by(&:num_correct)
     User.find_by_id(most.user_id).name
   end  
 
   def self.correct_responses(quiz)
-    most = quiz.user_quizzes.max_by(&:num_correct)
+    most = quiz.user_quizzes.select {|user_quiz| user_quiz.num_correct.is_a? Integer}
+    most = most.max_by(&:num_correct)
     most.num_correct
   end  
 end
