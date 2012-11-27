@@ -71,10 +71,10 @@ class Quiz < ActiveRecord::Base
 
   def not_taken
     yetto = self.user_quizzes.select {|user_quiz| user_quiz.status == "Completed" || "In Progress"}
-    yetto_ids = yetto.map { |x| x.user_id}
-    yetto_users = yetto_ids.map { |x| User.find(x)}   
+    #yetto_ids = yetto.map { |x| x.user_id}
+    #yetto_users = yetto_ids.map { |x| User.find(x)}   
     
-    User.all - yetto_users
+    #User.find_by_organization_id(@current_org.id).all - yetto_users
 
   end  
 
@@ -95,5 +95,6 @@ class Quiz < ActiveRecord::Base
     def has_selected_questions?
       self.approved_questions.count > 0
     end
+
 
 end

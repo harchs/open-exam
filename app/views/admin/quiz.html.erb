@@ -70,18 +70,21 @@
     <% end %>      
 
   </table> 
-
+  <% yetto = (User.find_all_by_organization_id(@current_org.id)) - (User.find_all_by_id(UserQuiz.find_by_quiz_id(@quiz.id).user_id)) %>
 
 <h4 style="text-align:center;">Not Taken:</h4>
   <table class="table" >
         <tr>
           <th style="text-align:right;">Name</th>
         </tr>
-    <% @quiz.not_taken.each do |user_quiz| %>
+    <%# @quiz.not_taken.each do |user_quiz| %>
         <tr>
-          <td style="text-align:right;"><%= (user_quiz.name) %><td>
-        </tr>    
-    <% end %>     
+          
+            <td style="text-align:right;"><% yetto.each do |n| %><td>
+            <td style="text-align:right;"><%= n.name %><td>
+        </tr>   
+        <% end %> 
+    <%# end %>     
   </table>  
 </div> 
 <div class="clearfix"></div>

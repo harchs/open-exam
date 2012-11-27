@@ -3,7 +3,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes.json
   before_filter :authorize, only: [:edit, :update, :new, :destroy, :index, :collaborate, :history]
   before_filter :authorize_admin, only: [:edit, :new, :destroy, :update, :create, :invite, :mail_invite]
-
+    
   def index
     @ready_quizzes = current_org.quizzes.select(&:is_ready_to_take?)
     @quizzes_to_take = @ready_quizzes.select{|quiz| !current_user.has_taken?(quiz) && !current_user.has_started?(quiz)}
