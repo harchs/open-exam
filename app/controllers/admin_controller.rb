@@ -4,9 +4,9 @@ class AdminController < ApplicationController
   # GET /admins
   # GET /admins.json
   def index
-    @user = User.find_by_name(params[:id])
-    @users = User.all
-    @quizzes = Quiz.all
+    @user = current_org.users.find_by_name(params[:id])
+    @users = current_org.users.all
+    @quizzes = current_org.quizzes.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class AdminController < ApplicationController
   end
 
   def quiz
-    @quiz = Quiz.find_by_id(params[:quiz_id])
+    @quiz = current_org.quizzes.find_by_id(params[:quiz_id])
     
     respond_to do |format|
       format.html

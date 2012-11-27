@@ -9,6 +9,13 @@ class User < ActiveRecord::Base
 
   validates :name, :presence => :true
   validates :email, :presence => :true
+  validates :organization_id, :presence => true
+
+  after_initialize :set_defaults
+
+  def set_defaults
+    self.role ||= "student"
+  end
 
   def is_admin?
     self.role.downcase == "admin" ? true : false 

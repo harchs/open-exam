@@ -9,6 +9,7 @@ class Quiz < ActiveRecord::Base
 
   validates :name, :presence => :true
   validates :description, :presence => true
+  validates :organization_id, :presence => true
   validates :passing_grade, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
 
   after_initialize :set_default_value

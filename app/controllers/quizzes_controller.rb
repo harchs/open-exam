@@ -52,7 +52,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/new
   # GET /quizzes/new.json
   def new
-    @quiz = Quiz.new
+    @quiz = Quiz.new(:organization_id => current_org.id)
 
     respond_to do |format|
       format.html # new.html.erb

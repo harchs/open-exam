@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authorize_admin_or_self, only: [:edit, :update, :destroy]
   
   def index
-    @users = User.all
+    @users = current_org.users.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = current_org.users.find(params[:id])
     @quizzes = @user.quizzes
 
     respond_to do |format|
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new
+    @user = User.new(:organization_id => current_org.id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @user = current_org.users.find(params[:id])
   end
 
   # POST /users
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    @user = current_org.users.find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    @user = current_org.users.find(params[:id])
     @user.destroy
 
     respond_to do |format|

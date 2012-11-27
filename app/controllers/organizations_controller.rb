@@ -1,4 +1,5 @@
 class OrganizationsController < ApplicationController
+  before_filter :authorize, :only => [:show, :new, :edit, :create, :update, :destroy]
   # GET /organizations
   # GET /organizations.json
   def index

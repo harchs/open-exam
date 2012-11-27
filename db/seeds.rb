@@ -62,7 +62,7 @@ choice11 = question4.choices.build :name => "UES"
 choice12 = question4.choices.build :name => "59th St", :is_correct => true
 question4.save
 
-quiz3 = Quiz.create!(:name => "General Assembly",:description => "Friday quiz", :is_published => true, :passing_grade => 50, :organization_id => org1.id)
+quiz3 = Quiz.create!(:name => "General Assembly",:description => "Friday quiz", :is_published => true, :passing_grade => 50, :organization_id => org2.id)
 question5 = quiz3.questions.build :name => "Who is the dean?", :user_id => user1.id, :selected => true
 choice13 = question5.choices.build :name => "Ari"
 choice14 = question5.choices.build :name => "Avi", :is_correct => true
@@ -81,7 +81,7 @@ choice20 = question7.choices.build :name => "Breakfast?"
 choice21 = question7.choices.build :name => "I'm eating popcorn right now.", :is_correct => true
 question7.save
 
-quiz4 = Quiz.create!(:name => "General Assembly NYC Landmarks", :description => "Stuff to see around town", :is_published => false, :passing_grade => 50, :organization_id => org1.id)
+quiz4 = Quiz.create!(:name => "General Assembly NYC Landmarks", :description => "Stuff to see around town", :is_published => false, :passing_grade => 50, :organization_id => org2.id)
 question8 = quiz2.questions.build :name => "Where is columbus circle?", :user_id => user4.id
 choice22 = question8.choices.build :name => "South St Seaport"
 choice23 = question8.choices.build :name => "UES"
