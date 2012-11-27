@@ -25,9 +25,9 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new(:organization_id => current_org.id)
-    # @user = User.new
-    # @organization = Organization.new
+    # @user = User.new(:organization_id => current_org.id) 11/27/12
+    @user = User.new
+    @organization = Organization.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,21 +43,23 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    # organization_name = params[:user][:organization]
-    # params[:user].delete("organization")
+    organization_name = params[:user][:organization]
+    params[:user].delete("organization")
+
+    org_subdomain = organization_name.gsub(/\W+/,'')
 
     @user = User.new(params[:user])
-    # @organization = Organization.new(:name => organization_name)
+    @organization = Organization.new(:name => organization_name, :subdomain => org_subdomain)
 
     respond_to do |format|
-      if @user.save# && @organization.save
+      if @user.save && @organization.save
         OpenExamMailer.registration_confirmation(@user).deliver
-        # @user.update_attributes(:organization_id => @organization.id, :role => "Admin")
+        @user.update_attributes(:organization_id => @organization.id, :role => "Admin")
         session[:user_id] = @user.id
         format.html { redirect_to root_url, notice: 'Thanks for joining OpenExam!' }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render signup_path }
+        format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
