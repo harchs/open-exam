@@ -65,4 +65,16 @@
 
   <% end %>
 
+  <% if !@user.is_admin? %>
+    <%= form_for(@user) do |f| %></br>
+      <%= f.hidden_field :role, :value => "Admin" %>
+      <div class="actions">
+        <button class="btn btn-warning" name="commit" type="submit" value="Make Admin" >Make Admin</button>
+      </div>
+    <% end %>
+  <% else %>
+    </br>User is an admin.
+  <% end %>
+
+
 <% end %>
