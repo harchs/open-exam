@@ -1,45 +1,52 @@
 <div class="quiz-content">
+  <% if !@quizzes_to_take.empty? %>
   <div class="quiz-header">
-    <h2>Take a Quiz</h2>
-  </div>
-  <div class="quiz-list">
-    <ul>
-    <% @quizzes_to_take.each do |quiz| %>
-        <li>
-          <a href="<%= new_question_answer_path(quiz.approved_questions.first) %>">
-            <span class="title">[<%= truncate(quiz.name, :length => 30) %>]</span>
-            <span class="description">- <%= pluralize(quiz.approved_questions.length, 'question') %> - <%= truncate(quiz.description, :length => 30) %>-</span>
-          </a>
-          <span class="links">
-            <% if current_user.is_admin? %>
-              <%= link_to 'Edit', edit_quiz_path(quiz), :class => "edit-icon"  %>
-              <%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' }, :class => "trash-icon" %>
-            <% end %>
-          </span>
-        </li>
-    <% end %>        
-    </ul>
-  </div>
+      <h2>Take a Quiz</h2>
+    </div>
+    <div class="quiz-list">
+      <ul>
+      <% @quizzes_to_take.each do |quiz| %>
+          <li>
+            <a href="<%= new_question_answer_path(quiz.approved_questions.first) %>">
+              <span class="title">[<%= truncate(quiz.name, :length => 30) %>]</span>
+              <span class="description">- <%= pluralize(quiz.approved_questions.length, 'question') %> - <%= truncate(quiz.description, :length => 30) %>-</span>
+            </a>
+            <span class="links">
+              <% if current_user.is_admin? %>
+                <%= link_to 'Edit', edit_quiz_path(quiz), :class => "edit-icon"  %>
+                <%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' }, :class => "trash-icon" %>
+              <% end %>
+            </span>
+          </li>
+      <% end %>        
+      </ul>
+    </div>
+    <% elsif @quizzes_to_take.empty? &&  @quizzes_to_resume.empty? %>
+      <h2>No new quizzes to take</h2>
+    </div>
+    <% end %>
 
-  <h2>Resume Quiz</h2>
-  <div class="quiz-list">
-    <ul>
-    <% @quizzes_to_resume.each do |quiz| %>
-        <li>
-          <a href="<%= new_question_answer_path(quiz.question_to_resume(current_user)) %>"
-            <span class="title">[<%= truncate(quiz.name, :length => 30) %>]</span>
-            <span class="description">- <%= pluralize(quiz.approved_questions.length, 'question') %> - <%= truncate(quiz.description, :length => 30) %>-</span>
-          </a>
-          <span class="links">
-            <% if current_user.is_admin? %>
-              <%= link_to 'Edit', edit_quiz_path(quiz), :class => "edit-icon"  %>
-              <%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' }, :class => "trash-icon" %>
-            <% end %>
-          </span>
-        </li>
-    <% end %>        
-    </ul>
-  </div>
+  <% if !@quizzes_to_resume.empty? %>
+    <h2>Resume Quiz</h2>
+    <div class="quiz-list">
+      <ul>
+      <% @quizzes_to_resume.each do |quiz| %>
+          <li>
+            <a href="<%= new_question_answer_path(quiz.question_to_resume(current_user)) %>"
+              <span class="title">[<%= truncate(quiz.name, :length => 30) %>]</span>
+              <span class="description">- <%= pluralize(quiz.approved_questions.length, 'question') %> - <%= truncate(quiz.description, :length => 30) %>-</span>
+            </a>
+            <span class="links">
+              <% if current_user.is_admin? %>
+                <%= link_to 'Edit', edit_quiz_path(quiz), :class => "edit-icon"  %>
+                <%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' }, :class => "trash-icon" %>
+              <% end %>
+            </span>
+          </li>
+      <% end %>        
+      </ul>
+    </div>
+  <% end %>
 </div>
 
 <script type="text/javascript">
