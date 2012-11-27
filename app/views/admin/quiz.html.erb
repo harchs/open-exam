@@ -77,14 +77,12 @@
         <tr>
           <th style="text-align:right;">Name</th>
         </tr>
-    <%# @quiz.not_taken.each do |user_quiz| %>
         <tr>
-          
-            <td style="text-align:right;"><% yetto.each do |n| %><td>
+            <% yetto.each do |n| %>
             <td style="text-align:right;"><%= n.name %><td>
         </tr>   
         <% end %> 
-    <%# end %>     
+       
   </table>  
 </div> 
 <div class="clearfix"></div>
