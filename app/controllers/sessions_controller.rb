@@ -1,7 +1,11 @@
 class SessionsController < ApplicationController
   def new
     respond_to do |format|
-      format.html { redirect_to root_url } unless current_org
+      if current_org
+        format.html 
+      else
+        format.html { redirect_to root_url}
+      end
     end
   end
 
@@ -10,7 +14,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       unless user.is_admin?
-        redirect_to root_url
+        redirect_to quizzes_path
       else
         redirect_to admin_path
       end
