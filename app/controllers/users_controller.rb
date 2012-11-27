@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     organization_name = params[:user][:organization]
     params[:user].delete("organization")
 
-    org_subdomain = organization_name.gsub(/\W+/,'')
+    org_subdomain = organization_name.gsub(/\W+/,'').downcase
 
     @user = User.new(params[:user])
     @organization = Organization.new(:name => organization_name, :subdomain => org_subdomain)
