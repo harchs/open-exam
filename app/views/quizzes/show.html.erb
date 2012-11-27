@@ -46,6 +46,7 @@
 <%= link_to "Add a Question", new_question_path(:quiz_id => @quiz.id), class: "btn btn-primary" %>
  <!-- redirect to index, while publishing to true  -->
 <% if current_user.is_admin? %>  
+  <%= link_to "Invite Students to Collaborate", quiz_invite_path(@quiz.id) %>
   <% if !@quiz.is_published? %>
     <%= form_for(@quiz) do |f| %></br>
       <%= f.hidden_field :is_published, :value => "true" %>

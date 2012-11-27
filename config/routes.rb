@@ -14,6 +14,9 @@ OpenExam::Application.routes.draw do
 
   get 'quizzes/:id/score/:user_id' => 'quizzes#score', as: 'score'
 
+  get 'quizzes/:id/invite' => 'quizzes#invite', as: 'quiz_invite'
+  post 'quizzes/mail_invite' => 'quizzes#mail_invite'
+  
   get 'quizzes/collaborate' => 'quizzes#collaborate', as: 'quiz_collaborate'
 
   resources :quizzes

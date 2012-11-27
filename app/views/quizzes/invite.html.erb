@@ -1,0 +1,30 @@
+<form action="/quizzes/mail_invite" method="post">
+  <%= token_tag nil %>
+  <h2><%= @quiz.name %></h2>
+  <input type="hidden" name="quiz_id" value="<%= @quiz.id %>" />
+  <input type="checkbox" id="check_all" /> All
+
+  <div class="email_users_list">
+    <% @users.each do |user| %>
+      <%= check_box_tag "recipients[]", user.email %>
+      <%= user.name %>
+      <br />
+    <% end %>
+  </div>
+
+  <br />
+  <br />
+  <input type="submit" value="Invite" />
+</form>
+<script type="text/javascript">
+  $(function(){
+    $("#check_all").click(function() {
+      if ($("#check_all").is(':checked'))
+      {
+        $('.email_users_list input').attr('checked', 'checked');
+      } else {
+        $('.email_users_list input').removeAttr('checked');
+      }
+    });
+  });
+</script>

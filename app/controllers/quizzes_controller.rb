@@ -2,7 +2,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
   before_filter :authorize, only: [:edit, :update, :new, :destroy, :index, :collaborate, :history]
-  before_filter :authorize_admin, only: [:edit, :new, :destroy, :update, :create]
+  before_filter :authorize_admin, only: [:edit, :new, :destroy, :update, :create, :invite, :mail_invite]
 
   def index
     @ready_quizzes = Quiz.select(&:is_ready_to_take?)
@@ -21,6 +21,20 @@ class QuizzesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @quizzes }
+    end
+  end
+
+  def invite
+    @quiz = Quiz.find(params[:id])
+    @users = User.all.select{|user| !user.is_admin?}
+  end
+
+  def mail_invite
+    quiz_id = params.fetch(:quiz_id).to_i
+    quiz = Quiz.find(quiz_id)
+    OpenExamMailer.collaboration_invite(params.fetch(:recipients), quiz).deliver
+    respond_to do |format|
+      format.html { redirect_to quiz_collaborate_path }
     end
   end
 
