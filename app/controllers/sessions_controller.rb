@@ -1,9 +1,12 @@
 class SessionsController < ApplicationController
   def new
+    respond_to do |format|
+      format.html { redirect_to root_url } unless current_org
+    end
   end
 
   def create
-    user = User.find_by_email(params[:email])
+    user = current_org.users.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       unless user.is_admin?

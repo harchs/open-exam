@@ -1,4 +1,6 @@
 OpenExam::Application.routes.draw do
+  get "homepage/index"
+
   get '', to: 'organizations#show', constraints: lambda {|r| r.subdomain.present? && r.subdomain != 'www'}
 
   get "about", to: 'info#about'
@@ -81,7 +83,7 @@ OpenExam::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'organizations#index'
+  root :to => 'homepage#index'
 
   # See how all your routes lay out with "rake routes"
 
