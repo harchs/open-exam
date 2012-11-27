@@ -22,6 +22,9 @@ OpenExam::Application.routes.draw do
   
   get 'quizzes/collaborate' => 'quizzes#collaborate', as: 'quiz_collaborate'
 
+  get 'users/add' => 'users#add', as: 'add_users'
+  post 'users/create_students' => 'users#create_students'
+  
   resources :organizations
 
   resources :quizzes

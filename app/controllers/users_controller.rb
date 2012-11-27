@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authorize_admin_or_self, only: [:edit, :update, :destroy]
+  before_filter :authorize_admin, only: [:add, :create_students]
   
   def index
     @users = current_org.users.all
@@ -7,6 +8,23 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
+    end
+  end
+
+  def add
+  end
+
+  def create_students
+    emails = params.fetch(:emails)
+    password = params.fetch(:password)
+
+    emails.each do |email|
+      User.create!(:email => email, :organization_id => current_org.id, :password => password, :name => email)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to quizzes_path }
+      format.json
     end
   end
 

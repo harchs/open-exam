@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :organization_id, :password, :password_confirmation, :role, :organization, :role
+  attr_accessible :email, :name, :organization_id, :password, :password_confirmation, :role, :organization
   has_secure_password
   belongs_to :organization
   has_many :user_quizzes
