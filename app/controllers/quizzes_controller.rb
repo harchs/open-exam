@@ -5,7 +5,7 @@ class QuizzesController < ApplicationController
   before_filter :authorize_admin, only: [:edit, :new, :destroy, :update, :create, :invite, :mail_invite]
 
   def index
-    @ready_quizzes = Quiz.select(&:is_ready_to_take?)
+    @ready_quizzes = current_org.quizzes.select(&:is_ready_to_take?)
     @quizzes_to_take = @ready_quizzes.select{|quiz| !current_user.has_taken?(quiz) && !current_user.has_started?(quiz)}
     @quizzes_to_resume = @ready_quizzes.select{|quiz| !current_user.has_taken?(quiz) && current_user.has_started?(quiz)}
 
@@ -16,7 +16,7 @@ class QuizzesController < ApplicationController
   end
 
   def collaborate
-    @quizzes = Quiz.where(:is_published => false)
+    @quizzes = current_org.quizzes.where(:is_published => false)
 
     respond_to do |format|
       format.html
@@ -25,13 +25,13 @@ class QuizzesController < ApplicationController
   end
 
   def invite
-    @quiz = Quiz.find(params[:id])
+    @quiz = current_org.quizzes.find(params[:id])
     @users = User.all.select{|user| !user.is_admin?}
   end
 
   def mail_invite
     quiz_id = params.fetch(:quiz_id).to_i
-    quiz = Quiz.find(quiz_id)
+    quiz = current_org.quizzes.find(quiz_id)
     OpenExamMailer.collaboration_invite(params.fetch(:recipients), quiz).deliver
     respond_to do |format|
       format.html { redirect_to quiz_collaborate_path }
@@ -41,7 +41,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1
   # GET /quizzes/1.json
   def show
-    @quiz = Quiz.find(params[:id])
+    @quiz = current_org.quizzes.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -62,7 +62,7 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/1/edit
   def edit
-    @quiz = Quiz.find(params[:id])
+    @quiz = current_org.quizzes.find(params[:id])
     @quiz.questions.build if @quiz.questions.empty?
   end
 
@@ -85,7 +85,7 @@ class QuizzesController < ApplicationController
   # PUT /quizzes/1
   # PUT /quizzes/1.json
   def update
-    @quiz = Quiz.find(params[:id])
+    @quiz = current_org.quizzes.find(params[:id])
     if @quiz.publish(params[:quiz][:is_published])
     else
       @quiz.errors.add :base, "Quiz must have one selected question to publish."
@@ -106,7 +106,7 @@ class QuizzesController < ApplicationController
   # DELETE /quizzes/1
   # DELETE /quizzes/1.json
   def destroy
-    @quiz = Quiz.find_by_id(params[:id])
+    @quiz = current_org.quizzes.find_by_id(params[:id])
     @quiz.destroy
 
     respond_to do |format|
@@ -120,7 +120,7 @@ class QuizzesController < ApplicationController
 
     respond_to do |format|
       if @user == current_user || current_user.is_admin?
-        @quiz = Quiz.find_by_id(params[:id])
+        @quiz = current_org.quizzes.find_by_id(params[:id])
         @user_quiz = UserQuiz.find_by_user_id_and_quiz_id(@user.id, @quiz.id)
         @answers = @user.answers_for_quiz(@quiz.id)
         format.html

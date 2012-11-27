@@ -1,10 +1,11 @@
 class Quiz < ActiveRecord::Base
-  attr_accessible :creator_id, :name, :description, :is_published, :passing_grade
+  attr_accessible :creator_id, :name, :description, :is_published, :passing_grade, :organization_id
 
   has_many :questions
   has_many :user_quizzes
   has_many :users, :through => :user_quizzes
   has_many :answers
+  belongs_to :organization
 
   validates :name, :presence => :true
   validates :description, :presence => true

@@ -1,4 +1,5 @@
 OpenExam::Application.routes.draw do
+  get '', to: 'organizations#show', constraints: lambda {|r| r.subdomain.present? && r.subdomain != 'www'}
 
   get "about", to: 'info#about'
   get "privacy", to: 'info#privacy', as: 'privacy'
@@ -18,6 +19,8 @@ OpenExam::Application.routes.draw do
   post 'quizzes/mail_invite' => 'quizzes#mail_invite'
   
   get 'quizzes/collaborate' => 'quizzes#collaborate', as: 'quiz_collaborate'
+
+  resources :organizations
 
   resources :quizzes
 
@@ -78,7 +81,7 @@ OpenExam::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'quizzes#index'
+  root :to => 'organizations#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -35,4 +35,8 @@ class ApplicationController < ActionController::Base
     action == params[:action]
   end
 
+  def current_org
+    @current_org ||= Organization.find_by_subdomain(request.subdomain)
+  end
+  helper_method :current_org
 end
