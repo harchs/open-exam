@@ -3,7 +3,7 @@
 # Table name: questions
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)
+#  name       :text
 #  quiz_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -26,7 +26,7 @@ class Question < ActiveRecord::Base
   after_initialize :set_default_values
 
   alias :author :user
-  validates :name, :presence => true
+  validates :name, :presence => true, :length => {:maximum => 500}
   validates :choices, :length => { :minimum => 2, :message => " must have at least two options"}
   validate :validate_unique_choices
   

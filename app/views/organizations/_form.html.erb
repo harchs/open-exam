@@ -1,9 +1,9 @@
 <%= form_for(@organization) do |f| %>
-  <% if @user.errors.any? %>
+  <% if @organization.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
       <ul>
-        <% @user.errors.full_messages.each do |message| %>
+        <% @organization.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -25,6 +25,16 @@
 
   Your Info:
   <%= fields_for @user do |user_f| %>
+    <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="field">
       <%= user_f.label :name %>
       <%= user_f.text_field :name %>
@@ -35,11 +45,11 @@
     </div>
     <div class-"field">
       <%= user_f.label :password %>
-      <%= user_f.text_field :password %>
+      <%= user_f.password_field :password %>
     </div>
     <div class="field">
       <%= user_f.label :password_confirmation %>
-      <%= user_f.text_field :password_confirmation %>
+      <%= user_f.password_field :password_confirmation %>
     </div>
   <% end %>
   <div class="controls">   

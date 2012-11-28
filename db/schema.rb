@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128001724) do
+ActiveRecord::Schema.define(:version => 20121128163751) do
 
   create_table "answers", :force => true do |t|
     t.string   "name"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20121128001724) do
   end
 
   create_table "choices", :force => true do |t|
-    t.string   "name"
+    t.text     "name"
     t.boolean  "is_correct",  :default => false
     t.integer  "question_id"
     t.datetime "created_at",                     :null => false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20121128001724) do
   end
 
   create_table "questions", :force => true do |t|
-    t.string   "name"
+    t.text     "name"
     t.integer  "quiz_id"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false

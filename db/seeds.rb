@@ -5,8 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-org1 = Organization.create!(:name => "Flatiron School", :subdomain => "flatiron")
-org2 = Organization.create!(:name => "General Assembly", :subdomain => "ga")
+org1 = Organization.create!(:name => "Flatiron School", :subdomain => "flatiron", :invite_code => "asdf")
+org2 = Organization.create!(:name => "General Assembly", :subdomain => "ga", :invite_code => "asdf")
 org0 = Organization.create!(:name => "Admin", :subdomain => "admin")
 
 user0 = User.create!(:name => "Tim Tebow", :email => "tim.tebow@flatironschool.com", :password => "fdsa", :password_confirmation => "fdsa", :role => "superuser", :organization_id => org0.id)

@@ -22,8 +22,8 @@ class Quiz < ActiveRecord::Base
   has_many :answers
   belongs_to :organization
 
-  validates :name, :presence => :true
-  validates :description, :presence => true
+  validates :name, :presence => :true, :length => {:maximum => 100}
+  validates :description, :presence => true, :length => {:maximum => 500}
   validates :organization_id, :presence => true
   validates :passing_grade, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
 
