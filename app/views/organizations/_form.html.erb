@@ -1,4 +1,4 @@
-<%= form_for(@user, :url => {:controller => "organizations", :action => "create" }) do |f| %>
+<%= form_for(@organization) do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
@@ -10,30 +10,38 @@
     </div>
   <% end %>
 
-  <%= f.hidden_field :organization_id %>
-  <div class="field">
-    <%= f.label :organization %>
-    <%= f.text_field :organization %>
-  </div>
-  <div class="field">
-    <%= label_tag "Invite Code" %>
-    <%= text_field_tag 'invite_code' %>
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.label :subdomain %>
+    <%= f.text_field :subdomain %>
   </div>
   <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.label :invite_code %>
+    <%= f.text_field :invite_code %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+
+  Your Info:
+  <%= fields_for @user do |user_f| %>
+    <div class="field">
+      <%= user_f.label :name %>
+      <%= user_f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= user_f.label :email %>
+      <%= user_f.text_field :email %>
+    </div>
+    <div class-"field">
+      <%= user_f.label :password %>
+      <%= user_f.text_field :password %>
+    </div>
+    <div class="field">
+      <%= user_f.label :password_confirmation %>
+      <%= user_f.text_field :password_confirmation %>
+    </div>
+  <% end %>
   <div class="controls">   
    <input name="commit" class = "btn" type="submit" value="Sign up">
   </div>

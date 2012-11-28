@@ -1,7 +1,7 @@
 class Organization < ActiveRecord::Base
   attr_accessible :name, :subdomain, :invite_code
 
-  validates :name, :presence => :true
+  validates :name, :presence => :true, :length => { :maximum => 100 }
 
   has_many :users
   has_many :quizzes
