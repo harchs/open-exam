@@ -43,6 +43,7 @@ class OrganizationsController < ApplicationController
   # POST /organizations
   # POST /organizations.json
   def create
+
     @organization = Organization.new(params.fetch(:organization))
     @user = @organization.users.build(params.fetch(:user).merge({:role => "Admin"}))
 

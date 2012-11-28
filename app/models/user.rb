@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   validates :name, :presence => :true
   validates :email, :presence => :true
-  # validates :organization_id, :presence => true
+  validates_associated :organization
 
   after_initialize :set_defaults
 
