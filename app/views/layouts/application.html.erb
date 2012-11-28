@@ -21,7 +21,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <%= link_to 'Open Exam', root_path, :class => 'brand' %>
+
+          <%= link_to current_org.name, root_path, :class => 'brand' %>
           <div class="nav-collapse collapse">
             <ul class="nav pull-right">
             <% if current_org %>
