@@ -28,7 +28,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = current_org.users.find(params[:id])
+    if current_user.is_superuser?
+      @user = User.find_by_id(params[:id])
+    else
+      @user = current_org.users.find(params[:id])
+    end
+
     @quizzes = @user.quizzes
 
     respond_to do |format|
