@@ -1,4 +1,5 @@
 OpenExam::Application.routes.draw do
+  
   get "homepage/index"
 
   get '', to: 'organizations#show', constraints: lambda {|r| r.subdomain.present? && r.subdomain != 'www'}
@@ -36,6 +37,7 @@ OpenExam::Application.routes.draw do
   resources :questions do
     resources :answers, :controller => 'questions/answers'
   end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -93,4 +95,8 @@ OpenExam::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  unless Rails.application.config.consider_all_requests_local
+    match '*not_found', to: 'errors#error_404'
+  end
+
 end
