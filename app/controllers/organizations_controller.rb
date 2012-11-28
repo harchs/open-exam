@@ -1,6 +1,8 @@
 class OrganizationsController < ApplicationController
   before_filter :organizations_only, :except => [:new, :create]
-  before_filter :authorize, :only => [:show, :edit, :update, :destroy]
+  before_filter :authorize, :only => [:show ]
+
+  before_filter :authorize_superuser, :only => [ :index, :edit, :update, :destroy]
   # GET /organizations
   # GET /organizations.json
   def index

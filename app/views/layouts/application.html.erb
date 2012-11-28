@@ -31,6 +31,11 @@
                   <%= link_to "Admin", admin_path %>
                 </li>
               <% end %>
+              <% if current_user && current_user.is_superuser? %>
+                <li>
+                  <%= link_to "Organizations", organizations_path %>
+                </li>
+              <% end %>
               <% if current_user %>
                 <li>
                   <a href="<%= user_path(current_user) %>"><img src="http://placekitten.com/g/25/25" class="user_nav_photo" /> <%= current_user.name %></a>
