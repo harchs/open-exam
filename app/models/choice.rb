@@ -3,7 +3,7 @@
 # Table name: choices
 #
 #  id          :integer          not null, primary key
-#  name        :string(255)
+#  name        :text
 #  is_correct  :boolean          default(FALSE)
 #  question_id :integer
 #  created_at  :datetime         not null
@@ -18,7 +18,7 @@ class Choice < ActiveRecord::Base
 
   after_initialize :set_default_value
 
-  validates :name, :presence => true
+  validates :name, :presence => true, :length => {:maximum => 500}
 
   def set_default_value
     self.is_correct ||= false

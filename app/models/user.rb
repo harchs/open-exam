@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :questions
 
-  validates :name, :presence => :true
-  validates :email, :presence => :true
+  validates :name, :presence => :true, :length => {:maximum => 100}
+  validates :email, :presence => :true, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
   # validates :organization_id, :presence => true
 
   after_initialize :set_defaults
