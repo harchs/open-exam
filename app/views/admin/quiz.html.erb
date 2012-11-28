@@ -70,7 +70,17 @@
     <% end %>      
 
   </table> 
-  <% yetto = (User.find_all_by_organization_id(@current_org.id)) - (User.find_all_by_id(UserQuiz.find_by_quiz_id(@quiz.id).user_id)) %>
+
+  <% taken_user_quizzes = UserQuiz.find_all_by_quiz_id(@quiz.id) %>
+  <% taken_user_ids = taken_user_quizzes.map { |x| x.user_id } %>
+  <% taken_user_names = taken_user_ids.map { |x| User.find_by_id(x) } %>
+
+  
+  <% yetto = (User.find_all_by_organization_id(@current_org.id)) - taken_user_names %>
+
+
+
+<%# raise (User.find_all_by_id(UserQuiz.find_all_by_quiz_id(@quiz.id).user_id)).inspect %>
 
 <h4 style="text-align:center;">Not Taken:</h4>
   <table class="table" >
