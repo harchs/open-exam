@@ -6,6 +6,9 @@
     <li>
       <a href="#tab2" data-toggle="tab"> Quizzes </a>
     </li>
+    <li>
+      <a href="#tab3" data-toggle="tab"> Organization </a>
+    </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
@@ -69,5 +72,9 @@
 
       <br />
     </div>
+    <div class="tab-pane" id="tab3">
+      <td><%= link_to "Edit Organization", edit_organization_path(@current_org.id)%></td>
+    </div>  
+    
   </div>
 </div>

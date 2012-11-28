@@ -22,7 +22,11 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_superuser
-    redirect_to root_path, notice: "You must be a superuser for this" unless current_user && current_user.is_superuser?
+    redirect_to root_path, notice: "You must be a superuser for this." unless current_user && current_user.is_superuser?
+  end 
+
+  def authorize_admin_or_superuser 
+    redirect_to root_path, notice: "You must be a superuser or admin for this." unless current_user && (current_user.is_superuser? || (current_user.is_admin? && params[:id].to_i == @current_org.id))
   end  
 
   def authorize_admin_or_self
