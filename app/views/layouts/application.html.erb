@@ -73,9 +73,11 @@
       </div>
     </div>
 
-    <div class="container content-wrap">
-      <%= render 'layouts/flash_messages' %>
-      <%= yield %>
+    <div class="container content-wrap row-fluid">
+      <div class="fluid-wrap">
+        <%= render 'layouts/flash_messages' %>
+        <%= yield %>
+      </div>
     </div>
     
     <footer class="container content-wrap">
