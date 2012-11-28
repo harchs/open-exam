@@ -31,9 +31,16 @@
       <%= user_f.text_field :name %>
     </div>
     <div class="field">
-
       <%= user_f.label :email %>
       <%= user_f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= user_f.label :password %>
+      <%= user_f.password_field :password %>
+    </div>
+    <div class="field">
+      <%= user_f.label :password_digest %>
+      <%= user_f.password_field :password_digest %>
     </div>
   <% end %>
   <div class="controls">   
