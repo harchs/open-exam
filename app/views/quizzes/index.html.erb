@@ -1,6 +1,6 @@
 <div class="quiz-content">
   <% if !@quizzes_to_take.empty? %>
-  <div class="quiz-header">
+    <div class="quiz-header">
       <h2>Take a Quiz</h2>
     </div>
     <div class="quiz-list">
@@ -21,10 +21,9 @@
       <% end %>        
       </ul>
     </div>
-    <% elsif @quizzes_to_take.empty? &&  @quizzes_to_resume.empty? %>
-      <h2>No new quizzes to take</h2>
-    </div>
-    <% end %>
+  <% elsif @quizzes_to_take.empty? &&  @quizzes_to_resume.empty? %>
+    <h2>No new quizzes to take</h2>
+  <% end %>
 
   <% if !@quizzes_to_resume.empty? %>
     <h2>Resume Quiz</h2>
