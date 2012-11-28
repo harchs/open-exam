@@ -26,7 +26,12 @@ class User < ActiveRecord::Base
   validates_associated :organization
 
   after_initialize :set_defaults
+  before_create :normalize_email
 
+  def normalize_email
+    self.email.downcase! if self.email
+  end
+  
   def set_defaults
     self.role ||= "student"
   end
