@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def organizations_only
-    redirect_to root_path unless current_org
+    redirect_to root_url(:subdomain => 'www') unless current_org
   end
 
   helper_method :controller?, :action?
