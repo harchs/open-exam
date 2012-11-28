@@ -8,10 +8,10 @@ textarea#question_name {
 }
 
 .questions .selected-true {
-  
+  font-weight:bold;
 }
 
 .questions .selected-false {
-  text-decoration:line-through;
-  
+  font-style:italic;
+  font-weight:300;
 }
