@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: answers
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  user_id     :integer
+#  quiz_id     :integer
+#  question_id :integer
+#  choice_id   :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Answer < ActiveRecord::Base
   attr_accessible :choice_id, :name, :question_id, :quiz_id, :user_id
 

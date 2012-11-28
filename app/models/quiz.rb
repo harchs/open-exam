@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: quizzes
+#
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  creator_id      :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  description     :text
+#  is_published    :boolean          default(FALSE)
+#  passing_grade   :integer
+#  organization_id :integer
+#
+
 class Quiz < ActiveRecord::Base
   attr_accessible :creator_id, :name, :description, :is_published, :passing_grade, :organization_id
 
