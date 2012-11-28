@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: organizations
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  subdomain   :string(255)
+#  invite_code :string(255)
+#
+
 class Organization < ActiveRecord::Base
   attr_accessible :name, :subdomain, :invite_code
 

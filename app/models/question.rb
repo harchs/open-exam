@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: questions
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  quiz_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  position   :integer
+#  selected   :boolean          default(FALSE)
+#  user_id    :integer
+#
+
 class Question < ActiveRecord::Base
   attr_accessible :name, :quiz_id, :choices_attributes, :choices, :position, :selected, :user_id
 
