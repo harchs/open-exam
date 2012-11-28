@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless current_user && (current_user.is_admin? || params[:id].to_i == current_user.id) 
   end
 
+  def organizations_only
+    redirect_to root_path unless current_org
+  end
+
   helper_method :controller?, :action?
 
   def controller?(controller)
