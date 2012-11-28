@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_filter :authorize, :only => [:show, :new, :edit, :create, :update, :destroy]
+  before_filter :authorize, :only => [:show, :edit, :update, :destroy]
   # GET /organizations
   # GET /organizations.json
   def index
@@ -44,11 +44,12 @@ class OrganizationsController < ApplicationController
   def create
     organization_name = params[:user][:organization]
     params[:user].delete("organization")
+    invite_code = params.fetch(:invite_code)
 
     org_subdomain = organization_name.gsub(/\W+/,'').downcase
 
     @user = User.new(params[:user])
-    @organization = Organization.new(:name => organization_name, :subdomain => org_subdomain)
+    @organization = Organization.new(:name => organization_name, :subdomain => org_subdomain, :invite_code => invite_code)
 
     respond_to do |format|
       if @user.save && @organization.save

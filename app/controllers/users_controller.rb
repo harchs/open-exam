@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def create_students
     emails = params.fetch(:emails)
     OpenExamMailer.registration_invite(emails, current_org).deliver
-    
+
     respond_to do |format|
       format.html { redirect_to quizzes_path }
       format.json
@@ -56,9 +56,15 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    invite_code = params.fetch(:invite_code)
 
     respond_to do |format|
-      if @user.save
+      if invite_code != current_org.invite_code
+        format.html { 
+          flash[:notice] = 'You need an invite code to join!'
+          render action: "new"
+        }
+      elsif @user.save
         OpenExamMailer.registration_confirmation(@user).deliver
         session[:user_id] = @user.id
         format.html { redirect_to root_url, notice: 'Thanks for joining OpenExam!' }
