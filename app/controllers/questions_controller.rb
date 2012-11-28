@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_filter :organizations_only
+  
   # GET /questions
   # GET /questions.json
   def index

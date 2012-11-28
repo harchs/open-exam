@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :organizations_only
   before_filter :authorize_admin_or_self, only: [:edit, :update, :destroy]
   before_filter :authorize_admin, only: [:add, :create_students]
   

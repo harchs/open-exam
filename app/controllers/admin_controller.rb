@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  before_filter :organizations_only
   before_filter :authorize_admin
 
   # GET /admins

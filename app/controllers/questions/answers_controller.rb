@@ -1,4 +1,5 @@
 class Questions::AnswersController < ApplicationController
+  before_filter :organizations_only
   before_filter :authorize, only: [:edit, :update, :new, :destroy]
   # before_filter :has_not_taken, only: [:new, :create]
 
