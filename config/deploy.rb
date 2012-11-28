@@ -23,6 +23,7 @@ role :db,  "openexam.org", :primary => true # This is where Rails migrations wil
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 before "deploy:assets:precompile", "deploy:symlink_shared"
+after "deploy", "deploy:migrate"
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
