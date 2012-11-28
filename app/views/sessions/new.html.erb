@@ -1,26 +1,23 @@
-<%= puts session.inspect %>
+
+
 <h2>Student-created exams reinforce student learning.</h2>
 
-<div id="welcome-hero" class="clearfix">
-
-<p id="welcome-text">
-  Open Exam allows students to create questions for other students to answer. 
-  Instructors select the best ones to show up on exams. 
-</p>
-
-
-  <div id="login-box">
-  <%= form_tag sessions_path, :class => 'form_sign_in' do %>
-    <div class="field">
-      <%= label_tag :email %>
-      <%= text_field_tag :email, params[:email] %>
-    </div>
-    <div class="field">
-      <%= label_tag :password %>
-      <%= password_field_tag :password %>
-    </div>
-    <div class="actions"><%= submit_tag "Log In", :class => 'btn btn-large btn-primary' %></div>
-  <% end %>
+  <div class="span6 welcome-text">
+    Open Exam allows students to create questions for other students to answer. 
+    Instructors select the best ones to show up on exams. 
   </div>
 
-</div>
+
+  <div class="offset1 span4">
+    <%= form_tag sessions_path, :class => 'form_sign_in' do %>
+      <div class="field">
+        <%= label_tag :email %>
+        <%= text_field_tag :email, params[:email] %>
+      </div>
+      <div class="field">
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+      </div>
+      <div class="actions"><%= submit_tag "Log In", :class => 'btn btn-large btn-primary' %></div>
+    <% end %>
+  </div>

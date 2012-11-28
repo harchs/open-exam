@@ -3,60 +3,20 @@
 <head>
   <title>OpenExam</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-
-  <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
 </head>
 <body>
   <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-
           <% if current_org %>
             <%= link_to current_org.name, root_path, :class => 'brand' %>
+          <% else %>
+            <%= link_to "Open Exam", root_path, :class => 'brand' %>
           <% end %>
-          <div class="nav-collapse collapse">
-            <ul class="nav pull-right">
-            <% if current_org %>
-              <% if current_user && current_user.is_admin? %>
-                <li>
-                  <%= link_to "Admin", admin_path %>
-                </li>
-              <% end %>
-              <% if current_user && current_user.is_superuser? %>
-                <li>
-                  <%= link_to "Organizations", organizations_path %>
-                </li>
-              <% end %>
-              <% if current_user %>
-                <li>
-                  <a href="<%= user_path(current_user) %>"><img src="http://placekitten.com/g/25/25" class="user_nav_photo" /> <%= current_user.name %></a>
-                </li>
-                <li>
-                  <%= link_to "Log Out", logout_path %>
-                </li>              
-              <% else %>
-                <li>
-                  <%= link_to "Log In", login_path %>
-                </li>
-              <% end %>
-            <% else %>
-              <li>
-                <%= link_to "Sign Up", new_user_path %>
-              </li>
-            <% end %>
-            </ul>
 
+          <div class="nav-collapse collapse">
+            
             <ul class="nav">
               <% if current_org %>
                 <% if controller?("quizzes") && action?("index") %>
@@ -64,14 +24,47 @@
                 <% else %>
                   <li>
                 <% end %>
-                  <%= link_to "Take Quiz", quizzes_path %></li>
+                
+                <%= link_to "Take Quiz", quizzes_path %></li>
 
                 <% if controller?("quizzes") && action?("collaborate") %>
                   <li class="active">
                 <% else %>
                   <li>
                 <% end %>
+
                 <%= link_to "Collaborate", quiz_collaborate_path %></li>
+              <% end %>
+            </ul>
+
+            <ul class="nav pull-right">
+              <% if current_org %>
+                <% if current_user && current_user.is_admin? %>
+                  <li>
+                    <%= link_to "Admin", admin_path %>
+                  </li>
+                <% end %>
+
+                <% if current_user && current_user.is_superuser? %>
+                  <li>
+                    <%= link_to "Organizations", organizations_path %>
+                  </li>
+                <% end %>
+
+                <% if current_user %>
+                  <li>
+                    <%= link_to "Log Out", logout_path %>
+                  </li>              
+                <% else %>
+                  <li>
+                    <%= link_to "Log In", login_path %>
+                  </li>
+                <% end %>
+
+              <% else %>
+                <li>
+                  <%= link_to "Sign Up", new_user_path %>
+                </li>
               <% end %>
 
             </ul>
@@ -80,26 +73,17 @@
       </div>
     </div>
 
-
-  <div class="container">
-    <div class="row">
-      <div class="span9">
-
-        <%= render 'layouts/flash_messages' %>
-
-        <%= yield %>
-      </div>
+    <div class="container content-wrap">
+      <%= render 'layouts/flash_messages' %>
+      <%= yield %>
     </div>
-    <footer>
-      <p>
-        2012 Flatiron School
-        <%= link_to_unless_current "About", about_path %>
-        <%= link_to_unless_current "Privacy", privacy_path %>
-        <a href="http://students.flatironschool.com/">Contact</a>
-
-      </p>
+    
+    <footer class="container content-wrap">
+      <a href="http://www.openexam.org"><strong>Open Exam</strong></a> 2012 &nbsp; 
+      <%= link_to_unless_current "About", about_path %> | 
+      <%= link_to_unless_current "Privacy", privacy_path %> | 
+      <a href="http://students.flatironschool.com/">Contact</a>
     </footer>
-  </div>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -110,6 +94,7 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-</script>  
+</script>
+<%= javascript_include_tag "application" %>
 </body>
 </html>

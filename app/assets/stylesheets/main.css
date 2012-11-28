@@ -1,3 +1,8 @@
+a.brand, 
+a.brand:visited {
+  color: #09d;
+}
+
 .navbar .nav .active {
   background-color: #111;
   -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
@@ -13,7 +18,7 @@
 }
 
 footer {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ccc;
   margin-top: 40px;
   padding-top: 20px;
 }
@@ -38,3 +43,78 @@ footer {
 .quiz_description {
   font-style: italic;
 }
+
+.content-wrap {
+  padding-top: 60px;
+}
+
+.welcome-text {
+  font-size: 160%;
+  line-height: 160%;
+  padding-top: 40px;
+}
+
+footer.content-wrap {
+  padding: 10px;
+}
+
+/* ==================================================================
+
+  Responsive Specific
+
+===================================================================*/ 
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+ 
+@media (min-width: 980px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+
+  .navbar-inner a.brand {
+    margin-left: -10px;
+  }
+
+  .content-wrap {
+    padding: 100px 60px 0 60px;
+  }
+
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  .navbar.navbar-fixed-top, 
+  .navbar-inner {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+  .navbar-inner a.brand {
+    margin-left: -10px;
+  }
+
+  .content-wrap {
+    padding: 100px 20px 0 20px;
+  }
+
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}
+
+
+
+
+
+
+
+
+
+
