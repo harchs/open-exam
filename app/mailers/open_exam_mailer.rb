@@ -8,7 +8,11 @@ class OpenExamMailer < ActionMailer::Base
 
   def collaboration_invite(users, quiz)
     @quiz = quiz
-    @url = quiz_path(quiz)
     mail(:to => users, :subject => "You've been invited to collaborate on a quiz!")
+  end
+
+  def registration_invite(emails, organization)
+    @organization = organization
+    mail(:to => emails, :subject => "You've been invited to join #{organization.name} on OpenExam")
   end
 end
