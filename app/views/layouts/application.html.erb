@@ -22,7 +22,9 @@
             <span class="icon-bar"></span>
           </a>
 
-          <%= link_to current_org.name, root_path, :class => 'brand' %>
+          <% if current_org %>
+            <%= link_to current_org.name, root_path, :class => 'brand' %>
+          <% end %>
           <div class="nav-collapse collapse">
             <ul class="nav pull-right">
             <% if current_org %>
