@@ -40,7 +40,7 @@
               <% end %>
               <% if current_user %>
                 <li>
-                  <a href="<%= user_path(current_user) %>"><img src="http://placekitten.com/g/25/25" class="user_nav_photo" /> <%= current_user.name %></a>
+                  <a href="<%= user_path(current_user) %>"><img src="<%= "http://gravatar.com/avatar/#{current_user.gravatar_hash}?s=25&d=http%3A%2F%2Fplacekitten.com%2Fg%2F25%2F25" %>" class="user_nav_photo" /> <%= current_user.name %></a>
                 </li>
                 <li>
                   <%= link_to "Log Out", logout_path %>
