@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_filter :authorize, :only => [:show, :new, :edit, :create, :update, :destroy]
+  before_filter :authorize, :only => [:show, :edit, :update, :destroy]
   # GET /organizations
   # GET /organizations.json
   def index
@@ -22,9 +22,10 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  # GET /organizations/new
+  # GET /organizations/new@
   # GET /organizations/new.json
-  def new
+  def new 
+    @user = User.new
     @organization = Organization.new
 
     respond_to do |format|
@@ -41,15 +42,25 @@ class OrganizationsController < ApplicationController
   # POST /organizations
   # POST /organizations.json
   def create
-    @organization = Organization.new(params[:organization])
+    organization_name = params[:user][:organization]
+    params[:user].delete("organization")
+    invite_code = params.fetch(:invite_code)
+
+    org_subdomain = organization_name.gsub(/\W+/,'').downcase
+
+    @user = User.new(params[:user])
+    @organization = Organization.new(:name => organization_name, :subdomain => org_subdomain, :invite_code => invite_code)
 
     respond_to do |format|
-      if @organization.save
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
-        format.json { render json: @organization, status: :created, location: @organization }
+      if @user.save && @organization.save
+        OpenExamMailer.registration_confirmation(@user).deliver
+        @user.update_attributes(:organization_id => @organization.id, :role => "Admin")
+        session[:user_id] = @user.id
+        format.html { redirect_to root_url(:subdomain => @organization.subdomain), notice: 'Thanks for joining OpenExam!' }
+        format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end

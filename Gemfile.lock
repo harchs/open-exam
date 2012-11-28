@@ -4,6 +4,8 @@ GEM
     actionmailer (3.2.8)
       actionpack (= 3.2.8)
       mail (~> 2.4.4)
+    actionmailer-with-request (0.4.0)
+      rails (>= 3)
     actionpack (3.2.8)
       activemodel (= 3.2.8)
       activesupport (= 3.2.8)
@@ -227,6 +229,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionmailer-with-request
   acts_as_list
   bcrypt-ruby (~> 3.0.0)
   capybara

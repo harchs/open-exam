@@ -1,22 +1,41 @@
-<%= form_for(@organization) do |f| %>
-  <% if @organization.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
-
+<%= form_for(@user, :url => {:controller => "organizations", :action => "create" }) do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
       <ul>
-      <% @organization.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <br />
-  <%= f.label :subdomain %>
-  <%= f.text_field :subdomain %>
-  <div class="actions">
-    <%= f.submit %>
+  <%= f.hidden_field :organization_id %>
+  <div class="field">
+    <%= f.label :organization %>
+    <%= f.text_field :organization %>
   </div>
+  <div class="field">
+    <%= label_tag "Invite Code" %>
+    <%= text_field_tag 'invite_code' %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="controls">   
+   <input name="commit" class = "btn" type="submit" value="Sign up">
+  </div>
+
 <% end %>

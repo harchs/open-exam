@@ -16,10 +16,25 @@
     <%= f.text_field :name %>
   </div>
 
- <div class="field">
+  <div class="field">
     <%= f.label :email %> <br />
     <%= f.text_field :email %>
- </div>
+  </div>
+
+  <div class="field">
+    <%= label_tag "Invite Code" %>
+    <%= text_field_tag 'invite_code' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

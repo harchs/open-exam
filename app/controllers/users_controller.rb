@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authorize_admin_or_self, only: [:edit, :update, :destroy]
+  before_filter :authorize_admin, only: [:add, :create_students]
   
   def index
     @users = current_org.users.all
@@ -7,6 +8,19 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
+    end
+  end
+
+  def invite
+  end
+
+  def create_students
+    emails = params.fetch(:emails)
+    OpenExamMailer.registration_invite(emails, current_org).deliver
+
+    respond_to do |format|
+      format.html { redirect_to quizzes_path }
+      format.json
     end
   end
 
@@ -25,9 +39,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    # @user = User.new(:organization_id => current_org.id) 11/27/12
-    @user = User.new
-    @organization = Organization.new
+    @user = User.new(:organization_id => current_org.id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,20 +55,19 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    organization_name = params[:user][:organization]
-    params[:user].delete("organization")
-
-    org_subdomain = organization_name.gsub(/\W+/,'').downcase
-
     @user = User.new(params[:user])
-    @organization = Organization.new(:name => organization_name, :subdomain => org_subdomain)
+    invite_code = params.fetch(:invite_code)
 
     respond_to do |format|
-      if @user.save && @organization.save
+      if invite_code != current_org.invite_code
+        format.html { 
+          flash[:notice] = 'You need an invite code to join!'
+          render action: "new"
+        }
+      elsif @user.save
         OpenExamMailer.registration_confirmation(@user).deliver
-        @user.update_attributes(:organization_id => @organization.id, :role => "Admin")
         session[:user_id] = @user.id
-        format.html { redirect_to root_url(:subdomain => @organization.subdomain), notice: 'Thanks for joining OpenExam!' }
+        format.html { redirect_to root_url, notice: 'Thanks for joining OpenExam!' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }

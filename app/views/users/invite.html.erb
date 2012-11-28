@@ -1,0 +1,23 @@
+<form action="/users/create_students" method="post">
+  <%= token_tag nil %>
+  <label>Emails</label>
+  <div id="invite-emails">
+    <input type="input" name="emails[]" />
+    <br />
+  </div>
+
+  <a href="javascript:void(0)" id="add-email">+ Add another</a>
+  <br />
+  <br />
+  <input type="submit" value="Submit" />
+</form>
+
+
+<script type="text/javascript">
+  $(function() {
+    $('#add-email').click(function() {
+      $('#invite-emails').append('<input type="input" name="emails[]" /><br />');
+    });
+  });
+
+</script>

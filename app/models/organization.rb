@@ -1,5 +1,5 @@
 class Organization < ActiveRecord::Base
-  attr_accessible :name, :subdomain
+  attr_accessible :name, :subdomain, :invite_code
 
   validates :name, :presence => :true
 
