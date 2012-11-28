@@ -7,6 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 org1 = Organization.create!(:name => "Flatiron School", :subdomain => "flatiron")
 org2 = Organization.create!(:name => "General Assembly", :subdomain => "ga")
+org0 = Organization.create!(:name => "Admin", :subdomain => "admin")
+
+user0 = User.create!(:name => "Tim Tebow", :email => "tim.tebow@flatironschool.com", :password => "fdsa", :password_confirmation => "fdsa", :role => "superuser", :organization_id => org0.id)
 user1 = User.create!(:name => "Avi Flombaum", :email => "avi@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Admin", :organization_id => org1.id)
 
 user2 = User.create!(:name => "David Baker", :email => "david.baker@flatironschool.com", :password => "asdf", :password_confirmation => "asdf", :role => "Student", :organization_id => org1.id)

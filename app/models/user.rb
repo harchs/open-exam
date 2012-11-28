@@ -1,4 +1,4 @@
-# == Schema Information
+ # == Schema Information
 #
 # Table name: users
 #
@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
 
   def is_admin?
     self.role.downcase == "admin" ? true : false 
+  end  
+
+  def is_superuser?
+    self.role.downcase == "superuser" ? true : false
   end  
 
   # def has_taken?(quiz)
