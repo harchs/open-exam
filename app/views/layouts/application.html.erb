@@ -54,7 +54,7 @@
                 <% if current_user %>
 
                   <li>
-                    <%= link_to current_user.name, user_path(current_user) %>
+                    <a href="<%= user_path(current_user) %>"><img src="<%= "http://gravatar.com/avatar/#{current_user.gravatar_hash}?s=25" %>" class="user_nav_photo" /> <%= current_user.name %></a>
                   </li>
 
                   <li>

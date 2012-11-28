@@ -1,3 +1,4 @@
+ require 'digest/md5'
  # == Schema Information
 #
 # Table name: users
@@ -44,6 +45,9 @@ class User < ActiveRecord::Base
     self.role.downcase == "superuser" ? true : false
   end  
 
+  def gravatar_hash
+    Digest::MD5.hexdigest(self.email.strip)
+  end
   # def has_taken?(quiz)
   #   self.answers.any?{ |answer| answer.quiz_id == quiz.id }
   # end  
