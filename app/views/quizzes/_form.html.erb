@@ -1,40 +1,43 @@
-<%= form_for(@quiz) do |f| %>
-  <% if @quiz.errors.any? %>
-    <div id="error_explanation" class="alert">
-      <button type="button" class="close" data-dismiss="alert">x</button>
-      <h2><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
+<div class="row">
+  <%= form_for(@quiz) do |f| %>
+    <% if @quiz.errors.any? %>
+      <div id="error_explanation" class="alert">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <h2><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
 
-      <ul>
-      <% @quiz.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @quiz.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.hidden_field :organization_id %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name, :class => 'input-xxlarge' %>
+    </div>
+
+   <div class="field">
+      <%= f.label :description %>
+      <%= f.text_area :description, :class => 'input-xxlarge', :rows => 5 %>
+   </div>
+
+
+  <div class="field">
+      <%= f.label :passing_grade %>
+      <%= f.text_field :passing_grade, :placeholder => "Must be between 0 and 100" %>
+   </div>
+
+
+   
+  <!--   <div class="actions btn btn-primary">
+      <%#= f.submit %>
+    </div> -->
+
+    <div class="actions">
+          <button class="btn btn-primary" name="commit" type="submit" value="Create Quiz">Create Quiz</button>
     </div>
   <% end %>
-  <%= f.hidden_field :organization_id %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
 
- <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
- </div>
-
-
-<div class="field">
-    <%= f.label :passing_grade %>
-    <%= f.text_field :passing_grade, :placeholder => "Must be between 0 and 100" %>
- </div>
-
-
- 
-<!--   <div class="actions btn btn-primary">
-    <%#= f.submit %>
-  </div> -->
-
-  <div class="actions">
-        <button class="btn btn-primary" name="commit" type="submit" value="Create Quiz">Create Quiz</button>
-  </div>
-<% end %>
+</div>
