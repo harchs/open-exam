@@ -25,15 +25,15 @@
 
   Your Info:
 
-  <%= fields_for @organization do |organization_f| %>
+  <%= fields_for @user do |user_f| %>
     <div class="field">
-      <%= organization_f.label :name %>
-      <%= organization_f.text_field :name %>
+      <%= user_f.label :name %>
+      <%= user_f.text_field :name %>
     </div>
     <div class="field">
 
-      <%= organization_f.label :subdomain %>
-      <%= organization_f.text_field :subdomain %>
+      <%= user_f.label :email %>
+      <%= user_f.text_field :email %>
     </div>
   <% end %>
   <div class="controls">   
