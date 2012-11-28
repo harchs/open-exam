@@ -1,6 +1,34 @@
 <h1>Editing organization</h1>
 
-<%= render 'form' %>
+<%= form_for(@organization) do |f| %>
+  <% if @organization.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% @organization.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :subdomain %>
+    <%= f.text_field :subdomain %>
+  </div>
+  <div class="field">
+    <%= f.label :invite_code %>
+    <%= f.text_field :invite_code %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', @organization %> |
-<%= link_to 'Back', organizations_path %>
+<% if current_user.is_superuser? %>
+  <%= link_to 'Back', organizations_path %>
+<% elsif current_user.is_admin? %>
+  <%= link_to 'Back', admin_path %>
+<% end %>
