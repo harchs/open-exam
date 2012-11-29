@@ -1,3 +1,5 @@
+<div class="row"> <div class="span10 offset1">
+
 <% if @quiz.is_published %>
   <p class="alert-success alert">This quiz has been published.</p>
 <% else %>
@@ -46,7 +48,7 @@
 <%= link_to "Add a Question", new_question_path(:quiz_id => @quiz.id), class: "btn btn-primary" %>
  <!-- redirect to index, while publishing to true  -->
 <% if current_user.is_admin? %>  
-  <%= link_to "Invite Students to Collaborate", quiz_invite_path(@quiz.id) %>
+  <p><br/><%= link_to "Invite Students to Collaborate", quiz_invite_path(@quiz.id), :class => "btn btn-inverse" %></p>
   <% if !@quiz.is_published? %>
     <%= form_for(@quiz) do |f| %></br>
       <%= f.hidden_field :is_published, :value => "true" %>
@@ -64,8 +66,9 @@
   <%end%>   
 <% end %>
 </div>
- 
-<%= link_to 'Back to Quizzes', quizzes_path %>
+
+</div> </div>
+
 
 <script text="type/javascript">
   $(function() {
