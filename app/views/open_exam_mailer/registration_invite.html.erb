@@ -1,6 +1,11 @@
 <p>
-Go <%= link_to "here", new_user_url %> to join!
+  You've been invited to join <%= @organization.name %>'s Open Exam group.
 </p>
+
 <p>
-Use this invite code when you register: <%= @organization.invite_code %>
+  Visit <%= link_to "here", new_user_url %> to join!
+</p>
+
+<p>
+  Please use this invite code when you register: <%= @organization.invite_code %>
 </p>
