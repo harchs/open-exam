@@ -1,7 +1,11 @@
-<h1>Editing organization</h1>
+<h1>Edit an organization</h1>
 
 <%= form_for(@organization) do |f| %>
-  <% if @organization.errors.any? %>
+  
+<% if @organization.errors.any? %>
+  <div class="row"> 
+  <div class="span10 offset1">
+
     <div class="error_messages">
       <h2>Form is invalid</h2>
       <ul>
@@ -10,29 +14,39 @@
         <% end %>
       </ul>
     </div>
+
+    </div>
+  </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :subdomain %>
-    <%= f.text_field :subdomain %>
-  </div>
-  <div class="field">
-    <%= f.label :invite_code %>
-    <%= f.text_field :invite_code %>
-  </div>
-<% end %>
+<div class="row"> 
+  <div class="span10 offset1">
 
-<%= link_to 'Show', @organization %> |
-<% if current_user.is_superuser? %>
-  <%= link_to 'Back', organizations_path %>
-<% elsif current_user.is_admin? %>
-  <%= link_to 'Back', admin_path %>
-<% end %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :subdomain %>
+      <%= f.text_field :subdomain %>
+    </div>
+    <div class="field">
+      <%= f.label :invite_code %>
+      <%= f.text_field :invite_code %>
+    </div>
+  <% end %>
 
-<div class="controls">   
- <input name="commit" class = "btn" type="submit" value="Submit">
+  <div class="controls">   
+   <input name="commit" class = "btn btn-primary" type="submit" value="Submit">
+  </div>
+
+<br/><br/>
+  <%= link_to 'Show', @organization %> |
+  <% if current_user.is_superuser? %>
+    <%= link_to 'Back', organizations_path %>
+  <% elsif current_user.is_admin? %>
+    <%= link_to 'Back', admin_path %>
+  <% end %>
+
+</div>
 </div>

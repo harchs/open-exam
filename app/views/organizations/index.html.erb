@@ -1,27 +1,31 @@
-<h1>Listing organizations</h1>
+<div class="row">
+  <div class="offset1 span10">
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Subdomain</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <h1>Listing organizations</h1>
 
-<% @organizations.each do |organization| %>
-  <tr>
-    <td><%= organization.name %></td>
-    <td><%= organization.subdomain %></td>
-    <td><%= link_to 'Show', root_url(:subdomain => organization.subdomain) %></td>
-    <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-    <% unless organization.name == "Admin" %>
-    <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Subdomain</th>
+        <th>Edit</th>
+        <th>Destroy</th>
+      </tr>
+
+    <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= link_to organization.name, root_url(:subdomain => organization.subdomain) %></td>
+        <td><%= organization.subdomain %></td>
+        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
+        <% unless organization.name == "Admin" %>
+        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
     <% end %>
-  </tr>
-<% end %>
-</table>
+    </table>
 
-<br />
+    <p>
+      <%= link_to 'New Organization', new_organization_path, :class => "btn btn-primary" %>
+    </p>
 
-<%= link_to 'New Organization', new_organization_path %>
+  </div>
+</div>
