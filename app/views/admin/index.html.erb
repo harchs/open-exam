@@ -3,7 +3,7 @@
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active">
-      <a href="#tab1" data-toggle="tab">Students</a> 
+      <a href="#tab1" data-toggle="tab">Members</a> 
     </li>
     <li>
       <a href="#tab2" data-toggle="tab"> Quizzes </a>
@@ -77,7 +77,16 @@
       <br />
     </div>
     <div class="tab-pane" id="tab3">
-      <td><%= link_to "Edit Organization", edit_organization_path(@current_org.id), :class => "btn btn-primary"%></td>
+      <div class="row">
+        <div class="offset1 span6">
+      
+        Name: <%= @current_org.name %><br />
+        Invite Code: <%= @current_org.invite_code %>
+        <br />
+        <br />
+      <%= link_to "Edit Organization", edit_organization_path(@current_org.id), :class => "btn btn-primary"%>
+        </div>
+      </div>
     </div>  
     
   </div>

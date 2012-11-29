@@ -15,6 +15,7 @@
       </ul>
     </div>
 
+
     </div>
   </div>
   <% end %>
@@ -26,10 +27,12 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
+<% if current_user.is_superuser? %>  
     <div class="field">
-      <%= f.label :subdomain %>
-      <%= f.text_field :subdomain %>
-    </div>
+     <%= f.label :subdomain %>
+     <%= f.text_field :subdomain %>
+   </div>
+<% end %> 
     <div class="field">
       <%= f.label :invite_code %>
       <%= f.text_field :invite_code %>
@@ -38,6 +41,7 @@
 
   <div class="controls">   
    <input name="commit" class = "btn btn-primary" type="submit" value="Submit">
+
   </div>
 
 <br/><br/>

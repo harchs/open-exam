@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     OpenExamMailer.registration_invite(emails, current_org).deliver
 
     respond_to do |format|
-      format.html { redirect_to quizzes_path }
+      format.html { redirect_to admin_path }
       format.json
     end
   end
