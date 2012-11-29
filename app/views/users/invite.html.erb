@@ -1,22 +1,27 @@
-<form action="/users/create_students" method="post">
-  <%= token_tag nil %>
-  <label>Emails</label>
-  <div id="invite-emails">
-    <input type="input" name="emails[]" />
+<div class="row"> <div class="span10 offset1">
+
+<h1>Add members to your organization</h1>
+
+  <form action="/users/create_students" method="post">
+    <%= token_tag nil %>
+    <label>Email Address</label>
+    <div id="invite-emails">
+      <input type="input" class="another_user_email" name="emails[]" />
+      <br />
+    </div>
+
+    <a href="javascript:void(0)" id="add-email" class="btn btn-success">+ Add another member</a>
     <br />
-  </div>
+    <br />
+    <input type="submit" value="Submit" class="btn btn-primary" />
+  </form>
 
-  <a href="javascript:void(0)" id="add-email">+ Add another</a>
-  <br />
-  <br />
-  <input type="submit" value="Submit" />
-</form>
-
+</div> </div>
 
 <script type="text/javascript">
   $(function() {
     $('#add-email').click(function() {
-      $('#invite-emails').append('<input type="input" name="emails[]" /><br />');
+      $('#invite-emails').append('<input type="input" class="another_user_email" name="emails[]" /><br />');
     });
   });
 

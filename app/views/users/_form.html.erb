@@ -12,18 +12,13 @@
   <% end %>
   <%= f.hidden_field :organization_id %>
   <div class="field">
-    <%= f.label :name %> <br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :email %> <br />
+    <%= f.label :email %>
     <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= label_tag "Invite Code" %>
-    <%= text_field_tag 'invite_code' %>
   </div>
 
   <div class="field">
@@ -36,6 +31,6 @@
     <%= f.password_field :password_confirmation %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Update member', :class => 'btn btn-primary' %>
   </div>
 <% end %>
