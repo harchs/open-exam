@@ -1,5 +1,7 @@
 <h2><%= @quiz.name %></h2>
 
+<div class="row">
+<div class="span12">
   <div class="stats_highlights">
     Average Score: 
     <%= (QuizGrader.average_quiz_score(@quiz).to_f.round(2)/@quiz.questions.count * 100).round(2) %>%
@@ -96,3 +98,5 @@
   </table>  
 </div> 
 <div class="clearfix"></div>
+</div>
+</div>
