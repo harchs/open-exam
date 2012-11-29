@@ -1,6 +1,6 @@
 <h2><%= @user.name %></h2>
 <% unless current_user.is_admin? %>
-  <h1>Quizzes you have taken:</h1>
+  <h1>Quizzes taken:</h1>
 
   <%if @quizzes.count > 0 %>
 
@@ -35,7 +35,7 @@
 
 <% else %>
   <% user = User.find_by_id(params[:id]) || current_user%>
-  <h1>Quizzes <%= user.name %> has taken:</h1>
+  <h1>Quizzes taken:</h1>
 
 
   <%if user.quizzes.count > 0 %>
@@ -61,7 +61,7 @@
 
   <% else %>
 
-    <%= user.name %> has not taken any quizzes yet.
+    No quizzes taken.
 
   <% end %>
 
@@ -73,7 +73,8 @@
       </div>
     <% end %>
   <% else %>
-    </br><%= user.name %> is an admin.
+    </br>
+    </br><%= user.name %> is an admin for <%= @current_org.name%>.
   <% end %>
 
 
