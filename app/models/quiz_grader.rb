@@ -64,6 +64,6 @@ class QuizGrader
 
   def self.student_correct_percent_by_quiz(quiz)
     #for quiz passed in, get score for each user who has taken quiz and return an array
-    quiz.user_quizzes.map { |q|  (q.num_correct.to_f / q.total_questions.to_f)*100 }
+    quiz.user_quizzes.where(:status => "Completed").map { |q|  (q.num_correct.to_f / q.total_questions.to_f)*100 }
   end 
 end
