@@ -60,5 +60,10 @@ class QuizGrader
     most = quiz.user_quizzes.select {|user_quiz| user_quiz.num_correct.is_a? Integer}
     most = most.max_by(&:num_correct)
     most.num_correct
-  end  
+  end 
+
+  def self.student_correct_percent_by_quiz(quiz)
+    #for quiz passed in, get score for each user who has taken quiz and return an array
+    quiz.user_quizzes.map { |q|  (q.num_correct.to_f / q.total_questions.to_f)*100 }
+  end 
 end

@@ -2,6 +2,48 @@
 
 <div class="row">
 <div class="span12">
+  <div id="quiz_chart" style="width: 560px; height: 300px;"></div>
+  
+
+<% scores_top = QuizGrader.student_correct_percent_by_quiz(@quiz) %>
+<% count = Hash.new(0) %>
+<% scores_top.each {|v| count[v]+=1} %>
+
+
+<script type="text/javascript" charset="utf-8">
+    $(function () {
+    new Highcharts.Chart({
+      chart: { renderTo: 'quiz_chart',
+               type: 'column'  
+      },
+      title: { text: 'Quiz Distribution' },
+      xAxis: { 
+               min: 0,
+               max: 100
+               
+      },
+      plotOptions: {
+        series: {
+          pointWidth: 15
+        }      
+      },
+
+      yAxis: {
+        title: { text: 'Number of Students'},
+
+
+      },
+      series: [{
+        name: 'Students',
+        showInLegend: false,
+        data: <%= count.to_a.inspect %>
+
+      }]
+    });
+  });
+  </script>
+
+
   <div class="stats_highlights">
     Average Score: 
     <%= (QuizGrader.average_quiz_score(@quiz).to_f.round(2)/@quiz.questions.count * 100).round(2) %>%
