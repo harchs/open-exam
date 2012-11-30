@@ -1,4 +1,4 @@
-<h2><%= @quiz.name %></h2>
+<h2><em><%= @quiz.name %></em> Quiz</h2>
 
 <div class="row">
 <div class="span12">
@@ -19,8 +19,8 @@
       title: { text: 'Quiz Distribution' },
       xAxis: { 
                min: 0,
-               max: 100
-               
+               max: 100,
+        title: { text: 'Percent Correct'}
       },
       plotOptions: {
         series: {
@@ -29,14 +29,15 @@
       },
 
       yAxis: {
-        title: { text: 'Number of Students'},
+        allowDecimals: false,
+        title: { text: 'Number of Students'}
 
 
       },
       series: [{
         name: 'Students',
         showInLegend: false,
-        data: <%= count.to_a.inspect %>.filter(Boolean)
+        data: <%= count.to_a.inspect %>
 
       }]
     });
@@ -44,7 +45,7 @@
   </script>
 
 
-  <div class="stats_highlights">
+  <div class="stats_highlights" style="padding: 20px;">
     Average Score: 
     <%= (QuizGrader.average_quiz_score(@quiz).to_f.round(2)/@quiz.questions.count * 100).round(2) %>%
     <br />
@@ -66,25 +67,72 @@
     <br />
   </div>
 <br />
-<div class="span3">
-<h3>Question Breakdown:</h3>
+<div class="span7">
+<h1>Question Breakdown:</h1>
 <% QuizGrader.question_score_counts(@quiz).each do |question, value| %>
-  <h4>Question #<%= question.position %>: <%= question.name %></h4>
+    <h2 style="padding-top:20px;">Question #<%= question.position %>: <%= question.name %></h2>
+
+  <div id="question_chart_<%= question.position %>" style="width: 480px; height: 300px;margin-left:30px;"></div>
+
+<script type="text/javascript" charset="utf-8">
+    $(function () {
+    new Highcharts.Chart({
+      chart: { renderTo: 'question_chart_<%= question.position %>',
+               plotBackgroundColor: null,
+               plotBorderWidth: null,
+               plotShadow: false
+      },
+      title: { text: '<%= question.name %>' },
+      xAxis: { 
+               min: 0,
+               max: 100
+               
+      },
+      plotOptions: {
+        pie: {
+          size: 120
+        },  
+        series: {
+          pointWidth: 15
+        }      
+      },
+
+      yAxis: {
+        title: { text: 'Number of Students'},
+
+      },
+      series: [{
+        type: 'pie',
+        name: 'Number of students selected',
+        data: [
+
+          <% question.choices.each do |choice| %>
+            <% if choice.is_correct == true%>
+              {
+                name: '<%= choice.name %> (Correct)',
+                y: <%= QuizGrader.num_answers_for_choice(choice.id) %>,
+                sliced: true,
+                selected: true
+              },
+            <% else %>
+                ["<%= choice.name%>",<%= QuizGrader.num_answers_for_choice(choice.id) %>],
+            <% end %>
+          <% end %>
+
+        ]
+
+      }]
+    });
+  });
+  </script>
   
-  <%= value %> out of <%= pluralize(QuizGrader.num_answers_for_question(question.id), 'student') %> answered this question correctly.
-  <br />
-  <% question.choices.each do |choice| %>
-    <% if choice.is_correct == true%>
-      <div class="correct_answer"> <%= choice.name %> (<%= QuizGrader.num_answers_for_choice(choice.id) %>)<br /> </div>
-    <% else %>
-      <%= choice.name %> (<%= QuizGrader.num_answers_for_choice(choice.id) %>)<br />
-    <% end %>
-  <% end %>
-  <br />
+  <p style="margin-left:30px;"><%= value %> out of <%= pluralize(QuizGrader.num_answers_for_question(question.id), 'student') %> answered this question correctly.
+  </p>
+
 <% end %>
 </div>
 
-<div class="span4">
+<div class="span4 pull-right">
 
 <h4 style="text-align:center;">Taken:</h4>
   <table class="table" >
