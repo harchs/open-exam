@@ -9,8 +9,8 @@
       <% @quizzes_to_take.each do |quiz| %>
           <li>
             <a href="<%= new_question_answer_path(quiz.approved_questions.first) %>">
-              <span class="title">[<%= truncate(quiz.name, :length => 30) %>]</span>
-              <span class="description">- <%= pluralize(quiz.approved_questions.length, 'question') %> - <%= truncate(quiz.description, :length => 30) %>-</span>
+              <span class="title"><%= truncate(quiz.name, :length => 30) %></span>
+              <span class="description"> (<%= pluralize(quiz.approved_questions.length, 'question') %>)  <%= truncate(quiz.description, :length => 30) %></span>
             </a>
             <span class="links">
               <% if current_user.is_admin? %>
@@ -34,7 +34,7 @@
           <li>
             <a href="<%= new_question_answer_path(quiz.question_to_resume(current_user)) %>"
               <span class="title">[<%= truncate(quiz.name, :length => 30) %>]</span>
-              <span class="description">- <%= pluralize(quiz.approved_questions.length, 'question') %> - <%= truncate(quiz.description, :length => 30) %>-</span>
+              <span class="description">(<%= pluralize(quiz.approved_questions.length, 'question') %>) <%= truncate(quiz.description, :length => 30) %></span>
             </a>
             <span class="links">
               <% if current_user.is_admin? %>

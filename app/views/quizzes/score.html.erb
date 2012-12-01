@@ -8,7 +8,7 @@
   <% @quiz.approved_questions.each do |question| %>
     <li>
     <h4><%= question.name %></h4>
-    <ol type="a">
+    <ol type="a" class="choices">
     <% question.choices.each do |choice| %>
       <li>
       <% if choice.is_correct && @answers.detect{|answer| answer.choice_id == choice.id} %>

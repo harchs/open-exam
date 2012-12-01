@@ -2,10 +2,12 @@
 
 #score {
   float: right;
-  padding-right: 100px;
+  padding: 20px 10px;
+  margin-right: 100px;
   color: green;
   font-weight: bold;
   font-size: 300%;
+  border: 2px solid black;
 }
 
 .admin-question form {
