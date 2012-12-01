@@ -1,27 +1,38 @@
-<div class="row"> <div class="span10 offset1">
-
-<h1>Add members to your organization</h1>
-
-  <form action="/users/create_students" method="post">
-    <%= token_tag nil %>
-    <label>Email Address</label>
-    <div id="invite-emails">
-      <input type="input" class="another_user_email" name="emails[]" />
-      <br />
+<div class="row"> 
+  <div class="span10 offset1">
+    <h1>Invite members to join!</h1>
+    <br />
+    <div class="row">
+      <div class="span5">
+        <form action="/users/create_students" method="post">
+          <%= token_tag nil %>
+          <fieldset>
+            <label>Email Addresses:</label>
+            <ol id="invite-emails">
+              <li>
+                <input type="text" class="another_user_email input-xlarge" name="emails[]" />
+              </li>
+            </ol>
+          </fieldset>
+          <a href="javascript:void(0)" id="add-email" class="btn btn-success">+ Add email</a>
+          <br />
+          <br />
+          <input type="submit" value="Submit" class="btn btn-primary" />
+        </form>
+      </div>
+      <div class="span5 well">
+        <p>
+          Add the emails of members you want to invite. They will be sent an email with a registration link as well as the invite code needed to join.
+        </p>
+      </div>
     </div>
-
-    <a href="javascript:void(0)" id="add-email" class="btn btn-success">+ Add another member</a>
-    <br />
-    <br />
-    <input type="submit" value="Submit" class="btn btn-primary" />
-  </form>
-
-</div> </div>
+  </div> 
+</div>
 
 <script type="text/javascript">
   $(function() {
     $('#add-email').click(function() {
-      $('#invite-emails').append('<input type="input" class="another_user_email" name="emails[]" /><br />');
+      $('#invite-emails').append('<li><input type="text" class="another_user_email input-xlarge" name="emails[]" /></li>');
     });
   });
 
