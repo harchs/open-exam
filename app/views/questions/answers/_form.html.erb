@@ -1,5 +1,5 @@
 
-    <h3>Quiz: <%= @question.quiz.name %></h3>
+    <h3><%= @question.quiz.name %></h3>
 
     <% fraction_of_quiz_complete = (@question.absolute_position.pred.to_f) / @question.quiz.approved_questions.length.to_f %>
     <% width_of_progress_bar  = (fraction_of_quiz_complete.to_f* 100).to_s + "%" %>
@@ -31,12 +31,16 @@
         <%= f.hidden_field :quiz_id %>
         <%= f.hidden_field :user_id %>
         
+        <ol id="choices_list" type="a">
         <% @question.choices.each do |choice| %>
-          <label class="radio">
+          <li>
+            <label>
+              <%= choice.name %>
+            </label>
             <input type="radio" name="answer[choice_id]" value="<%= choice.id %>" />
-            <%= choice.name %>
-          </label>
+          </li>
         <% end %>
+        </ol>
       </div>
       <% if @question.quiz.next_question(@question) %>
         <%= f.submit "Next" %>
@@ -67,5 +71,13 @@
     }
   });
 
+  $(function() {
+    $('#choices_list input').hide();
+    $('#choices_list label').click(function(){
+      $(this).siblings('input').attr('checked', 'checked');
+      $('#choices_list li').removeClass('selected_choice');
+      $(this).parent().addClass('selected_choice');
+    });
+  });
 </script>
 

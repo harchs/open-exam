@@ -9,10 +9,6 @@
   border-bottom: none;
   margin-bottom: 0;
 }
-#new_answer .control-group {
-  padding: 5px;
-  border: 1px dotted #DDD;
-}
 
 .italic {
   font-style: italic;
@@ -28,3 +24,19 @@
   height:64px;
 }
 
+#choices_list {
+  margin-left:40px;
+}
+#choices_list li {
+  padding: 8px;
+}
+#choices_list li:hover {
+  background-color: #09D;
+}
+#choices_list label:hover {
+    cursor:hand;
+  cursor:pointer;
+}
+.selected_choice {
+  background-color: #09D;
+}

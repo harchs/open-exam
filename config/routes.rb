@@ -2,7 +2,7 @@ OpenExam::Application.routes.draw do
   
   get "homepage/index"
 
-  get '', to: 'organizations#show', constraints: lambda {|r| r.subdomain.present? && r.subdomain != 'www'}
+  get '', to: 'quizzes#index', constraints: lambda {|r| r.subdomain.present? && r.subdomain != 'www'}
 
   get "about", to: 'info#about'
   get "privacy", to: 'info#privacy', as: 'privacy'
