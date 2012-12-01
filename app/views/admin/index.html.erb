@@ -1,5 +1,12 @@
 <div class="row">
 <div class="span12">
+  <div class="well">
+  <div class="btn-group">
+    <%= link_to 'Invite a Member', invite_users_path, :class => "btn btn-primary" %>
+    <%= link_to 'Create a Quiz', new_quiz_path, :class => "btn btn-success" %>
+    <%= link_to "Edit Organization", edit_organization_path(@current_org.id), :class => "btn btn-warning"%>
+  </div>
+  </div>
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active">
@@ -8,17 +15,9 @@
     <li>
       <a href="#tab2" data-toggle="tab"> Quizzes </a>
     </li>
-    <li>
-      <a href="#tab3" data-toggle="tab"> Organization </a>
-    </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <h1><%= current_org.name %>'s members</h1>
-      <p>
-        <%= link_to 'Add a member', invite_users_path, :class => "btn btn-primary" %>
-      </p>
-
       <table class="table">
         <tr>
           <th>Name</th>
@@ -45,10 +44,6 @@
     </div>
 
     <div class="tab-pane" id="tab2">
-      <h1><%= current_org.name %>'s quizzes</h1>
-      <p>
-        <%= link_to 'New Quiz', new_quiz_path, :class => "btn btn-primary" %>
-      </p>
       <table class="table">
         <tr>
           <th>Name</th>
@@ -76,27 +71,7 @@
 
       <br />
     </div>
-    <div class="tab-pane" id="tab3">
-      <div class="row">
-        <div class="offset1 span6">
-      
-        Name: <%= @current_org.name %><br />
-        Invite Code: <span id="invite-code"><%= @current_org.invite_code %></span><a id="show-invite" href="javascript:void(0)">Show</a>
-        <br />
-        <br />
-      <%= link_to "Edit Organization", edit_organization_path(@current_org.id), :class => "btn btn-primary"%>
-        </div>
-      </div>
-    </div>  
-    
   </div>
 </div>
 </div>
 </div>
-
-<script type="text/javascript">
-  $(function() {
-    $code = $('#invite-code').hide();
-    $('#show-invite').click(function(){$code.show();$(this).hide();});
-  });
-</script>
