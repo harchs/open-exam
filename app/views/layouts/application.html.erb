@@ -41,7 +41,12 @@
             <ul class="nav pull-right">
               <% if current_org %>
                 <% if current_user && current_user.is_admin? %>
-                  <li>
+
+                  <% if controller?("admin") %>
+                    <li class="active">
+                  <% else %>
+                    <li>
+                  <% end %>
                     <%= link_to "Admin", admin_path %>
                   </li>
                 <% end %>
