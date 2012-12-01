@@ -7,6 +7,23 @@
     </div>
   </div>
 
+   <form class="navbar-search pull-left">
+      <%= form_tag({:controller => "organizations", :action => "index"}, method: :get) do %>
+        <%= text_field_tag :query, params[:query], {:class =>"search-query", :placeholder=>"Search"}  %>   
+        <button type="submit" class="btn">Submit</button>
+      <% end %>
+        <% users =  User.find_all_by_email(params[:query]) %> 
+        <% org_ids = users.map {|user| user.organization_id} %>   
+        <% organizations =  org_ids.map {|id| Organization.find_by_id(id).subdomain }%>  
+
+        <% organizations.each do |org| %>
+          <a href="http://<%=org%>.openexam.org/login"> <%= org %> </a> <br />
+        <% end %>
+    </form>
+
+
+
+
   <div class="row">
     <div class="offset9 span2">
       <h3><%= link_to "Sign Up", new_organization_path, :class => "btn btn-primary" %></h3>
