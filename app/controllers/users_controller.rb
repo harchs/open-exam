@@ -28,17 +28,18 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    if current_user.is_superuser?
-      @user = User.find_by_id(params[:id])
-    else
-      @user = current_org.users.find(params[:id])
-    end
-
-    @quizzes = @user.quizzes
-
     respond_to do |format|
-      format.html # show.html.erb
-      format.json #{ render json: @user }
+      if (current_user.is_admin?)
+        @user = current_org.users.find(params[:id])
+        format.html
+      else
+        if (current_user.id != params[:id].to_i)
+          format.html { redirect_to user_path(current_user.id) }
+        else
+          @user = current_user
+          format.html
+        end
+      end
     end
   end
 

@@ -36,6 +36,14 @@
           <td><%= link_to 'Edit', edit_user_path(user) %></td>
           <td><%= link_to 'Delete', user, method: :delete, data: { confirm: "Are you sure you want to delete #{user.name}? \nThis cannot be undone!".html_safe } %></td>
           <td><%= link_to 'Quiz History', user_path(:id => user.id) %></td>
+          <td>
+            <% if current_user.is_admin? && !user.is_admin? %>
+              <%= form_for(user) do |f| %>
+                <%= f.hidden_field :role, :value => "Admin" %>
+                  <button class="btn btn-warning" name="commit" type="submit" onclick="return confirm('Are you sure you want to make this user an admin?');">Make Admin</button>
+              <% end %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
       </table>
