@@ -1,10 +1,11 @@
-<fieldset class="new_choice">
-  <%= f.label :name, "Choice" %>
-  <%= f.text_field :name %>
-  <label>Correct Answer? <input type="radio" name="is_correct"/></label>
+<fieldset class="new_choice form-inline">
+  <%= f.text_field :name, :class => "input-xlarge" %>
+  <input type="radio" name="is_correct" class="regular-radio"/>
   <%= f.hidden_field :_destroy %>
   <%= f.hidden_field :is_correct, :class => "choice_status" %>
-  <%= link_to "Remove Choice", '#', class: "remove_fields btn btn-mini btn-danger" %>
+  <%= link_to "Remove", '#', class: "remove_fields reject-icon", title: "Remove this choice" %>
+  <br />
+  <br />
 </fieldset>
 
 <script type="text/javascript">
@@ -13,6 +14,11 @@
       if ($(this).val() == "t") {
         $(this).siblings('label').children('input').attr('checked', 'checked');
       }
+    });
+
+    $('.reject-icon').tooltip();
+    $('.regular-radio').tooltip({
+      title: "Mark this choice as the correct choice"
     });
   });
 </script>
