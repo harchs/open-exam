@@ -39,7 +39,16 @@
     </span>
     <ol class="choices" type="a">
       <% question.choices.each do |choice| %>
-      <li><%= choice.name %></li>
+        <%if current_user.is_admin? || question.author == current_user%>
+            <%if choice.is_correct%>
+              <li><strong><%= choice.name %></strong></li>
+            <%else%>
+             <li><%= choice.name %></li> 
+            <% end %> 
+        <%else%>   
+        <!-- <li><%#= choice.name %></li> -->
+        <!-- we don't want students to see choices before actually taking quiz -->
+        <% end %>
       <% end %>
     </ol>
   </li>
