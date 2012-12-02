@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+
     respond_to do |format|
       if current_org
         if session[:user_id]
@@ -18,9 +19,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       unless user.is_admin?
-        redirect_to quizzes_path
+        redirect_back_or quizzes_path
       else
-        redirect_to admin_path
+        redirect_back_or admin_path
       end
       
     else
@@ -34,5 +35,14 @@ class SessionsController < ApplicationController
     redirect_to login_url, notice: "Logged Out"
   end
 
+  private
+    def redirect_back_or(default)
+      redirect_to(session[:return_to] || default)
+      clear_return_to
+    end
+
+    def clear_return_to
+      session.delete(:return_to)
+    end
 
 end

@@ -1,12 +1,14 @@
 <div class="row"> <div class="span10 offset1">
 
-<% if @quiz.is_published %>
-  <p class="alert-success alert">This quiz has been published.</p>
-<% else %>
-  <% if @quiz.approved_questions.count > 0 %>
-    <p class="alert">This quiz has not been published yet.</p>
+<% if current_user.is_admin? %>
+  <% if @quiz.is_published %>
+    <p class="alert-success alert">This quiz has been published.</p>
   <% else %>
-    <p class="alert">This quiz has not been published yet. Quizzes must have at least one selected question to be published.</p>
+    <% if @quiz.approved_questions.count > 0 %>
+      <p class="alert">This quiz has not been published yet.</p>
+    <% else %>
+      <p class="alert">This quiz has not been published yet. Quizzes must have at least one selected question to be published.</p>
+    <% end %>
   <% end %>
 <% end %>
 

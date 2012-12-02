@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    
     @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
   end
 
@@ -16,8 +15,10 @@ class ApplicationController < ActionController::Base
 
   def authorize
     if (params[:controller] == "organizations" && params[:action] == "show") || (params[:controller] == "quizzes" && params[:action] == "index")
+      store_location if current_user.nil?
       redirect_to login_url if current_user.nil?
     else
+      store_location
       redirect_to login_url, alert: "You must be signed in for this." if current_user.nil?
     end
   end
@@ -65,4 +66,8 @@ private
     end
   end
 
+    def store_location
+      session[:return_to] = request.fullpath
+    end
 end
+

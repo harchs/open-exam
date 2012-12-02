@@ -1,7 +1,7 @@
 class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
-  before_filter :authorize, only: [:edit, :update, :new, :destroy, :index, :collaborate, :history]
+  before_filter :authorize, only: [:edit, :show, :update, :new, :destroy, :index, :collaborate, :history]
   before_filter :authorize_admin, only: [:edit, :new, :destroy, :update, :create, :invite, :mail_invite]
   before_filter :organizations_only
 
@@ -45,7 +45,7 @@ class QuizzesController < ApplicationController
     @quiz = current_org.quizzes.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @quiz }
     end
   end
