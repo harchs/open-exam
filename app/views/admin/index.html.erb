@@ -65,7 +65,14 @@
         <tr>
           <td><%= quiz.name %></td>
           <td><%= quiz.description %></td>
-          <td><%= quiz.user_quizzes.count %> / <%= @current_org.users.where(:role => "Student").all.count %></td>
+          <% taken_quizzes = quiz.user_quizzes %>
+          <% users_who_took_quiz = taken_quizzes.collect {|n| n.user_id} %>
+          <% each_user = users_who_took_quiz.map do |id|%>
+            <% User.find_by_id_and_role(id, "Admin") %>
+          <% end %>
+          <% each_user.compact! %>
+
+          <td><%= taken_quizzes.count %> / <%= (@current_org.users.where(:role => "Student").all.count) + each_user.count %></td>
           <td><%= QuizGrader.percent_correct(quiz)%></td>
           <% if UserQuiz.find_by_quiz_id(quiz.id) %>
             <td><%= link_to "View Stats", quiz_stats_path(quiz.id) %></td>
