@@ -25,7 +25,10 @@
       </fieldset>  
     </div>
     <div class="span6">
-        <label>Choices:</label>
+      <div class="row choices-labels">
+        <span>Choices:</span>
+        <span id="correct-label">Is Correct?</span>
+      </div>
         <%= f.fields_for :choices do |builder| %>
           <%= render 'choice_fields', f: builder %>
         <% end %>

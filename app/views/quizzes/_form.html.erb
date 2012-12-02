@@ -2,7 +2,7 @@
     <% if @quiz.errors.any? %>
       <div id="error_explanation" class="alert">
         <button type="button" class="close" data-dismiss="alert">x</button>
-        <h2><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
+        <h4><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:</h4>
 
         <ul>
         <% @quiz.errors.full_messages.each do |msg| %>
