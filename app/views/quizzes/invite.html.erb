@@ -3,13 +3,16 @@
     <form action="/quizzes/mail_invite" method="post">
       <%= token_tag nil %>
       <h2>Invite students to take "<%= @quiz.name %>"</h2>
+      <% org_users = @users.select do |user| %>
+        <% user if user.organization_id == @current_org.id %>
+      <% end %>
       <fieldset>
         <input type="hidden" name="quiz_id" value="<%= @quiz.id %>" />
         <input type="checkbox" id="check_all" class="regular-checkbox invite-all" /> Select All
         <br />
         <br />
         <div class="email_users_list">
-          <% @users.in_groups_of(10, false).each do |group| %>
+          <% org_users.in_groups_of(10, false).each do |group| %>
               <div class="span3">
               <ul>
             <% group.each do |user| %>
