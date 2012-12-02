@@ -3,6 +3,7 @@ class OrganizationsController < ApplicationController
   before_filter :authorize, :only => [:show ]
   before_filter :authorize_admin_or_superuser, :only => [:edit]
   before_filter :authorize_superuser, :only => [ :index, :update, :destroy]
+  before_filter :no_new_org, :only => [:new]
   # GET /organizations
   # GET /organizations.json
   def index
@@ -87,6 +88,14 @@ class OrganizationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to organizations_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def no_new_org
+    if current_org && current_user && !current_user.is_superuser?
+      redirect_to user_path(current_user.id) 
     end
   end
 end

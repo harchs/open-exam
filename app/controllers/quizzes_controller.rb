@@ -31,6 +31,7 @@ class QuizzesController < ApplicationController
   end
 
   def mail_invite
+    raise params.inspect
     quiz_id = params.fetch(:quiz_id).to_i
     quiz = current_org.quizzes.find(quiz_id)
     OpenExamMailer.collaboration_invite(params.fetch(:recipients), quiz).deliver
