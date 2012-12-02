@@ -2,7 +2,11 @@ class SessionsController < ApplicationController
   def new
     respond_to do |format|
       if current_org
-        format.html 
+        if session[:user_id]
+          format.html { redirect_to quizzes_path}
+        else
+          format.html 
+        end
       else
         format.html { redirect_to root_url}
       end
