@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authorize
-    if params[:controller] == "organizations" && params[:action] == "show"
+    if (params[:controller] == "organizations" && params[:action] == "show") || (params[:controller] == "quizzes" && params[:action] == "index")
       redirect_to login_url if current_user.nil?
     else
       redirect_to login_url, alert: "You must be signed in for this." if current_user.nil?

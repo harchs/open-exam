@@ -43,9 +43,9 @@
         </ol>
       </div>
       <% if @question.quiz.next_question(@question) %>
-        <%= f.submit "Next" %>
+        <%= f.submit "Next", :class => "btn btn-primary" %>
       <% else %>
-        <%= f.submit "Submit" %>
+        <%= f.submit "Submit", :class => "btn btn-primary" %>
       <% end %>
     <% end %>
 

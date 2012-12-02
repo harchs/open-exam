@@ -72,7 +72,7 @@ choice10019 = question1005.choices.build :name => "a way to reuse HTML code"
 choice10020 = question1005.choices.build :name => "a tool that checks your HTML", :is_correct => true
 question1005.save
 
-quiz1002 = Quiz.create!(:name => "-New York City Attractions",:description => "Where is it in the big apple?", :is_published => true, :passing_grade => 50, :organization_id => org1.id)
+quiz1002 = Quiz.create!(:name => "New York City Attractions",:description => "Where is it in the big apple?", :is_published => true, :passing_grade => 50, :organization_id => org1.id)
 
 question1006 = quiz1002.questions.build :name => "Where is the Columbus Circle?", :user_id => user10022.id, :selected => true
 choice10021 = question1006.choices.build :name => "42nd Street"

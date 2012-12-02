@@ -68,7 +68,7 @@ class Questions::AnswersController < ApplicationController
     respond_to do |format|
       if @question_answer_nested.save
         if next_question
-          format.html { redirect_to new_question_answer_path(next_question.id), notice: 'Continue your quiz.' }
+          format.html { redirect_to new_question_answer_path(next_question.id) }
         else
 
           user_scoring = UserQuiz.where(:user_id => user_id).where(:quiz_id => quiz_id)
