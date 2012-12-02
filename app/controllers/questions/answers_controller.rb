@@ -1,7 +1,7 @@
 class Questions::AnswersController < ApplicationController
   before_filter :organizations_only
   before_filter :authorize, only: [:edit, :update, :new, :destroy]
-  # before_filter :has_not_taken, only: [:new, :create]
+  before_filter :already_taken, only: [:new]
 
   # GET /questions/:question_id/answers
   # GET /questions/:question_id/answers.json
@@ -42,6 +42,7 @@ class Questions::AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @question_answer = Question::Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id, :user_id => current_user.id)
 
+    # check if user has already submitted an answer for this question
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @question_answer }
@@ -49,10 +50,10 @@ class Questions::AnswersController < ApplicationController
   end
 
   # GET /questions/:question_id/answers/1/edit
-  def edit
-    @question = Question.find(params[:question_id])
-    @question_answer = Question::Answer.find(params[:id])
-  end
+  # def edit
+  #   @question = Question.find(params[:question_id])
+  #   @question_answer = Question::Answer.find(params[:id])
+  # end
 
   # POST /questions/:question_id/answers
   def create
@@ -115,10 +116,11 @@ class Questions::AnswersController < ApplicationController
   end
 
   private
-    # def has_not_taken
-    #   if current_user.answers.any? {|q| q.question_id == params[:question_id].to_i }
-    #     redirect_to root_path, alert: "You already answered this one"
-    #   end
-    # end 
+    def already_taken
+      if current_user.answers.any? {|q| q.question_id == params[:question_id].to_i }
+        redirect_to root_path, alert: "You already answered this question"
+      end
+    end 
+
 
 end
