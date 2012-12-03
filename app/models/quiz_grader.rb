@@ -4,9 +4,9 @@ class QuizGrader
   end
 
   def self.average_quiz_score(quiz)
-    scores = quiz.user_quizzes.select {|user_quiz| user_quiz.num_correct.is_a? Integer}
+    scores = quiz.completed
     scores = scores.collect{|user_quiz| user_quiz.num_correct}
-    quiz.user_quizzes.count > 0 ? scores.sum / quiz.user_quizzes.count : 0
+    quiz.user_quizzes.count > 0 ? scores.sum.to_f / quiz.completed.count : 0
   end  
 
   def self.percent_correct(quiz)
@@ -15,13 +15,13 @@ class QuizGrader
   end  
 
   def self.highest_quiz_score(quiz)
-    user_quiz = quiz.user_quizzes.select {|user_quiz| user_quiz.num_correct.is_a? Integer}
+    user_quiz = quiz.completed
     user_quiz = user_quiz.max_by(&:num_correct)
     user_quiz.num_correct if user_quiz
   end
 
   def self.lowest_quiz_score(quiz)
-    user_quiz = quiz.user_quizzes.select {|user_quiz| user_quiz.num_correct.is_a? Integer}
+    user_quiz = quiz.completed
     user_quiz = user_quiz.min_by(&:num_correct)
     user_quiz.num_correct if user_quiz
   end
@@ -51,19 +51,19 @@ class QuizGrader
   end 
 
   def self.most_correct_answers(quiz)
-    most = quiz.user_quizzes.select {|user_quiz| user_quiz.num_correct.is_a? Integer}
+    most = quiz.completed
     most = most.max_by(&:num_correct)
     User.find_by_id(most.user_id).name
   end  
 
   def self.correct_responses(quiz)
-    most = quiz.user_quizzes.select {|user_quiz| user_quiz.num_correct.is_a? Integer}
+    most = quiz.completed
     most = most.max_by(&:num_correct)
     most.num_correct
   end 
 
   def self.student_correct_percent_by_quiz(quiz)
     #for quiz passed in, get score for each user who has taken quiz and return an array
-    quiz.user_quizzes.where(:status => "Completed").map { |q|  (q.num_correct.to_f / q.total_questions.to_f)*100 }
+    quiz.completed.map { |q|  (q.num_correct.to_f / q.total_questions.to_f)*100 }
   end 
 end
