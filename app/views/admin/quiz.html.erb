@@ -109,13 +109,13 @@
           <% question.choices.each do |choice| %>
             <% if choice.is_correct == true%>
               {
-                name: '<%= choice.name %> (Correct)',
+                name: "<%= choice.name.html_safe %> (Correct)",
                 y: <%= QuizGrader.num_answers_for_choice(choice.id) %>,
                 sliced: true,
                 selected: true
               },
             <% else %>
-                ["<%= choice.name%>",<%= QuizGrader.num_answers_for_choice(choice.id) %>],
+                ["<%= choice.name.html_safe %>",<%= QuizGrader.num_answers_for_choice(choice.id) %>],
             <% end %>
           <% end %>
 
