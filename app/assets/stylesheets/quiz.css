@@ -102,3 +102,13 @@ input.invite-all {
     left: 3px;
     color: #99a1a7;
 }
+#admin-quiz form{
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+#admin-quiz form div {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}

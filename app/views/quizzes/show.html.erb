@@ -13,6 +13,28 @@
 <% end %>
 
 <h1> <%= @quiz.name %> </h1>
+<div id="admin-quiz" class="well btn-group">
+  <%= link_to "Add a Question", new_question_path(:quiz_id => @quiz.id), class: "btn btn-primary" %>
+   <!-- redirect to index, while publishing to true  -->
+  <% if current_user.is_admin? %>  
+    <%= link_to "Invite Students to Collaborate", quiz_invite_path(@quiz.id), :class => "btn btn-inverse" %>
+    <% if !@quiz.is_published? %>
+      <%= form_for(@quiz) do |f| %>
+        <%= f.hidden_field :is_published, :value => "true" %>
+        <div class="actions">
+          <button class="btn btn-warning" name="commit" type="submit" value="Publish Quiz" >Publish Quiz</button>
+        </div>
+        <% end %>
+    <% else %>
+      <%= form_for(@quiz) do |f| %>
+        <%= f.hidden_field :is_published, :value => "false" %>
+        <div class="actions">
+          <button class="btn btn-warning" name="commit" type="submit" value="Deactivate Quiz" >Unpublish Quiz</button>
+        </div>
+      <% end %>
+    <%end%>   
+  <% end %>
+</div>
 
 <ol class="questions">
   <% @quiz.questions.order('created_at ASC').each do |question| %>
@@ -54,29 +76,6 @@
   </li>
   <% end %>
 </ol>
-
-<div class="admin-quiz">
-  <%= link_to "Add a Question", new_question_path(:quiz_id => @quiz.id), class: "btn btn-primary" %>
-   <!-- redirect to index, while publishing to true  -->
-  <% if current_user.is_admin? %>  
-    <p><br/><%= link_to "Invite Students to Collaborate", quiz_invite_path(@quiz.id), :class => "btn btn-inverse" %></p>
-    <% if !@quiz.is_published? %>
-      <%= form_for(@quiz) do |f| %></br>
-        <%= f.hidden_field :is_published, :value => "true" %>
-        <div class="actions">
-          <button class="btn btn-warning" name="commit" type="submit" value="Publish Quiz" >Publish Quiz</button>
-        </div>
-        <% end %>
-    <% else %>
-      <%= form_for(@quiz) do |f| %></br>
-        <%= f.hidden_field :is_published, :value => "false" %>
-        <div class="actions">
-          <button class="btn btn-warning" name="commit" type="submit" value="Deactivate Quiz" >Unpublish Quiz</button>
-        </div>
-      <% end %>
-    <%end%>   
-  <% end %>
-</div>
 
 </div> </div>
 
