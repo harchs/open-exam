@@ -13,14 +13,16 @@
 
   <br />
     
-  <div class="span7">
-    <P>Already signed up? Find your account(s) by inputting your email below.</P> 
+  <div class="offset1 span5">
+    <P>Signed up? Find your account by inputting your email.</P> 
+    
     <form class="navbar-search pull-left">
       <%= form_tag({:controller => "organizations", :action => "index"}, method: :get) do %>
-        <%= text_field_tag :query, params[:query], {:class =>"search-query", :placeholder=>"Enter your email"}  %>   
-        <span id="search-by-email"><button type="submit" class="btn btn-primary">Search</button> </span>
+        <%= text_field_tag :query, params[:query], {:class =>"search-query", :placeholder=>"Enter your email"}  %>
+        <span id="search-by-email"><button type="submit" class="btn btn-default">Search</button> </span>
       <% end %>
     </form>
+
     <br />
     <br />
     <% users =  User.find_all_by_email(params[:query]) %> 
@@ -33,8 +35,8 @@
   </div>
 
   <div class="span4">
-    <P>Create a new organization and join today!</P> 
-    <span id="homepage-signup"><h3><%= link_to "Sign Up", new_organization_path, :class => "btn btn-primary" %></h3></span>
+    <p>Create a new organization and join today!</p>
+    <%= link_to "Sign Up", new_organization_path, :class => "btn btn-primary pull-right" %>
   </div>
 
 </div>
