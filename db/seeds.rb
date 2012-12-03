@@ -146,6 +146,29 @@ choice10059 = question10015.choices.build :name => "Fri. Nov 2nd"
 choice10060 = question10015.choices.build :name => "Sat. Oct 27th"
 question10015.save
 
+quiz1004 = Quiz.create!(:name => "Ruby Skills",:description => "How well do you know Ruby?", :is_published => false, :passing_grade => 50, :organization_id => org1.id)
+
+question10016 = quiz1004.questions.build :name => "Which of the following is NOT a method defined on the Array Class?", :user_id => user10022.id, :selected => true
+choice10061 = question10016.choices.build :name => "concat"
+choice10062 = question10016.choices.build :name => "values_at"
+choice10063 = question10016.choices.build :name => "rake", :is_correct => true
+choice10064 = question10016.choices.build :name => "last"
+question10016.save
+
+question10017 = quiz1004.questions.build :name => "In Ruby, everything is an object.", :user_id => user10022.id, :selected => true
+choice10065 = question10017.choices.build :name => "True", :is_correct => true
+choice10066 = question10017.choices.build :name => "False"
+# choice10067 = question10017.choices.build :name => ""
+# choice10068 = question10017.choices.build :name => ""
+question10017.save
+
+question10018 = quiz1004.questions.build :name => "Who created Ruby?", :user_id => user10022.id, :selected => true
+choice10069 = question10018.choices.build :name => "Matz", :is_correct => true
+choice10070 = question10018.choices.build :name => "Kats"
+choice10071 = question10018.choices.build :name => "Yard"
+choice10072 = question10018.choices.build :name => "Kent"
+question10018.save
+
 
 org0 = Organization.create!(:name => "Admin", :subdomain => "admin")
 user0 = User.create!(:name => "Tim Tebow", :email => "tim.tebow@flatironschool.com", :password => "fdsa", :password_confirmation => "fdsa", :role => "superuser", :organization_id => org0.id)
@@ -177,19 +200,62 @@ choice2007 = question2002.choices.build :name => "Rubber"
 choice2008 = question2002.choices.build :name => "Aluminum"
 question2002.save
 
+org3 = Organization.create!(:name => "The Simpsons", :subdomain => "simpsons", :invite_code => "asdf")
 
+user30022 = User.create!(:name => "Homer Simpson", :email => "homer@simpsons.tv", :password => "asdf", :password_confirmation => "asdf", :role => "Admin", :organization_id => org3.id)
+user30023 = User.create!(:name => "Marge Simpson", :email => "marge@simpsons.tv", :password => "asdf", :password_confirmation => "asdf", :role => "Admin", :organization_id => org3.id)
 
+user30002 = User.create!(:name => "Bart Simpson", :email => "bart@simpsons.tv", :password => "asdf", :password_confirmation => "asdf", :role => "Student", :organization_id => org3.id)
+user30003 = User.create!(:name => "Lisa Simpson", :email => "lisa@simpsons.tv", :password => "asdf", :password_confirmation => "asdf", :role => "Student", :organization_id => org3.id)
+user30004 = User.create!(:name => "Maggie Simpson", :email => "maggie@simpsons.tv", :password => "asdf", :password_confirmation => "asdf", :role => "Student", :organization_id => org3.id)
+user30005 = User.create!(:name => "Abraham Simpson", :email => "abraham@simpsons.tv", :password => "asdf", :password_confirmation => "asdf", :role => "Student", :organization_id => org3.id)
+user30006 = User.create!(:name => "Mona Simpson", :email => "mona@simpsons.tv", :password => "asdf", :password_confirmation => "asdf", :role => "Student", :organization_id => org3.id)
+user30007 = User.create!(:name => "Santa's Little Helper", :email => "santa@simpsons.tv", :password => "asdf", :password_confirmation => "asdf", :role => "Student", :organization_id => org3.id)
+user30008 = User.create!(:name => "Snowball", :email => "snowball@simpsons.tv", :password => "asdf", :password_confirmation => "asdf", :role => "Student", :organization_id => org3.id)
 
+quiz30001 = Quiz.create!(:name => "Simpsons Trivia",:description => "How well do you know Springfield?", :is_published => true, :passing_grade => 50, :organization_id => org3.id)
 
+question3001 = quiz30001.questions.build :name => "What is Homer's middle name?", :user_id => user30022.id, :selected => true
+choice3001 = question3001.choices.build :name => "Johnson"
+choice3002 = question3001.choices.build :name => "Jay", :is_correct => true
+choice3003 = question3001.choices.build :name => "Jasper"
+choice3004 = question3001.choices.build :name => "Jenny"
+question3001.save
 
+question3002 = quiz30001.questions.build :name => "Where do The Simpsons live?", :user_id => user30022.id, :selected => true
+choice3005 = question3002.choices.build :name => "14 Homer Court"
+choice3006 = question3002.choices.build :name => "42 Shelbyville Drive"
+choice3007 = question3002.choices.build :name => "891 Wiggum Avenue"
+choice3008 = question3002.choices.build :name => "742 Evergreen Terrace", :is_correct => true
+question3002.save
 
+question3003 = quiz30001.questions.build :name => "Who runs Moe's?", :user_id => user30022.id, :selected => true
+choice3009 = question3003.choices.build :name => "Moe", :is_correct => true
+choice30010 = question3003.choices.build :name => "Barney"
+choice30011 = question3003.choices.build :name => "Mayor Quimby"
+choice30012 = question3003.choices.build :name => "Fat Tony"
+question3003.save
 
+question3004 = quiz30001.questions.build :name => "Who is Armin Tamzarian?", :user_id => user30022.id, :selected => true
+choice30013 = question3004.choices.build :name => "Superintendent"
+choice30014 = question3004.choices.build :name => "Gym Coach"
+choice30015 = question3004.choices.build :name => "Principal", :is_correct => true
+choice30016 = question3004.choices.build :name => "Teacher"
+question3004.save
 
+question3005 = quiz30001.questions.build :name => "How many fingers does each hand have?", :user_id => user30022.id, :selected => true
+choice30017 = question3005.choices.build :name => "3"
+choice30018 = question3005.choices.build :name => "4", :is_correct => true
+choice30019 = question3005.choices.build :name => "5"
+choice30020 = question3005.choices.build :name => "6"
+question3005.save
 
-
-
-
-
+question3006 = quiz30001.questions.build :name => "What is Blinky?", :user_id => user30022.id, :selected => true
+choice30021 = question3006.choices.build :name => "A fish", :is_correct => true
+choice30022 = question3006.choices.build :name => "A cat"
+choice30023 = question3006.choices.build :name => "A seal"
+choice30024 = question3006.choices.build :name => "An owl"
+question3006.save
 
 
 
