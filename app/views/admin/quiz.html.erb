@@ -113,13 +113,13 @@
           <% question.choices.each do |choice| %>
             <% if choice.is_correct == true%>
               {
-                name: "<%= choice.name.html_safe %> (Correct)",
+                name: "<%= escape_for_js(choice.name) %> (Correct)",
                 y: <%= QuizGrader.num_answers_for_choice(choice.id) %>,
                 sliced: true,
                 selected: true
               },
             <% else %>
-                ["<%= choice.name.html_safe %>",<%= QuizGrader.num_answers_for_choice(choice.id) %>],
+                ["<%= escape_for_js(choice.name) %>",<%= QuizGrader.num_answers_for_choice(choice.id) %>],
             <% end %>
           <% end %>
 
@@ -176,7 +176,7 @@
 
 
 
-<%# raise (User.find_all_by_id(UserQuiz.find_all_by_quiz_id(@quiz.id).user_id)).inspect %>
+
 
 <h4 style="text-align:center;">Not Taken:</h4>
   <table class="table" >
