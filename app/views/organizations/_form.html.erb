@@ -1,6 +1,6 @@
 <%= form_for(@organization) do |f| %>
 
-  <% if @organization.errors.any? %>
+<% if @organization.errors.any? %>
   <div class="row">
   <div class="offset1 span8">
     <div class="error_messages">
@@ -11,66 +11,60 @@
         <% end %>
       </ul>
     </div>
-    </div>
-</div>
-  <% end %>
-
-
-  <h3>Your Organization:</h3>
-  <div class="row">
-  <div class="offset1 span8">
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :subdomain %>
-    <%= f.text_field :subdomain, :placeholder => "subdomain.openexam.org"%>
   </div>
-  <div class="field">
-    <%= f.label :invite_code %>
-    <%= f.text_field :invite_code, :placeholder => "private code for new users" %>
+<% end %>
+
+<div class="row">
+  <div class="offset span4">
+
+    <h3>Your Info:</h3>
+
+    <%= fields_for @user do |user_f| %>
+
+      <div class="field">
+        <%= user_f.label :name %>
+        <%= user_f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= user_f.label :email %>
+        <%= user_f.text_field :email %>
+      </div>
+      <div class="field">
+        <%= user_f.label :password %>
+        <%= user_f.password_field :password %>
+      </div>
+      <div class="field">
+        <%= user_f.label :password_confirmation %>
+        <%= user_f.password_field :password_confirmation %>
+      </div>
+
+    <% end %>
   </div>
-</div>
-</div>
 
-  <h3>Your Info:</h3>
-  <div class="row">
-  <div class="offset1 span8">
+  <div class="offset1 span5">
 
-  <%= fields_for @user do |user_f| %>
+    <h3>Organization:</h3>
+
     <div class="field">
-      <%= user_f.label :name %>
-      <%= user_f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= user_f.label :email %>
-      <%= user_f.text_field :email %>
-    </div>
-    <div class="field">
-      <%= user_f.label :password %>
-      <%= user_f.password_field :password %>
+      <%= f.label "Organization Name" %>
+      <%= f.text_field :name, :placeholder => "School" %>
     </div>
     <div class="field">
-      <%= user_f.label :password_confirmation %>
-      <%= user_f.password_field :password_confirmation %>
+      <%= f.label :subdomain %>
+      <%= f.text_field :subdomain, :placeholder => "subdomain.openexam.org"%>
     </div>
-  <% end %>
+    <div class="field">
+      <%= f.label :invite_code %>
+      <%= f.text_field :invite_code, :placeholder => "private code for new users" %>
+    </div>
+    
+    <br/>
+    <div class="controls offset5" style="margin-top: 8px;">
+      <input name="commit" class = "btn btn-primary" type="submit" value="Sign up">
+    </div>
 
   </div>
-</div>
-
-  <div class="row">
-  <div class="offset1 span2">
-
-  <div class="controls">   
-   <input name="commit" class = "btn btn-primary" type="submit" value="Sign up">
-  </div>
-
-    </div>
 </div>
 
 <% end %>
-
-

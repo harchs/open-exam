@@ -54,7 +54,7 @@ class OrganizationsController < ApplicationController
       if @organization.save
         OpenExamMailer.registration_confirmation(@user).deliver
         session[:user_id] = @user.id
-        format.html { redirect_to root_url(:subdomain => @organization.subdomain), notice: "Your organization has been created. Make sure to access your organization at #{@organization.subdomain}.openexam.org" }
+        format.html { redirect_to admin_url(:subdomain => @organization.subdomain), notice: "Your organization has been created. Make sure to access your organization at #{@organization.subdomain}.openexam.org" }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }

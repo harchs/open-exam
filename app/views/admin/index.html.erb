@@ -40,7 +40,7 @@
             <% if current_user.is_admin? && !user.is_admin? %>
               <%= form_for(user) do |f| %>
                 <%= f.hidden_field :role, :value => "Admin" %>
-                  <button class="btn btn-mini btn-warning" name="commit" type="submit" onclick="return confirm('Are you sure you want to make this user an admin?');">Make Admin</button>
+                  <button class="btn btn-mini" name="commit" type="submit" onclick="return confirm('Are you sure you want to make this user an admin?');">Make Admin</button>
               <% end %>
             <% end %>
           </td>
