@@ -17,7 +17,7 @@
           <li>
             <a href="<%= quiz_path(quiz) %>">
               <span class="title"><%= truncate(quiz.name, :length => 30) %></span>
-              <span class="description">(<%= pluralize(quiz.approved_questions.length, 'question') %> approved) <%= truncate(quiz.description, :length => 30) %></span>
+              <span class="description">(<%= quiz.questions.length %> submitted, <%= quiz.approved_questions.length %> approved) <%= truncate(quiz.description, :length => 30) %></span>              
             </a>
             <span class="links">
               <% if current_user.is_admin? %>
