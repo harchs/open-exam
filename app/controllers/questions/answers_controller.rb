@@ -33,12 +33,6 @@ class Questions::AnswersController < ApplicationController
     user_id = session[:user_id]
     quiz_id = Question.find(params[:question_id]).quiz_id
 
-    if UserQuiz.where(:user_id => user_id).where(:quiz_id => quiz_id).empty?
-      UserQuiz.create(:user_id => user_id, 
-                      :quiz_id => quiz_id,
-                      :status => "In Progress" )
-    end
-
     @question = Question.find(params[:question_id])
     @question_answer = Question::Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id, :user_id => current_user.id)
 
@@ -67,12 +61,12 @@ class Questions::AnswersController < ApplicationController
 
     respond_to do |format|
       if @question_answer_nested.save
+        user_scoring = UserQuiz.find_or_create_by_user_id_and_quiz_id(user_id, quiz_id)
         if next_question
+          user_scoring.update_attributes(:status => "In Progress")
           format.html { redirect_to new_question_answer_path(next_question.id) }
         else
-
-          user_scoring = UserQuiz.where(:user_id => user_id).where(:quiz_id => quiz_id)
-          UserQuiz.update( user_scoring,
+          user_scoring.update_attributes(
             :total_questions => @question_answer_nested.quiz.approved_questions.count,
             :num_correct => QuizGrader.num_correct(current_user.answers_for_quiz(@question_answer_nested.quiz_id), @question_answer_nested.quiz),
             :status => "Completed" 

@@ -2,7 +2,7 @@
   <div class="span10 offset1">
     <form action="/quizzes/mail_invite" method="post">
       <%= token_tag nil %>
-      <h2>Invite students to take "<%= @quiz.name %>"</h2>
+      <h2>Invite students to add a question to "<%= @quiz.name %>"</h2>
       <% org_users = @users.select do |user| %>
         <% user if user.organization_id == @current_org.id %>
       <% end %>
