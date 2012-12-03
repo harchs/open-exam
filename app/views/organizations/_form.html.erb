@@ -26,11 +26,11 @@
   </div>
   <div class="field">
     <%= f.label :subdomain %>
-    <%= f.text_field :subdomain %>
+    <%= f.text_field :subdomain, :placeholder => "subdomain.openexam.org"%>
   </div>
   <div class="field">
     <%= f.label :invite_code %>
-    <%= f.text_field :invite_code %>
+    <%= f.text_field :invite_code, :placeholder => "private code for new users" %>
   </div>
 </div>
 </div>
@@ -72,3 +72,5 @@
 </div>
 
 <% end %>
+
+
