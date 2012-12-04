@@ -11,17 +11,15 @@
     <ol type="a" class="choices">
     <% question.choices.each do |choice| %>
       <li>
-      <% if choice.is_correct && @answers.detect{|answer| answer.choice_id == choice.id} %>
-        <span class="correct-answer"><%= choice.name %> << Correct answer selected.</span>
-      <% elsif choice.is_correct %>
-        <span class="correct-answer"><%= choice.name %> << Correct answer.</span>
-      <% else %>
-        <% if @answers.detect{|answer| answer.choice_id == choice.id} %>
+        <% if @answers.detect { |answer| answer.choice.id == choice.id } && choice.is_correct %>
+          <span class="correct-answer"><%= choice.name %> << Correct answer selected.</span>
+        <% elsif @answers.detect { |answer| answer.choice.id == choice.id } %>
           <span class="wrong-answer"><%= choice.name %> << Answer selected.</span>
+        <% elsif choice.is_correct %>
+          <span class="correct-answer"><%= choice.name %> << Correct answer.</span>
         <% else %>
-          <span><%= choice.name %></span>
+          <%= choice.name %>
         <% end %>
-      <% end %>
       </li>
     <% end %>
     </ol>
