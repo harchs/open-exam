@@ -63,7 +63,7 @@
       <% question.choices.each do |choice| %>
         <%if current_user.is_admin? || question.author == current_user%>
             <%if choice.is_correct%>
-              <li><font color=3FBD22><%= choice.name %></font></li>
+              <li class="correct-answer"><%= choice.name %></li>
             <%else%>
              <li><%= choice.name %></li> 
             <% end %> 

@@ -12,12 +12,12 @@
     <% question.choices.each do |choice| %>
       <li>
       <% if choice.is_correct && @answers.detect{|answer| answer.choice_id == choice.id} %>
-        <span class="label-success"><%= choice.name %></span>
+        <span class="correct-answer"><%= choice.name %> << Correct answer selected.</span>
       <% elsif choice.is_correct %>
-        <span class="label-success"><%= choice.name %></span>
+        <span class="correct-answer"><%= choice.name %> << Correct answer.</span>
       <% else %>
         <% if @answers.detect{|answer| answer.choice_id == choice.id} %>
-          <span class="label-important"><%= choice.name %></span>
+          <span class="wrong-answer"><%= choice.name %> << Answer selected.</span>
         <% else %>
           <span><%= choice.name %></span>
         <% end %>

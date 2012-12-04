@@ -1,4 +1,10 @@
+.correct-answer {
+  color: #3FBD22;
+}
 
+.wrong-answer {
+  color: red;
+}
 
 #score {
   float: right;
