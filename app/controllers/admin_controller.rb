@@ -15,6 +15,7 @@ class AdminController < ApplicationController
   end
 
   def quiz
+    
     @quiz = current_org.quizzes.find_by_id(params[:quiz_id])
     
     respond_to do |format|

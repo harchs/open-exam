@@ -257,11 +257,74 @@ choice30023 = question3006.choices.build :name => "A seal"
 choice30024 = question3006.choices.build :name => "An owl"
 question3006.save
 
+# Create some user_quizzes for demo purposes. Fill 10 submissions to quiz1002
 
+user_quiz1 = UserQuiz.create(:quiz_id => 2, :user_id => 4, :num_correct => 3, :total_questions => 5, :status => "Completed")
+uqa1 =  Answer.create(:choice_id => 22, :name => "59th Street", :question_id => 6, :quiz_id => 2, :user_id => 4)
+uqa2 =  Answer.create(:choice_id => 25, :name => "72nd Street", :question_id => 7, :quiz_id => 2, :user_id => 4)
+uqa3 =  Answer.create(:choice_id => 30, :name => "Above 60th Street", :question_id => 8, :quiz_id => 2, :user_id => 4)
+uqa4 =  Answer.create(:choice_id => 35, :name => "42nd Street", :question_id => 9, :quiz_id => 2, :user_id => 4)
+uqa5 =  Answer.create(:choice_id => 38, :name => "42nd Street", :question_id => 10, :quiz_id => 2, :user_id => 4)
 
+user_quiz2 = UserQuiz.create(:quiz_id => 2, :user_id => 5, :num_correct => 2, :total_questions => 5, :status => "Completed")
+uqa6 =  Answer.create(:choice_id => 24, :name => "Wall Street", :question_id => 6, :quiz_id => 2, :user_id => 5)
+uqa7 =  Answer.create(:choice_id => 25, :name => "72nd Street", :question_id => 7, :quiz_id => 2, :user_id => 5)
+uqa8 =  Answer.create(:choice_id => 30, :name => "Above 60th Street", :question_id => 8, :quiz_id => 2, :user_id => 5)
+uqa9 =  Answer.create(:choice_id => 35, :name => "42nd Street", :question_id => 9, :quiz_id => 2, :user_id => 5)
+uqa10 =  Answer.create(:choice_id => 38, :name => "42nd Street", :question_id => 10, :quiz_id => 2, :user_id => 5)
 
+user_quiz3 = UserQuiz.create(:quiz_id => 2, :user_id => 6, :num_correct => 4, :total_questions => 5, :status => "Completed")
+uqa11 =  Answer.create(:choice_id => 22, :name => "59th Street", :question_id => 6, :quiz_id => 2, :user_id => 6)
+uqa12 =  Answer.create(:choice_id => 25, :name => "72nd Street", :question_id => 7, :quiz_id => 2, :user_id => 6)
+uqa13 =  Answer.create(:choice_id => 30, :name => "Above 60th Street", :question_id => 8, :quiz_id => 2, :user_id => 6)
+uqa14 =  Answer.create(:choice_id => 36, :name => "Fulton Street", :question_id => 9, :quiz_id => 2, :user_id => 6)
+uqa15 =  Answer.create(:choice_id => 38, :name => "42nd Street", :question_id => 10, :quiz_id => 2, :user_id => 6)
 
+user_quiz4 = UserQuiz.create(:quiz_id => 2, :user_id => 7, :num_correct => 0, :total_questions => 5, :status => "Completed")
+uqa16 =  Answer.create(:choice_id => 21, :name => "42nd Street", :question_id => 6, :quiz_id => 2, :user_id => 7)
+uqa17 =  Answer.create(:choice_id => 25, :name => "72nd Street", :question_id => 7, :quiz_id => 2, :user_id => 7)
+uqa18 =  Answer.create(:choice_id => 29, :name => "42nd Street", :question_id => 8, :quiz_id => 2, :user_id => 7)
+uqa19 =  Answer.create(:choice_id => 33, :name => "59th Street", :question_id => 9, :quiz_id => 2, :user_id => 7)
+uqa20 =  Answer.create(:choice_id => 39, :name => "Wall Street", :question_id => 10, :quiz_id => 2, :user_id => 7)
 
+user_quiz5 = UserQuiz.create(:quiz_id => 2, :user_id => 8, :num_correct => 1, :total_questions => 5, :status => "Completed")
+uqa21 =  Answer.create(:choice_id => 21, :name => "42nd Street", :question_id => 6, :quiz_id => 2, :user_id => 8)
+uqa22 =  Answer.create(:choice_id => 25, :name => "72nd Street", :question_id => 7, :quiz_id => 2, :user_id => 8)
+uqa23 =  Answer.create(:choice_id => 29, :name => "42nd Street", :question_id => 8, :quiz_id => 2, :user_id => 8)
+uqa24 =  Answer.create(:choice_id => 36, :name => "Fulton Street", :question_id => 9, :quiz_id => 2, :user_id => 8)
+uqa25 =  Answer.create(:choice_id => 39, :name => "Wall Street", :question_id => 10, :quiz_id => 2, :user_id => 8)
 
+user_quiz6 = UserQuiz.create(:quiz_id => 2, :user_id => 9, :num_correct => 2, :total_questions => 5, :status => "Completed")
+uqa26 =  Answer.create(:choice_id => 21, :name => "42nd Street", :question_id => 6, :quiz_id => 2, :user_id => 9)
+uqa27 =  Answer.create(:choice_id => 25, :name => "72nd Street", :question_id => 7, :quiz_id => 2, :user_id => 9)
+uqa28 =  Answer.create(:choice_id => 30, :name => "Above 60th Street", :question_id => 8, :quiz_id => 2, :user_id => 9)
+uqa29 =  Answer.create(:choice_id => 36, :name => "Fulton Street", :question_id => 9, :quiz_id => 2, :user_id => 9)
+uqa30 =  Answer.create(:choice_id => 39, :name => "Wall Street", :question_id => 10, :quiz_id => 2, :user_id => 9)
 
+user_quiz7 = UserQuiz.create(:quiz_id => 2, :user_id => 10, :num_correct => 5, :total_questions => 5, :status => "Completed")
+uqa31 =  Answer.create(:choice_id => 22, :name => "59th Street", :question_id => 6, :quiz_id => 2, :user_id => 10)
+uqa32 =  Answer.create(:choice_id => 26, :name => "14th Street", :question_id => 7, :quiz_id => 2, :user_id => 10)
+uqa33 =  Answer.create(:choice_id => 30, :name => "Above 60th Street", :question_id => 8, :quiz_id => 2, :user_id => 10)
+uqa34 =  Answer.create(:choice_id => 36, :name => "Fulton Street", :question_id => 9, :quiz_id => 2, :user_id => 10)
+uqa35 =  Answer.create(:choice_id => 38, :name => "42nd Street", :question_id => 10, :quiz_id => 2, :user_id => 10)
 
+user_quiz8 = UserQuiz.create(:quiz_id => 2, :user_id => 11, :num_correct => 4, :total_questions => 5, :status => "Completed")
+uqa36 =  Answer.create(:choice_id => 21, :name => "42nd Street", :question_id => 6, :quiz_id => 2, :user_id => 11)
+uqa37 =  Answer.create(:choice_id => 26, :name => "14th Street", :question_id => 7, :quiz_id => 2, :user_id => 11)
+uqa38 =  Answer.create(:choice_id => 30, :name => "Above 60th Street", :question_id => 8, :quiz_id => 2, :user_id => 11)
+uqa39 =  Answer.create(:choice_id => 36, :name => "Fulton Street", :question_id => 9, :quiz_id => 2, :user_id => 11)
+uqa40 =  Answer.create(:choice_id => 38, :name => "42nd Street", :question_id => 10, :quiz_id => 2, :user_id => 11)
+
+user_quiz9 = UserQuiz.create(:quiz_id => 2, :user_id => 12, :num_correct => 2, :total_questions => 5, :status => "Completed")
+uqa41 =  Answer.create(:choice_id => 24, :name => "Wall Street", :question_id => 6, :quiz_id => 2, :user_id => 13)
+uqa42 =  Answer.create(:choice_id => 25, :name => "72nd Street", :question_id => 7, :quiz_id => 2, :user_id => 13)
+uqa43 =  Answer.create(:choice_id => 30, :name => "Above 60th Street", :question_id => 8, :quiz_id => 2, :user_id => 13)
+uqa44 =  Answer.create(:choice_id => 35, :name => "42nd Street", :question_id => 9, :quiz_id => 2, :user_id => 13)
+uqa45 =  Answer.create(:choice_id => 38, :name => "42nd Street", :question_id => 10, :quiz_id => 2, :user_id => 13)
+
+user_quiz10 = UserQuiz.create(:quiz_id => 2, :user_id => 13, :num_correct => 3, :total_questions => 5, :status => "Completed")
+uqa46 =  Answer.create(:choice_id => 22, :name => "59th Street", :question_id => 6, :quiz_id => 2, :user_id => 13)
+uqa47 =  Answer.create(:choice_id => 25, :name => "72nd Street", :question_id => 7, :quiz_id => 2, :user_id => 13)
+uqa48 =  Answer.create(:choice_id => 30, :name => "Above 60th Street", :question_id => 8, :quiz_id => 2, :user_id => 13)
+uqa49 =  Answer.create(:choice_id => 35, :name => "42nd Street", :question_id => 9, :quiz_id => 2, :user_id => 13)
+uqa50 =  Answer.create(:choice_id => 38, :name => "42nd Street", :question_id => 10, :quiz_id => 2, :user_id => 13)
