@@ -73,7 +73,6 @@ class Questions::AnswersController < ApplicationController
 
         end
       else
-        debugger
         format.html { render action: "new" }
       end
     end
