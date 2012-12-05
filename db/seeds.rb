@@ -81,7 +81,7 @@ choice10023 = question1006.choices.build :name => "861"
 choice10024 = question1006.choices.build :name => "672"
 question1006.save
 
-question1007 = quiz1002.questions.build :name => "Prior to the Nets, what was the last Brooklyn sports team?", :user_id => user10022.id, :selected => true
+question1007 = quiz1002.questions.build :name => "Prior to the Nets, what was the last professional Brooklyn sports team?", :user_id => user10022.id, :selected => true
 choice10025 = question1007.choices.build :name => "Cyclones"
 choice10026 = question1007.choices.build :name => "Dodgers", :is_correct => true
 choice10027 = question1007.choices.build :name => "Giants"
@@ -102,7 +102,7 @@ choice10035 = question1009.choices.build :name => "Battery Park City"
 choice10036 = question1009.choices.build :name => "Hunts Point", :is_correct => true
 question1009.save
 
-question10010 = quiz1002.questions.build :name => "Where is Grant's Tomb located?", :user_id => user10022.id, :selected => true
+question10010 = quiz1002.questions.build :name => "Where is Grant Tomb located?", :user_id => user10022.id, :selected => true
 choice10037 = question10010.choices.build :name => "Grant Park"
 choice10038 = question10010.choices.build :name => "Riverside Park", :is_correct => true
 choice10039 = question10010.choices.build :name => "Central Park"
@@ -295,7 +295,7 @@ uqa24 =  Answer.create(:choice_id => 36, :name => "Hunts Point", :question_id =>
 uqa25 =  Answer.create(:choice_id => 39, :name => "Central Park", :question_id => 10, :quiz_id => 2, :user_id => 8)
 
 user_quiz6 = UserQuiz.create(:quiz_id => 2, :user_id => 9, :num_correct => 2, :total_questions => 5, :status => "Completed")
-uqa26 =  Answer.create(:choice_id => 21, :name => "453", :question_id => 6, :quiz_id => 2, :user_id => 9)
+uqa26 =  Answer.create(:choice_id => 23, :name => "861", :question_id => 6, :quiz_id => 2, :user_id => 9)
 uqa27 =  Answer.create(:choice_id => 25, :name => "Cyclones", :question_id => 7, :quiz_id => 2, :user_id => 9)
 uqa28 =  Answer.create(:choice_id => 30, :name => "Frederick Olmsted", :question_id => 8, :quiz_id => 2, :user_id => 9)
 uqa29 =  Answer.create(:choice_id => 36, :name => "Hunts Point", :question_id => 9, :quiz_id => 2, :user_id => 9)
@@ -309,7 +309,7 @@ uqa34 =  Answer.create(:choice_id => 36, :name => "Hunts Point", :question_id =>
 uqa35 =  Answer.create(:choice_id => 38, :name => "Riverside Park", :question_id => 10, :quiz_id => 2, :user_id => 10)
 
 user_quiz8 = UserQuiz.create(:quiz_id => 2, :user_id => 11, :num_correct => 4, :total_questions => 5, :status => "Completed")
-uqa36 =  Answer.create(:choice_id => 21, :name => "Riverside Park", :question_id => 6, :quiz_id => 2, :user_id => 11)
+uqa36 =  Answer.create(:choice_id => 23, :name => "861", :question_id => 6, :quiz_id => 2, :user_id => 11)
 uqa37 =  Answer.create(:choice_id => 26, :name => "Dodgers", :question_id => 7, :quiz_id => 2, :user_id => 11)
 uqa38 =  Answer.create(:choice_id => 30, :name => "Frederick Olmsted", :question_id => 8, :quiz_id => 2, :user_id => 11)
 uqa39 =  Answer.create(:choice_id => 36, :name => "Hunts Point", :question_id => 9, :quiz_id => 2, :user_id => 11)
