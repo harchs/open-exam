@@ -19,7 +19,7 @@ class Questions::AnswersController < ApplicationController
   def show
     # @question_answer = Question::Answer.new
     @question = Question.find(params[:question_id])
-    @answer = Question::Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id)
+    @answer = Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class Questions::AnswersController < ApplicationController
     quiz_id = Question.find(params[:question_id]).quiz_id
 
     @question = Question.find(params[:question_id])
-    @question_answer = Question::Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id, :user_id => current_user.id)
+    @question_answer = Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id, :user_id => current_user.id)
 
     # check if user has already submitted an answer for this question
     respond_to do |format|
@@ -52,9 +52,9 @@ class Questions::AnswersController < ApplicationController
   # POST /questions/:question_id/answers
   def create
     @question = Question.find(params[:question_id])
-    @question_answer = Question::Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id, :user_id => current_user.id)
+    @question_answer = Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id, :user_id => current_user.id)
 
-    @question_answer_nested = Question::Answer.new(params[:answer])
+    @question_answer_nested = Answer.new(params[:answer])
     next_question = @question_answer_nested.quiz.next_question(@question_answer_nested.question)
     user_id = session[:user_id]
     quiz_id = Question.find(params[:question_id]).quiz_id
@@ -76,6 +76,7 @@ class Questions::AnswersController < ApplicationController
 
         end
       else
+        debugger
         format.html { render action: "new" }
       end
     end
