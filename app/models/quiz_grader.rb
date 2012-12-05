@@ -6,12 +6,12 @@ class QuizGrader
   def self.average_quiz_score(quiz)
     scores = quiz.completed
     scores = scores.collect{|user_quiz| user_quiz.num_correct}
-    quiz.user_quizzes.count > 0 ? scores.sum.to_f / quiz.completed.count : 0
+    quiz.completed.count > 0 ? scores.sum.to_f / quiz.completed.count : 0
   end  
 
   def self.percent_correct(quiz)
     raw_score = average_quiz_score(quiz).to_f
-    quiz.user_quizzes.count > 0 ? ((raw_score / quiz.questions.count).round(2)) * 100 : 0
+    quiz.completed.count > 0 ? ((raw_score / quiz.questions.count).round(2)) * 100 : 0
   end  
 
   def self.highest_quiz_score(quiz)
@@ -51,15 +51,23 @@ class QuizGrader
   end 
 
   def self.most_correct_answers(quiz)
-    most = quiz.completed
+    most = quiz.completed 
     most = most.max_by(&:num_correct)
-    User.find_by_id(most.user_id).name
+    if most
+      User.find_by_id(most.user_id).name
+    else
+      "none" 
+    end  
   end  
 
   def self.correct_responses(quiz)
     most = quiz.completed
     most = most.max_by(&:num_correct)
-    most.num_correct
+    if most
+     most.num_correct
+    else
+     0
+    end  
   end 
 
   def self.student_correct_percent_by_quiz(quiz)
