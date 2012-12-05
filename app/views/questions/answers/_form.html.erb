@@ -78,6 +78,14 @@
       $(this).addClass('selected_choice');
       $('#selected_choice').val($(this).attr('data-choice'));
     });
+
+    $('input.btn.btn-primary').click(function(){
+      if (!$('#choices_list li.selected_choice').length) {
+        return false;
+      }
+    });
   });
+
+
 </script>
 
