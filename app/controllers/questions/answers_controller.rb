@@ -51,9 +51,6 @@ class Questions::AnswersController < ApplicationController
 
   # POST /questions/:question_id/answers
   def create
-    @question = Question.find(params[:question_id])
-    @question_answer = Answer.new(:question_id => @question.id, :quiz_id => @question.quiz.id, :user_id => current_user.id)
-
     @question_answer_nested = Answer.new(params[:answer])
     next_question = @question_answer_nested.quiz.next_question(@question_answer_nested.question)
     user_id = session[:user_id]
