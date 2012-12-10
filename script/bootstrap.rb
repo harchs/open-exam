@@ -11,6 +11,14 @@ def check(key)
   File.open(cache_file, 'w') { |f| f.puts(version || 'cached') }
 end
 
+
+`rake db:drop`
+puts 'dropped the database'
+`rake db:create`
+puts 'created a fresh database'
+`rake db:migrate`
+puts 'migrated the database'
+
 check(:bundler) do |old_version|
   break if old_version
   unless system("source .rvmrc; which bundle > /dev/null")
@@ -38,4 +46,5 @@ check(:schema) do |old_version|
   version
 end
 
+`rake bootdata`
 puts 'The bootstrap has finished running.'
