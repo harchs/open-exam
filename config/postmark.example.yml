@@ -1,0 +1,9 @@
+development: 
+  postmark_api_key: "yourkeyhere"
+
+production:
+  postmark_api_key: "yourkeyhere"
+  postmark_sender: "sender@yourmail.com"
+  postmark_recipients: 
+    - "recipient1@yourmail.com"
+    - "recipient2@yourmail.com"
