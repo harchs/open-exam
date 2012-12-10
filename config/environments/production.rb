@@ -67,6 +67,6 @@ OpenExam::Application.configure do
 
   # Enable exceptions notification
   config.middleware.use ExceptionNotifier,
-    sender_address: 'services@flatironschool.com',
-    exception_recipients: ['stephenchen13@gmail.com', 'rex.feng+openexamerror@flatironschool.com', 'akiva.leeder@flatironschool.com', 'jkdman63@gmail.com', 'avi@flatironschool.com']
+    sender_address: APP_CONFIG['postmark_sender'],
+    exception_recipients: APP_CONFIG['postmark_recipients'] 
 end
