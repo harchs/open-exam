@@ -23,7 +23,6 @@ role :db,  "openexam.org", :primary => true # This is where Rails migrations wil
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 before "deploy:assets:precompile", "deploy:symlink_shared"
-after "deploy:finalize_update", "config:postmark"
 after "deploy", "deploy:migrate"
 
 # If you are using Passenger mod_rails uncomment this:
@@ -37,11 +36,6 @@ namespace :deploy do
   desc "Symlink shared configs and folders on each release."
   task :symlink_shared do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-  end
-end
-
-namespace :config do
-  task :postmark, :roles => :app do
-    run "cp -f ~/postmark.yml #{release_path}/config/postmark.yml"
+    run "ln -nfs #{shared_path}/config/postmark.yml #{release_path}/config/postmark.yml"
   end
 end
