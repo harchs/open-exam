@@ -16,3 +16,23 @@ The admin(s) also have the ability to see full stats for each student and each q
 #Installation
 
 Once you clone the repository, run `ruby script/bootstrap.rb` to get clean database with test data. 
+
+#Setting up Postmark
+
+You need to create /config/postmark.yml file to configure mailer. Submit the following code with your personal postmark information. 
+
+```development:
+
+postmark_api_key: "your-key"
+
+production:
+
+postmark_api_key: "your-key"
+
+postmark_sender: "sender@email.com"
+
+postmark_recipients:
+
+ "receiver1@email.com"
+
+ "receiver2@email.com" ```
