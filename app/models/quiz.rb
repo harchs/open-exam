@@ -84,6 +84,8 @@ class Quiz < ActiveRecord::Base
     self.user_quizzes.select {|user_quiz| user_quiz.status == "Completed"}
   end 
 
+# easier to turn this into activerecord object with the WHERE
+
   def not_taken
     yetto = self.user_quizzes.select {|user_quiz| user_quiz.status == "Completed" || "In Progress"}
     #yetto_ids = yetto.map { |x| x.user_id}
