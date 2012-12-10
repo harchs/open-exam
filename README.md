@@ -17,6 +17,8 @@ The admin(s) also have the ability to see full stats for each student and each q
 
 Once you clone the repository, run `ruby script/bootstrap.rb` to get clean database with test data. 
 
+In the config folder, two files must be edited and have their names changed. `database.example.yml` and `postmark.example.yml` must be edited with your personal infomration (see below) and renamed to `database.yml` and `postmark.yml`.
+
 #Setting up Postmark
 
 You need to create /config/postmark.yml file to configure mailer. Submit the following code with your personal postmark information. 
