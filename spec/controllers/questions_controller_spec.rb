@@ -19,6 +19,22 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe QuestionsController do
-
+  before do
+    require_subdomain
+  end
+    
+  context "#index" do
+    it "should redirect to root" do
+      get :index
+      response.should redirect_to(root_path)
+    end
+  end
   
+  context "#show" do
+    it "should render show.html.erb" do
+      get :show, :id => 1
+      response.should render_template("show")
+    end  
+  end
+
 end
