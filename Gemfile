@@ -36,6 +36,7 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
+  gem 'simplecov', :require => false
   gem 'rspec-rails'
   gem 'capybara'
   gem 'debugger'
