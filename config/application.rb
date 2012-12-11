@@ -15,12 +15,12 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-APP_CONFIG = YAML.load_file(File.expand_path('../postmark.yml', __FILE__))[Rails.env]
+APP_CONFIG = YAML.load_file(File.expand_path('../postmark.yml', __FILE__))
 
 module OpenExam
   class Application < Rails::Application
     config.action_mailer.delivery_method   = :postmark
-    config.action_mailer.postmark_settings = { :api_key => APP_CONFIG['postmark_api_key'] }
+    config.action_mailer.postmark_settings = { :api_key => APP_CONFIG['development']['postmark_api_key'] }
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
