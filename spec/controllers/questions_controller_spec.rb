@@ -19,6 +19,8 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe QuestionsController do
+  let(:quiz) { create(:quiz) }
+  let(:question) {create(:question) }
   before do
     require_subdomain
   end
@@ -32,8 +34,23 @@ describe QuestionsController do
   
   context "#show" do
     it "should render show.html.erb" do
-      get :show, :id => 1
+      get :show, :id => question.id
       response.should render_template("show")
+    end  
+    it "should assign @question to Question.find_by_id(1)" do
+      get :show, :id => question.id
+      assigns(:question).id.should == question.id
+    end  
+  end  
+  context "#new" do
+    before do
+      get :new, :quiz_id => quiz.id 
+    end  
+    it "should render new.html.erb" do
+      response.should render_template("new")
+    end
+    it "should find @quiz" do
+      assigns(:quiz).id.should == 1
     end  
   end
 
