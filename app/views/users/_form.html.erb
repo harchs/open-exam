@@ -15,7 +15,10 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
-
+  <div class="field">
+    <%= label_tag "Invite Code" %>
+    <%= text_field_tag 'invite_code' %>
+  </div>
   <div class="field">
     <%= f.label :email %>
     <%= f.text_field :email %>
