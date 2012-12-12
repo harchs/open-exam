@@ -10,6 +10,19 @@ describe User do
   end
 
   it "is invalid without a properly formatted email" do
-    FactoryGirl.build(:user, email: "bad_email").should_not be_valid
+    expect(FactoryGirl.build(:user, email: "bad_email")).to_not be_valid
   end
+
+  it "should be a superuser" do
+    FactoryGirl.build(:user, role: "superuser").is_superuser?.should be_true
+  end
+
+  it "should not be a superuser" do
+    expect(FactoryGirl.build(:user, role: "blah").is_superuser?).to_not be_true
+  end
+
+  it "should be a student by default" do
+    FactoryGirl.create(:user).role.should == "student"
+  end
+
 end
