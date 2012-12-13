@@ -15,9 +15,11 @@ The admin(s) also have the ability to see full stats for each student and each q
 
 #Installation
 
-Once you clone the repository, run `ruby script/bootstrap.rb` to get clean database with test data. 
+Once you clone the repository, you must update two files in the config folder. 
 
 In the config folder, two files must be edited and have their names changed. `database.example.yml` and `postmark.example.yml` must be edited with your personal infomration (see below) and renamed to `database.yml` and `postmark.yml`.
+
+After you update those files, run `ruby script/bootstrap.rb` to get clean database with test data. 
 
 #Setting up Postmark
 
