@@ -4,5 +4,9 @@ FactoryGirl.define do
     description "A hard quiz"
     organization_id 1
     passing_grade 80
-  end  
-end
+
+    factory :quiz_with_approved do
+      questions {|a| [a.association(:approved_question),a.association(:approved_question)]}
+    end
+  end
+end  

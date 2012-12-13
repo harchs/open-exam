@@ -34,9 +34,9 @@ class Question < ActiveRecord::Base
     self.selected ||= false
   end
   
-  def is_last_question?
-    self.quiz.approved_questions.count == self.sort_order
-  end  
+  # def is_last_question?   
+  #   self.quiz.approved_questions.count == self.sort_order
+  # end  
 
   def is_selected?
     self.selected 

@@ -56,7 +56,7 @@ class Quiz < ActiveRecord::Base
   end
 
   def approved_questions
-    self.questions.order(:position).select{|question| question.selected}
+    self.questions.sort{|a,b| a.position <=> b.position}.select{|question| question.selected}
   end
 
   def user_quiz_for(user)

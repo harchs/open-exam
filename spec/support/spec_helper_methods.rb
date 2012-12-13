@@ -1,4 +1,5 @@
 def require_subdomain
-  @subdomain = "flatiron"
-  @request.host = "#{@subdomain}.test.host"
+  org = create(:organization)
+  @subdomain = org.subdomain
+  @request.host = "#{org.subdomain}.test.host"
 end
