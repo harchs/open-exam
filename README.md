@@ -1,7 +1,6 @@
+#OpenExam
 
-OpenExam.org 
-
-[OpenExam](www.openexam.org) is quiz software built on Ruby on Rails with a focus on student/ teacher collaboration. 
+[OpenExam](http://www.openexam.org) is quiz software built on Ruby on Rails with a focus on student/ teacher collaboration. 
 
 #Organization support
 OpenExam supports unique organizations with subdomain support. Each organization is given its own subdomain and is siloed off from other organizations. For example, test.openexam.org is a completely separate instance of the application from class1.openexam.org.
