@@ -66,11 +66,13 @@ class OrganizationsController < ApplicationController
   def demo
     increment = User.count + 1
 
-    demo_user = FactoryGirl.build(:user,
+    org = Organization.find_by_subdomain("demo")
+    demo_user = User.new(
       name: "Flatiron Guest",
       email: "flatiron#{increment}@flatironschool.com",
-      organization_id: 4,
-      password_digest: "asdf",
+      organization_id: org.id,
+      password: "asdf",
+      password_confirmation: "asdf",
       role: "Student"
       )
 
