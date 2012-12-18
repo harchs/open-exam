@@ -22,3 +22,4 @@ config/database.yml
 /config/postmark.yml
 
 /coverage/*
+/config/.DS_Store
