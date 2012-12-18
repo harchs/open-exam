@@ -78,7 +78,7 @@ class OrganizationsController < ApplicationController
 
     if demo_user.save
       session[:user_id] = demo_user.id
-      redirect_to root_url(:subdomain => "demo"), notice: "Welcome to the demo!"
+      redirect_to root_url(:subdomain => "demo"), notice: "Welcome to the demo! You're logged in as a student. Take a quiz or add questions to unpublished quizzes."
     else
       redirect_to root_path
     end
