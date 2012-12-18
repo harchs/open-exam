@@ -27,15 +27,8 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
-end
 
-gem 'jquery-rails'
-
-group :development, :test do
   gem 'simplecov', :require => false
   gem 'rspec-rails'
   gem 'capybara'
@@ -43,7 +36,13 @@ group :development, :test do
   gem 'thin'
   gem 'factory_girl_rails'
   gem 'faker'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer', :platforms => :ruby
 end
+
+gem 'jquery-rails'
+
 # To use ActiveModel has_secure_password
   gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'omniauth-identity'
@@ -58,4 +57,4 @@ end
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
+# gem 'debugger'

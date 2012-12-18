@@ -26,6 +26,8 @@ OpenExam::Application.routes.draw do
   get 'users/invite' => 'users#invite', as: 'invite_users'
   post 'users/create_students' => 'users#create_students'
 
+  get 'organizations/demo' => 'organizations#demo'
+
   resources :organizations
 
   resources :quizzes

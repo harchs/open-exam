@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_filter :organizations_only, :except => [:new, :create]
+  before_filter :organizations_only, :except => [:new, :create, :demo]
   before_filter :authorize, :only => [:show ]
   before_filter :authorize_admin_or_superuser, :only => [:edit]
   before_filter :authorize_superuser, :only => [ :index, :update, :destroy]
@@ -61,6 +61,26 @@ class OrganizationsController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def demo
+    increment = User.count + 1
+
+    demo_user = FactoryGirl.build(:user,
+      name: "Flatiron Guest",
+      email: "flatiron#{increment}@flatironschool.com",
+      organization_id: 4,
+      password_digest: "asdf",
+      role: "Student"
+      )
+
+    if demo_user.save
+      session[:user_id] = demo_user.id
+      redirect_to root_url(:subdomain => "demo"), notice: "Welcome to the demo!"
+    else
+      redirect_to root_path
+    end
+
   end
 
   # PUT /organizations/1

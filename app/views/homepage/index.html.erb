@@ -14,7 +14,7 @@
   <br />
     
   <div class="offset1 span5">
-    <P>Signed up? Find your account by inputting your email.</P> 
+    <P>Already signed up? Find your account below.</P> 
     
     <form class="navbar-search pull-left">
       <%= form_tag({:controller => "organizations", :action => "index"}, method: :get) do %>
@@ -35,8 +35,10 @@
   </div>
 
   <div class="span4">
-    <p>Create a new organization and join today!</p>
-    <%= link_to "Sign Up", new_organization_path, :class => "btn btn-primary pull-right" %>
+    <p>Create your school or try it out!</p>
+    <%= link_to "Sign Up", new_organization_path, :class => "btn btn-primary" %>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <%= link_to "Demo", organizations_demo_path, :class => "btn btn-success" %>
   </div>
 
 </div>

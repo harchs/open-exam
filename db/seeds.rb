@@ -200,7 +200,7 @@ choice2007 = question2002.choices.build :name => "Rubber"
 choice2008 = question2002.choices.build :name => "Aluminum"
 question2002.save
 
-org3 = Organization.create!(:name => "The Simpsons", :subdomain => "simpsons", :invite_code => "asdf")
+org3 = Organization.create!(:name => "The Simpsons", :subdomain => "demo", :invite_code => "asdf")
 
 user30022 = User.create!(:name => "Homer Simpson", :email => "homer@simpsons.tv", :password => "asdf", :password_confirmation => "asdf", :role => "Admin", :organization_id => org3.id)
 user30023 = User.create!(:name => "Marge Simpson", :email => "marge@simpsons.tv", :password => "asdf", :password_confirmation => "asdf", :role => "Admin", :organization_id => org3.id)
@@ -256,6 +256,11 @@ choice30022 = question3006.choices.build :name => "A cat"
 choice30023 = question3006.choices.build :name => "A seal"
 choice30024 = question3006.choices.build :name => "An owl"
 question3006.save
+
+quiz300022 = Quiz.create!(:name => "Shelbyville",:description => "What are your neighbors up to?", :is_published => false, :passing_grade => 50, :organization_id => org3.id)
+
+quiz300033 = Quiz.create!(:name => "Monorail Safety",:description => "D'oh!", :is_published => false, :passing_grade => 50, :organization_id => org3.id)
+
 
 # Create some user_quizzes for demo purposes. Fill 10 submissions to quiz1002
 
