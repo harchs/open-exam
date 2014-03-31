@@ -14,7 +14,6 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem "twitter-bootstrap-rails"
 gem "rabl"
 gem 'httparty'
-gem 'demoday-rails'
 gem 'exception_notification'
 gem 'postmark-rails'
 gem 'letter_opener', :group => :development

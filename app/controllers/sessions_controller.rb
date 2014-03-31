@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
   def create
     user = current_org.users.find_by_email(params[:email].downcase)
     if user && user.authenticate(params[:password])
+
       session[:user_id] = user.id
       unless user.is_admin?
         redirect_back_or quizzes_path
